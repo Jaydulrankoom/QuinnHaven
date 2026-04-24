@@ -1,0 +1,128 @@
+# QUINNHAVEN - ELEMENTOR DESIGN & CONTENT BLUEPRINT
+
+Use this blueprint to build out your Homepage in Elementor natively. Since you want to be able to "click and edit" text and images visually, you will need to drag and drop Elementor's native widgets (Heading, Text Editor, Image, Button) and simply copy/paste the content below.
+
+---
+
+## 🎨 GLOBAL BRAND IDENTITY
+Set these in your Elementor "Site Settings" (the hamburger menu in the top left of Elementor > Site Settings > Global Colors & Global Fonts).
+
+**Global Colors:**
+* Primary (Brand Blue): `#141162`
+* Accent (Gold): `#B8995E`
+* Accent Light (Gold Light): `#d4b881`
+* Text/Dark (Charcoal): `#1a1a1a`
+* Background (Cream): `#f5f2ed`
+
+**Global Fonts:**
+* Primary Heading Font: `Playfair Display` (Serif)
+* Body Text Font: `Inter` (Sans-serif)
+
+---
+
+## 1. HERO SECTION
+* **Background:** Add an Elementor "Section", set height to "Min Height: 100vh". Add background image, set overlay to a gradient (Brand Blue to Charcoal).
+* **Subtitle (Text Editor):** Kitchen Cabinets & Bathroom Design (Color: Gold)
+* **H1 Heading:** Luxury Kitchen & Bathroom Design in Connecticut. (Color: White)
+  *(Make "Bathroom Design" styled with italic Playfair Display and Gold Light color)*
+* **Paragraph (Text Editor):** Experience the pinnacle of custom cabinetry and spatial planning. From master bathrooms to culinary-grade kitchens, we bring your ultimate vision to life with complete end-to-end service. (Color: White/80% opacity)
+* **Buttons (Inner Section / Flex Row):** 
+  * Button 1: "Book a Consultation" (Background: Gold, Text: White)
+  * Button 2: "Visit Showroom" (Background: Transparent, Border: Solid White, Text: White)
+
+---
+
+## 2. TRUST BAR SECTION
+* **Layout:** 4 Columns. Background Color: Charcoal.
+* **Column 1 (Heading Widget):** Custom Design Experts (Text: White, uppercase)
+* **Column 2 (Heading Widget):** Premium Materials (Text: White, uppercase)
+* **Column 3 (Heading Widget):** Connecticut-Based (Text: White, uppercase)
+* **Column 4 (Heading Widget):** End-to-End Service (Text: White, uppercase)
+
+---
+
+## 3. ABOUT PREVIEW SECTION
+* **Layout:** 2 Columns (Left: Text, Right: Image). Background Color: Cream.
+* **Subtitle (Heading):** Who We Are (Color: Gold)
+* **H2 Heading:** Uncompromising Craftsmanship & Personalized Design (Color: Brand Blue)
+* **Paragraph 1 (Text Editor):** At QuinnHaven Kitchen Cabinets & Bathroom Design, we believe your environment dictates your peace of mind. We don't just supply cabinets; we listen to how you actually live, executing expertly tailored spatial planning alongside a curated selection of premium materials.
+* **Paragraph 2 (Text Editor):** By pairing elite components with meticulous attention to detail, our passionate team ensures your home not only looks breathtaking but functions flawlessly.
+* **Link/Button:** Learn More About Us
+* **Right Column Image:** Use a kitchen craftsmanship image. Add a subtle shadow.
+
+---
+
+## 4. SERVICES SECTION
+* **Layout:** 1 Column for Title, 4 Columns for Grid. Background Color: White.
+* **Subtitle:** Our Expertise (Color: Gold)
+* **H2 Heading:** Comprehensive Design Services (Color: Brand Blue)
+* **Paragraph:** We specialize in transforming every corner of your home with precision logistics and a refined aesthetic.
+
+**Grid Items (Create an Icon Box or Image Box for each):**
+1. **Title:** Kitchen Design | **Desc:** Bespoke culinary spaces where form meets function.
+2. **Title:** Custom Kitchen Cabinets | **Desc:** Precision-milled storage crafted to your exact specifications.
+3. **Title:** Bathroom Design | **Desc:** Spa-like sanctuaries designed for optimal relaxation.
+4. **Title:** Closet Design | **Desc:** Boutique-style wardrobes organized exactly for your lifestyle.
+5. **Title:** Basement Bar | **Desc:** Entertain in sophistication with a custom wet bar.
+6. **Title:** Home Office | **Desc:** Inspiring executive workspaces built for peak productivity.
+7. **Title:** Entryway Storage | **Desc:** Custom mudroom built-ins and elegant entryway organization logic.
+
+---
+
+## 5. PRODUCTS / MATERIALS SECTION
+* **Layout:** Dark Section (Background: Charcoal). Grid of Images.
+* **H2 Heading:** A Curated Material Selection
+* **Grid Items (Images with Text Overlay):**
+  * Cabinetry
+  * Countertops
+  * Vanities
+  * Premium Tile
+  * Shower Doors
+  * Hardware
+
+---
+
+## 6. PORTFOLIO / PROJECTS SECTION
+* **Layout:** Background Cream. 
+* **H2 Heading:** Recent Transformations (Color: Brand Blue)
+* **Project 1:** Kitchen Remodel - "The Avon Culinary Estate"
+* **Project 2:** Bathroom Retreat - "Wallingford Master Bath"
+* **CTA Button:** View Full Portfolio (Bordered Brand Blue)
+
+---
+
+## 7. PROCESS SECTION
+* **Layout:** Background White. 5 Column Grid.
+* **H2 Heading:** A Seamless 5-Step Process
+* **Step 1:** Consultation (We discuss your vision, layout needs, and initial budget.)
+* **Step 2:** Design Planning (Expert 3D modeling to perfect your highly functional layout.)
+* **Step 3:** Material Selection (Curating premium stone, custom cabinetry, and hardware.)
+* **Step 4:** Build & Installation (Professional project management and flawless installation.)
+* **Step 5:** Final Reveal (A comprehensive walkthrough ensuring total perfection.)
+
+---
+
+## 8. LOCATION SEO SECTION
+* **Layout:** Background Cream. Inner box Background White with Shadow. 2 Columns.
+* **H2 Heading:** Serving Connecticut's Premier Neighborhoods (Color: Brand Blue)
+* **Text:** QuinnHaven proudly delivers exceptional kitchen remodeling and custom bath design across Connecticut. Our fully licensed installers and design experts understand the unique architectural logic and luxury real estate standards of the region.
+* **SEO Bullet Points (List Widget):** Wallingford, New Haven, Hartford, Avon, Norwalk.
+
+---
+
+## 9. SHOWROOM SECTION
+* **Layout:** Left Text, Right Image. Background White.
+* **H2 Heading:** Visit Our Design Studio
+* **Text:** Step off the screen and into reality. Run your hands over our solid birch cabinetry, examine thick-cut marble, and sit down with our designers to map out your dream space over a cup of coffee.
+* **Location:** 121 N Plains Industrial Road, Unit C, Wallingford, CT, United States
+* **Button:** Schedule a Visit (Background Gold)
+
+---
+
+## 10. FINAL CTA SECTION
+* **Layout:** Background Image with dark overlay. Height 60vh. Text centered.
+* **H2 Heading:** Ready to Transform Your Space? (Color: White)
+* **Paragraph:** Whether you're planning a complete kitchen overhaul or a bespoke closet addition, our team is ready to bring your vision to reality.
+* **Buttons:** 
+  1. Book Consultation (Solid Gold)
+  2. Call Now (Bordered White)

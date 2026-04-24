@@ -1,0 +1,36 @@
+{
+  "version": "0.4",
+  "title": "QuinnHaven - Final CTA Section (HTML Block)",
+  "type": "section",
+  "content": [
+    {
+      "id": "69vumrw",
+      "settings": {},
+      "elements": [
+        {
+          "id": "o3iahy8",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "1hf3e7r",
+              "settings": {
+                "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>QuinnHaven Final CTA Section</title>\n  \n  <!-- Fonts: Inter for UI & Playfair Display for Serif -->\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\" rel=\"stylesheet\">\n  \n  <!-- Tailwind CSS via CDN for easy elementor mapping -->\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  \n  <style>\n    body {\n      margin: 0;\n      font-family: 'Inter', sans-serif;\n    }\n    .font-serif {\n      font-family: 'Playfair Display', serif;\n    }\n    .font-sans {\n      font-family: 'Inter', sans-serif;\n    }\n  </style>\n</head>\n<body>\n\n  <!-- 6. FINAL CTA SECTION -->\n  <section class=\"relative h-[60vh] flex items-center justify-center\">\n    \n    <!-- Background Image -->\n    <div class=\"absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center\"></div>\n    \n    <!-- Overlay: Charcoal (#1a1a1a) at 80% opacity with backdrop blur -->\n    <div class=\"absolute inset-0 backdrop-blur-sm\" style=\"background-color: rgba(26, 26, 26, 0.8);\"></div>\n    \n    <!-- Content Layer -->\n    <div class=\"relative z-10 text-center max-w-3xl px-6\">\n       <!-- Heading -->\n       <h2 class=\"font-serif text-5xl md:text-6xl text-white mb-8\">Ready to Elevate Your Home?</h2>\n       \n       <!-- Subtext -->\n       <p class=\"text-white/80 font-light text-lg mb-10 max-w-xl mx-auto font-sans\">\n         Visit one of our showrooms or book a virtual consultation with our design team today.\n       </p>\n       \n       <!-- CTA Button: #B8995E is the Gold, #1a1a1a is the Charcoal on hover -->\n       <a \n        href=\"/contact\" \n        class=\"inline-block bg-[#B8995E] text-white px-10 py-5 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 font-sans\"\n      >\n        Start Your Project\n      </a>\n    </div>\n  </section>\n\n</body>\n</html>\n"
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "html",
+              "elType": "widget"
+            }
+          ],
+          "isInner": false,
+          "elType": "column"
+        }
+      ],
+      "isInner": false,
+      "elType": "section"
+    }
+  ],
+  "page_settings": {}
+}

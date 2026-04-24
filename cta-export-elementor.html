@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuinnHaven Final CTA Section</title>
+  
+  <!-- Fonts: Inter for UI & Playfair Display for Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN for easy elementor mapping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-sans {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 6. FINAL CTA SECTION -->
+  <section class="relative h-[60vh] flex items-center justify-center">
+    
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
+    
+    <!-- Overlay: Charcoal (#1a1a1a) at 80% opacity with backdrop blur -->
+    <div class="absolute inset-0 backdrop-blur-sm" style="background-color: rgba(26, 26, 26, 0.8);"></div>
+    
+    <!-- Content Layer -->
+    <div class="relative z-10 text-center max-w-3xl px-6">
+       <!-- Heading -->
+       <h2 class="font-serif text-5xl md:text-6xl text-white mb-8">Ready to Elevate Your Home?</h2>
+       
+       <!-- Subtext -->
+       <p class="text-white/80 font-light text-lg mb-10 max-w-xl mx-auto font-sans">
+         Visit one of our showrooms or book a virtual consultation with our design team today.
+       </p>
+       
+       <!-- CTA Button: #B8995E is the Gold, #1a1a1a is the Charcoal on hover -->
+       <a 
+        href="/contact" 
+        class="inline-block bg-[#B8995E] text-white px-10 py-5 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 font-sans"
+      >
+        Start Your Project
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>

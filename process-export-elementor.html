@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuinnHaven Process Section</title>
+  
+  <!-- Fonts: Inter for UI & Playfair Display for Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN for easy elementor mapping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Map React Tailwind classes to standard styling -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-sans {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- THE PROCESS (Dark Section) -->
+  <section class="py-32" style="background-color: #1a1a1a; color: #f5f2ed;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-24">
+        <span class="uppercase tracking-[0.2em] text-xs font-semibold block mb-4" style="color: #B8995E;">How We Work</span>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+          From Concept to Completion
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+        <!-- Connecting Line for desktop -->
+        <div class="hidden md:block absolute top-[24px] left-[10%] right-[10%] h-[1px] bg-white/10"></div>
+        
+        <!-- Step 01 -->
+        <div class="relative z-10 text-center">
+          <div class="w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8" style="background-color: #B8995E; color: #1a1a1a;">
+            01
+          </div>
+          <h4 class="font-sans uppercase tracking-widest text-sm font-semibold mb-4">Consultation</h4>
+          <p class="text-white/60 font-light text-sm px-4">We discuss your vision, budget, and gather measurements.</p>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="relative z-10 text-center">
+          <div class="w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8" style="background-color: #B8995E; color: #1a1a1a;">
+            02
+          </div>
+          <h4 class="font-sans uppercase tracking-widest text-sm font-semibold mb-4">3D Design</h4>
+          <p class="text-white/60 font-light text-sm px-4">Detailed renderings and material selection in our showroom.</p>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="relative z-10 text-center">
+          <div class="w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8" style="background-color: #B8995E; color: #1a1a1a;">
+            03
+          </div>
+          <h4 class="font-sans uppercase tracking-widest text-sm font-semibold mb-4">Procurement</h4>
+          <p class="text-white/60 font-light text-sm px-4">Ordering premium cabinetry, stone, and hardware.</p>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="relative z-10 text-center">
+          <div class="w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8" style="background-color: #B8995E; color: #1a1a1a;">
+            04
+          </div>
+          <h4 class="font-sans uppercase tracking-widest text-sm font-semibold mb-4">Installation</h4>
+          <p class="text-white/60 font-light text-sm px-4">Flawless execution by our network of master builders.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

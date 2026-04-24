@@ -1,0 +1,36 @@
+{
+  "version": "0.4",
+  "title": "QuinnHaven - Process (How We Work) (HTML Block)",
+  "type": "section",
+  "content": [
+    {
+      "id": "lnpt0ea",
+      "settings": {},
+      "elements": [
+        {
+          "id": "rku5sz3",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "nn9wiwv",
+              "settings": {
+                "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>QuinnHaven Process Section</title>\n  \n  <!-- Fonts: Inter for UI & Playfair Display for Serif -->\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap\" rel=\"stylesheet\">\n  \n  <!-- Tailwind CSS via CDN for easy elementor mapping -->\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n  \n  <!-- Map React Tailwind classes to standard styling -->\n  <style>\n    body {\n      margin: 0;\n      font-family: 'Inter', sans-serif;\n    }\n    .font-serif {\n      font-family: 'Playfair Display', serif;\n    }\n    .font-sans {\n      font-family: 'Inter', sans-serif;\n    }\n  </style>\n</head>\n<body>\n\n  <!-- THE PROCESS (Dark Section) -->\n  <section class=\"py-32\" style=\"background-color: #1a1a1a; color: #f5f2ed;\">\n    <div class=\"max-w-7xl mx-auto px-6 lg:px-8\">\n      \n      <div class=\"text-center max-w-3xl mx-auto mb-24\">\n        <span class=\"uppercase tracking-[0.2em] text-xs font-semibold block mb-4\" style=\"color: #B8995E;\">How We Work</span>\n        <h2 class=\"font-serif text-4xl md:text-5xl leading-tight\">\n          From Concept to Completion\n        </h2>\n      </div>\n\n      <div class=\"grid grid-cols-1 md:grid-cols-4 gap-12 relative\">\n        <!-- Connecting Line for desktop -->\n        <div class=\"hidden md:block absolute top-[24px] left-[10%] right-[10%] h-[1px] bg-white/10\"></div>\n        \n        <!-- Step 01 -->\n        <div class=\"relative z-10 text-center\">\n          <div class=\"w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8\" style=\"background-color: #B8995E; color: #1a1a1a;\">\n            01\n          </div>\n          <h4 class=\"font-sans uppercase tracking-widest text-sm font-semibold mb-4\">Consultation</h4>\n          <p class=\"text-white/60 font-light text-sm px-4\">We discuss your vision, budget, and gather measurements.</p>\n        </div>\n\n        <!-- Step 02 -->\n        <div class=\"relative z-10 text-center\">\n          <div class=\"w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8\" style=\"background-color: #B8995E; color: #1a1a1a;\">\n            02\n          </div>\n          <h4 class=\"font-sans uppercase tracking-widest text-sm font-semibold mb-4\">3D Design</h4>\n          <p class=\"text-white/60 font-light text-sm px-4\">Detailed renderings and material selection in our showroom.</p>\n        </div>\n\n        <!-- Step 03 -->\n        <div class=\"relative z-10 text-center\">\n          <div class=\"w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8\" style=\"background-color: #B8995E; color: #1a1a1a;\">\n            03\n          </div>\n          <h4 class=\"font-sans uppercase tracking-widest text-sm font-semibold mb-4\">Procurement</h4>\n          <p class=\"text-white/60 font-light text-sm px-4\">Ordering premium cabinetry, stone, and hardware.</p>\n        </div>\n\n        <!-- Step 04 -->\n        <div class=\"relative z-10 text-center\">\n          <div class=\"w-12 h-12 rounded-full mx-auto flex items-center justify-center font-serif text-lg mb-8\" style=\"background-color: #B8995E; color: #1a1a1a;\">\n            04\n          </div>\n          <h4 class=\"font-sans uppercase tracking-widest text-sm font-semibold mb-4\">Installation</h4>\n          <p class=\"text-white/60 font-light text-sm px-4\">Flawless execution by our network of master builders.</p>\n        </div>\n\n      </div>\n\n    </div>\n  </section>\n\n</body>\n</html>\n"
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "html",
+              "elType": "widget"
+            }
+          ],
+          "isInner": false,
+          "elType": "column"
+        }
+      ],
+      "isInner": false,
+      "elType": "section"
+    }
+  ],
+  "page_settings": {}
+}

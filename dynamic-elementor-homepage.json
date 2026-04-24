@@ -1,0 +1,1067 @@
+{
+  "version": "0.4",
+  "title": "QuinnHaven - Fully Dynamic Homepage",
+  "type": "page",
+  "content": [
+    {
+      "id": "qh4snq5",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#1a1a1a"
+      },
+      "elements": [
+        {
+          "id": "ks8wvmj",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "7wqru74",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Luxury Kitchen & Bathroom Design in Connecticut",
+                "header_size": "h1",
+                "align": "center"
+              },
+              "elements": []
+            },
+            {
+              "id": "65u6qej",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">Experience the pinnacle of custom cabinetry and spatial planning. From master bathrooms to culinary-grade kitchens, we bring your ultimate vision to life with complete end-to-end service.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "00hh4i8",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "button",
+              "settings": {
+                "text": "Book a Consultation",
+                "align": "center",
+                "link": {
+                  "url": "/contact"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dggma1f",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#141162"
+      },
+      "elements": [
+        {
+          "id": "jgmgo3x",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "jkubezp",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Custom Design Experts",
+                "align": "center",
+                "header_size": "h4"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "296fxtn",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "z3xxqh4",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Premium Materials",
+                "align": "center",
+                "header_size": "h4"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "o0rgc96",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "sthkr6o",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Connecticut-Based",
+                "align": "center",
+                "header_size": "h4"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "chbl1xn",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "n3f3269",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "End-to-End Service",
+                "align": "center",
+                "header_size": "h4"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1q7qcab",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "icd6px6",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "ofi9c0y",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Who We Are",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "7r19mlg",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Uncompromising Craftsmanship & Personalized Design",
+                "header_size": "h2"
+              },
+              "elements": []
+            },
+            {
+              "id": "2wze61k",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>At QuinnHaven Kitchen Cabinets & Bathroom Design, we believe your environment dictates your peace of mind. We don't just supply cabinets; we listen to how you actually live, executing expertly tailored spatial planning alongside a curated selection of premium materials.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "oli6h7p",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "button",
+              "settings": {
+                "text": "Learn More About Us",
+                "link": {
+                  "url": "/about"
+                }
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "ocqo9ng",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "moum4gx",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "54wmf1x",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "lozhh11",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "48d5gsc",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Our Expertise",
+                "align": "center",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "vu9oirw",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Comprehensive Design Services",
+                "align": "center",
+                "header_size": "h2"
+              },
+              "elements": []
+            },
+            {
+              "id": "2ru2ip5",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">We specialize in transforming every corner of your home with precision logistics and a refined aesthetic.</p>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9e99a71",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "culd1te",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "6d8he8k",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Kitchen Design",
+                "description_text": "Bespoke culinary spaces where form meets function."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "sf5lxah",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "6qu3fht",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Custom Kitchen Cabinets",
+                "description_text": "Precision-milled storage crafted to your exact specifications."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "m0nqrt2",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "t0tqhhn",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Bathroom Design",
+                "description_text": "Spa-like sanctuaries designed for optimal relaxation."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "o5hkxrx",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "v94axg8",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Closet Design",
+                "description_text": "Boutique-style wardrobes organized exactly for your lifestyle."
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4vo6bqw",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "ba3nz92",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "rqk1gba",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Basement Bar",
+                "description_text": "Entertain in sophistication with a custom wet bar."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "ftqd6zn",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "4kx7tb1",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Home Office",
+                "description_text": "Inspiring executive workspaces built for peak productivity."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "isz1j29",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "2e3ep4g",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Entryway Storage",
+                "description_text": "Custom mudroom built-ins and elegant entryway logic."
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yxxvbj2",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "yasd9c7",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "l99t9ap",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Premium Components",
+                "align": "center",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "s81zw7t",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "A Curated Material Selection",
+                "align": "center",
+                "header_size": "h2"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fn5w9w4",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "8weemia",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "npv1uc1",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Cabinetry",
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1595514690025-a13a44d038fa?q=80&w=2070"
+                }
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "coki1wt",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "841o111",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Countertops",
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069"
+                }
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "e4bcw33",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "ds7gx6p",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Premium Tile",
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1574635606612-581d4516be1a?q=80&w=2070"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swpmw5x",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "r5y21ga",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "7iicnrw",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Signature Work",
+                "align": "center",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "ait2xdf",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Recent Transformations",
+                "align": "center",
+                "header_size": "h2"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poqnnck",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "ygjodwt",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "015goyl",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "The Avon Culinary Estate",
+                "description_text": "Kitchen Remodel",
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070"
+                }
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "isz4qgy",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "l4tne85",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image-box",
+              "settings": {
+                "title_text": "Wallingford Master Bath",
+                "description_text": "Bathroom Retreat",
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dwayf8g",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "8pjv3z5",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "j7bgnzk",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Our Methodology",
+                "align": "center",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "sujcex6",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "A Seamless 5-Step Process",
+                "align": "center",
+                "header_size": "h2"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lrsmjww",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "o8y48u4",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "w4ww1g0",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "icon-box",
+              "settings": {
+                "title_text": "1. Consultation",
+                "description_text": "We discuss your vision, layout needs, and initial budget."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "319gemu",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "r7ffd6b",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "icon-box",
+              "settings": {
+                "title_text": "2. Design Planning",
+                "description_text": "Expert 3D modeling to perfect your highly functional layout."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "pe7s5xt",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "ime0e18",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "icon-box",
+              "settings": {
+                "title_text": "3. Material Selection",
+                "description_text": "Curating premium stone, custom cabinetry, and hardware."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "lot2ybm",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "70ptlrw",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "icon-box",
+              "settings": {
+                "title_text": "4. Build & Install",
+                "description_text": "Professional project management and flawless installation."
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "yox0fni",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "5c8035u",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "icon-box",
+              "settings": {
+                "title_text": "5. Final Reveal",
+                "description_text": "A comprehensive walkthrough ensuring total perfection."
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jklkefb",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "iexzvc2",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "xt7m5kc",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Local Expertise",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "qs5dw2v",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Serving Connecticut's Premier Neighborhoods",
+                "header_size": "h2"
+              },
+              "elements": []
+            },
+            {
+              "id": "wk5737k",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>QuinnHaven proudly delivers exceptional kitchen remodeling and custom bath design across Connecticut.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "9m81b2g",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<ul><li>Wallingford</li><li>New Haven</li><li>Hartford</li><li>Avon</li><li>Norwalk</li></ul>"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "itaui5q",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "cm38oi2",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=2070"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "98qg5h5",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "5u6fnql",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "tmngq6n",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Experience the Quality",
+                "header_size": "h6"
+              },
+              "elements": []
+            },
+            {
+              "id": "mtn6f09",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Visit Our Design Studio",
+                "header_size": "h2"
+              },
+              "elements": []
+            },
+            {
+              "id": "sgqg89m",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Step off the screen and into reality. Run your hands over our solid birch cabinetry, examine thick-cut marble, and sit down with our designers to map out your dream space over a cup of coffee.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "2lzr36f",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p><strong>121 N Plains Industrial Road, Unit C, Wallingford, CT</strong></p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "33tptiw",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "button",
+              "settings": {
+                "text": "Schedule a Visit",
+                "link": {
+                  "url": "/showroom"
+                }
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "9g5db4g",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "xjoth6j",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyk9gar",
+      "elType": "section",
+      "isInner": false,
+      "settings": {},
+      "elements": [
+        {
+          "id": "bx4hrv2",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "7sg86np",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ready to Transform Your Space?",
+                "align": "center",
+                "header_size": "h2"
+              },
+              "elements": []
+            },
+            {
+              "id": "twm11ha",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align: center;\">Whether you're planning a complete kitchen overhaul or a bespoke closet addition, our team is ready to bring your vision to reality.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "1sfhrlr",
+              "elType": "widget",
+              "isInner": false,
+              "widgetType": "button",
+              "settings": {
+                "text": "Book Consultation",
+                "align": "center",
+                "link": {
+                  "url": "/contact"
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {}
+}

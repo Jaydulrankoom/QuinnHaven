@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuinnHaven About Us Page Export</title>
+  
+  <!-- Fonts: Inter for UI & Playfair Display for Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN with inline Configuration to perfectly match our exact colors without hardcoding everything into inline styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#1a1a1a',
+            cream: '#f5f2ed',
+            gold: '#B8995E',
+            'gold-light': '#d4b881',
+            brand: '#141162'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      /* Using exact theme colors from the configuration */
+      background-color: #f5f2ed; 
+      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE WRAPPER -->
+  <div class="flex flex-col min-h-screen pt-0 bg-cream font-sans text-charcoal">
+     
+    <!-- 1. HERO - Cinematic & Dramatic -->
+    <section class="relative h-[75vh] min-h-[600px] w-full overflow-hidden bg-charcoal flex items-center justify-center text-center pt-24">
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop')] bg-cover bg-center opacity-50 scale-105"></div>
+      
+      <div class="absolute inset-0 bg-gradient-to-r from-brand/90 via-charcoal/80 to-brand/30 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent opacity-100"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-transparent to-transparent opacity-80"></div>
+
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-6 text-white mt-12">
+        <span class="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Rooted in Design, Driven by Passion</span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight mb-8 font-light">
+          Bringing your <span class="italic text-gold-light">dream home</span> to life.
+        </h1>
+        <p class="text-xl font-light text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
+          We are more than just a design company—we are your dedicated partners. Located in Wallingford, CT, we are a premier one-stop destination for high-quality cabinetry, expert space planning, and professional installation.
+        </p>
+        <a href="/showroom" class="inline-block bg-gold text-white px-10 py-5 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-charcoal transition-all duration-300 shadow-xl">
+          Visit Our Showroom
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. THE MISSION & QUOTE -->
+    <section class="py-24 bg-cream relative z-10">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+         <p class="text-xl md:text-2xl font-light text-charcoal/80 leading-relaxed mb-12 italic border-l-4 border-gold pl-6 md:pl-8 text-left">
+           "Our mission is to make premium home renovations a seamless, enjoyable experience. We don't just sell cabinets; we design beautiful, functional spaces where families can create lasting memories."
+           <span class="block mt-6 text-sm font-bold uppercase tracking-widest text-gold not-italic">— Amanda Lai, CEO QuinnHaven Design</span>
+         </p>
+
+         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left mt-16">
+            <div class="flex items-start gap-3 bg-white p-6 border border-charcoal/5 shadow-sm">
+               <!-- CheckCircle2 Icon -->
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gold shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+               <span class="font-medium text-charcoal tracking-wide">Custom Kitchen & Bath Design</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white p-6 border border-charcoal/5 shadow-sm">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gold shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+               <span class="font-medium text-charcoal tracking-wide">Closets, Offices & Entertainment Units</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white p-6 border border-charcoal/5 shadow-sm">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gold shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+               <span class="font-medium text-charcoal tracking-wide">3D Visualization & Space Planning</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white p-6 border border-charcoal/5 shadow-sm">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gold shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+               <span class="font-medium text-charcoal tracking-wide">Full Project Management & Install</span>
+            </div>
+         </div>
+      </div>
+    </section>
+
+    <!-- 3. GLOBAL EXPERTISE & LEADERSHIP -->
+    <section class="py-24 px-6 max-w-7xl mx-auto border-t border-charcoal/5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+         <div class="order-2 md:order-1 relative">
+           <div class="absolute inset-0 bg-gold/10 -translate-x-4 translate-y-4 rounded-sm -z-10"></div>
+           <img 
+             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2069&auto=format&fit=crop" 
+             alt="Interior Design Expertise" 
+             class="w-full aspect-square object-cover rounded-sm shadow-xl"
+           />
+         </div>
+         <div class="order-1 md:order-2">
+            <span class="uppercase tracking-[0.2em] text-gold text-xs font-bold mb-4 block">Experienced & Passionate Team</span>
+            <h2 class="text-3xl lg:text-4xl font-serif text-brand mb-6">A Refined, Global Perspective</h2>
+            <p class="font-light text-charcoal/70 leading-relaxed text-lg mb-6">
+              We believe every house has the potential to become a dream home, and we bring an international standard of design right to your doorstep. 
+            </p>
+            <p class="font-light text-charcoal/70 leading-relaxed text-lg mb-6">
+              Our lead designer honed her skills at a top-tier interior design firm in Shanghai and studied in Australia before bringing that elite international expertise to the US to launch QuinnHaven. Today, our talented design team and fully licensed installers work hand-in-hand to care for your project from start to finish.
+            </p>
+            <p class="font-light text-charcoal/70 leading-relaxed text-lg">
+              Beyond our signature kitchens and bathrooms, we specialize in transforming every corner of your home—including custom closets, walk-in pantries, home offices, libraries, laundry rooms, and basement entertainment units.
+            </p>
+         </div>
+      </div>
+    </section>
+
+    <!-- 4. WHY CHOOSE US (The Difference) -->
+    <section class="py-24 bg-white border-y border-charcoal/5">
+       <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-16">
+             <span class="uppercase tracking-[0.2em] text-gold text-xs font-bold mb-4 block">The Difference</span>
+             <h2 class="text-3xl lg:text-4xl font-serif text-brand">Why Choose QuinnHaven</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+             <!-- Tailored -->
+             <div class="bg-cream border border-charcoal/5 p-10 hover:border-gold transition-colors shadow-sm">
+                <!-- LayoutTemplate Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gold mb-6"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg>
+                <h4 class="text-xl font-serif mb-4 text-charcoal">Tailored to Your Needs</h4>
+                <p class="text-sm font-light text-charcoal/70 leading-relaxed">
+                  You won’t find any cookie-cutter solutions here. We focus on how you actually live. We use expert space planning and highly detailed 3D renderings so you can perfect your highly functional layout before production even begins.
+                </p>
+             </div>
+             
+             <!-- Craftsmanship -->
+             <div class="bg-cream border border-charcoal/5 p-10 hover:border-gold transition-colors shadow-sm">
+                <!-- Wrench Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gold mb-6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                <h4 class="text-xl font-serif mb-4 text-charcoal">High-Quality Craftsmanship</h4>
+                <p class="text-sm font-light text-charcoal/70 leading-relaxed">
+                  We believe in building spaces that last. Our cabinetry features solid birch wood doors, full cabinet-grade plywood boxes, and dovetail drawers, all backed by a 3 to 5-year warranty. We securely pair this with exquisite countertops and hardware.
+                </p>
+             </div>
+
+             <!-- Process -->
+             <div class="bg-cream border border-charcoal/5 p-10 hover:border-gold transition-colors shadow-sm">
+                <!-- CheckCircle2 Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gold mb-6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <h4 class="text-xl font-serif mb-4 text-charcoal">Seamless Project Process</h4>
+                <p class="text-sm font-light text-charcoal/70 leading-relaxed">
+                  Renovating shouldn't be a headache. We act as your dedicated project manager every step of the way. From precise on-site measurements to fast delivery and flawless professional installation, we offer a true one-stop experience.
+                </p>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- 5. LOCAL ROOTS & SHOWROOM EXPERIENCE -->
+    <section class="py-24 px-6 max-w-7xl mx-auto bg-cream">
+       <div class="bg-white shadow-xl flex flex-col md:flex-row overflow-hidden rounded-sm border border-charcoal/5">
+          <div class="w-full md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
+             <span class="uppercase tracking-[0.2em] text-gold text-xs font-bold mb-4 block">Our Home Base</span>
+             <h2 class="text-3xl font-serif text-brand mb-6">Rooted in Connecticut</h2>
+             <p class="font-light text-charcoal/70 mb-6 leading-relaxed">
+               By pairing a vast selection of premium materials with advanced 3D technology and a stress-free installation process, we deliver exceptional value and total peace of mind for homeowners, contractors, and investors alike across CT.
+             </p>
+             <p class="font-light text-charcoal/70 mb-8 leading-relaxed">
+               We invite you to step away from the digital screens and visit our Wallingford design studio. Run your hands over the solid birch wood elements, examine the premium materials, and sit down with us over a cup of coffee to map out your dream space.
+             </p>
+             
+             <div class="space-y-4 border-t border-charcoal/10 pt-6">
+                <div class="flex items-center gap-3 text-charcoal text-sm font-medium">
+                   <!-- MapPin Icon -->
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-gold"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                   <span>121 N Plains Industrial Road, Unit C, Wallingford, CT</span>
+                </div>
+             </div>
+          </div>
+          <div class="w-full md:w-1/2 h-[400px] md:h-auto">
+             <img 
+               src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
+               alt="Designer showroom display with birch elements" 
+               class="w-full h-full object-cover"
+             />
+          </div>
+       </div>
+    </section>
+
+    <!-- 6. SOFT CTA -->
+    <section class="py-24 bg-white border-t border-charcoal/5 text-center">
+       <div class="max-w-2xl mx-auto px-6">
+          <h2 class="text-3xl font-serif text-brand mb-6">Let's talk about your space.</h2>
+          <p class="text-lg font-light text-charcoal/70 mb-10">
+             If you're ready to sit back and watch your vision come to life, we’d love to connect.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+             <a href="tel:+18609180388" class="flex items-center gap-2 text-charcoal hover:text-gold transition-colors">
+                <!-- Phone Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gold"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="font-medium">+1 (860) 918-0388</span>
+             </a>
+             <span class="hidden sm:block text-charcoal/20">|</span>
+             <a href="mailto:info@quinnhavendesign.com" class="flex items-center gap-2 text-charcoal hover:text-gold transition-colors">
+                <!-- Mail Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gold"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span class="font-medium">info@quinnhavendesign.com</span>
+             </a>
+          </div>
+       </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
