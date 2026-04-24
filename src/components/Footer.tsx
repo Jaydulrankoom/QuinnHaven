@@ -132,8 +132,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs font-light tracking-widest uppercase opacity-50">
           <p>&copy; {new Date().getFullYear()} QuinnHaven. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/about" className="hover:text-white">Privacy Policy</Link>
-            <Link to="/about" className="hover:text-white">Terms of Use</Link>
+            <Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+            <Link to="/terms-of-use" className="hover:text-white">Terms of Use</Link>
           </div>
         </div>
       </div>

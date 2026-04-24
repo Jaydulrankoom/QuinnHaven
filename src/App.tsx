@@ -23,6 +23,9 @@ import BuilderSupply from "./pages/BuilderSupply";
 import MultifamilyProjects from "./pages/MultifamilyProjects";
 import DynamicLocationService from "./pages/services/DynamicLocationService";
 
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
+
 export default function App() {
   return (
     <Routes>
@@ -60,6 +63,8 @@ export default function App() {
         <Route path="showroom" element={<Showroom />} />
         <Route path="process" element={<Process />} />
         <Route path="faq" element={<FAQ />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="terms-of-use" element={<TermsOfUse />} />
 
         <Route path="contact" element={<Contact />} />
         

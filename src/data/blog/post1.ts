@@ -3,7 +3,7 @@ export const post1 = {
   title: "The Ultimate Guide to Custom Kitchen Cabinets: From Concept to Installation",
   category: "Kitchens",
   date: "May 10, 2026",
-  img: "https://images.unsplash.com/photo-1595514690025-a13a44d038fa?q=80&w=2070&auto=format&fit=crop",
+  img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
   excerpt: "A comprehensive deep dive into the world of bespoke kitchen cabinetry, covering everything from wood species selection to the exact mechanics of installation.",
   content: `
 # The Ultimate Guide to Custom Kitchen Cabinets: From Concept to Installation

@@ -3,7 +3,7 @@ export const post4 = {
   title: "Mastering Entryway and Mudroom Storage: Elegance, Organization, and Custom Millwork",
   category: "Design Tips",
   date: "April 18, 2026",
-  img: "https://images.unsplash.com/photo-1558904541-efa843a96f0a?q=80&w=2074&auto=format&fit=crop",
+  img: "https://images.unsplash.com/photo-1595521624992-48a59aef95e3?q=80&w=2070&auto=format&fit=crop",
   excerpt: "The ultimate guide to transforming the most chaotic transition zone in your home into a masterpiece of bespoke organizational architecture.",
   content: `
 # Mastering Entryway and Mudroom Storage: Elegance, Organization, and Custom Millwork

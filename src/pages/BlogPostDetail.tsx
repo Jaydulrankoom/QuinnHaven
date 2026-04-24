@@ -29,7 +29,7 @@ export default function BlogPostDetail() {
          </header>
 
          <figure className="relative w-full aspect-[21/9] overflow-hidden mb-16 shadow-xl border border-charcoal/5">
-             <img src={post.img} alt={post.title} className="w-full h-full object-cover" />
+             <img src={post.img} alt={post.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
          </figure>
 
          <div className="markdown-body prose prose-lg prose-headings:font-serif prose-headings:text-charcoal prose-headings:font-normal prose-p:font-light prose-p:text-charcoal/80 prose-p:leading-relaxed max-w-none">

@@ -3,7 +3,7 @@ export const post3 = {
   title: "The Complete Anatomy of a High-End Home Office: Productivity Meets Bespoke Design",
   category: "Home Office",
   date: "April 28, 2026",
-  img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
+  img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
   excerpt: "Transitioning a spare room into a breathtaking executive suite requires precision millwork, acoustic planning, and hidden technology integration.",
   content: `
 # The Complete Anatomy of a High-End Home Office: Productivity Meets Bespoke Design

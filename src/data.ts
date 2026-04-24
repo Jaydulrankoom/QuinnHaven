@@ -206,7 +206,7 @@ export const PORTFOLIO = [
     title: "The Modern Farmhouse", 
     category: "Kitchen", 
     location: "New Haven", 
-    img: "https://images.unsplash.com/photo-1556912172-45b7ee8819d3?q=80&w=2070&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
     overview: "This sprawling New Haven estate required a complete interior overhaul to bring its rustic farmhouse elements into the modern luxury era. The clients desired a massive entertainment space with high-volume culinary capability.",
     details: [
       "Custom flat-panel rift-sawn white oak cabinetry paired with matte black hardware.",
@@ -215,8 +215,8 @@ export const PORTFOLIO = [
       "Expansive Calacatta quartz countertops with full-height dramatic backsplash."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -251,8 +251,8 @@ export const PORTFOLIO = [
       "Centralized smart-lighting system with pre-set ambient scenes."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1524758631624-eca4cb4e1951?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -260,7 +260,7 @@ export const PORTFOLIO = [
     title: "Urban Loft Kitchen", 
     category: "Kitchen", 
     location: "New Haven", 
-    img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2074&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2074&auto=format&fit=crop",
     overview: "An old industrial loft conversion required a kitchen that paid homage to its manufacturing roots while delivering absolute culinary precision. We married raw exposed brick with sleek, ultra-modern black cabinetry.",
     details: [
       "Matte black anti-fingerprint architectural cabinetry reaching 12-foot ceiling heights.",
@@ -269,8 +269,8 @@ export const PORTFOLIO = [
       "Custom forged iron shelving unit for open glassware display."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1595514690025-a13a44d038fa?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -288,7 +288,7 @@ export const PORTFOLIO = [
     ],
     gallery: [
       "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1574635606612-581d4516be1a?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -296,7 +296,7 @@ export const PORTFOLIO = [
     title: "Bespoke Pantry", 
     category: "Closet", 
     location: "Avon", 
-    img: "https://images.unsplash.com/photo-1558904541-efa843a96f0a?q=80&w=2074&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2074&auto=format&fit=crop",
     overview: "Moving the visual clutter out of the primary kitchen, this Avon home requested a 'Dirty Kitchen' and High-End Prep Pantry. It functions as the true workhorse of the home while maintaining incredible visual appeal.",
     details: [
       "Secondary full sink and dishwasher installation for hidden food prep and cleanup.",
@@ -305,8 +305,8 @@ export const PORTFOLIO = [
       "Durable, dark-honed granite countertops to hide heavy daily wear and tear."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -314,7 +314,7 @@ export const PORTFOLIO = [
     title: "Luxury Speakeasy Lounge", 
     category: "Basement Bar", 
     location: "Greenwich", 
-    img: "https://images.unsplash.com/photo-1591124441584-36774e1eabd4?q=80&w=2070&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?q=80&w=2070&auto=format&fit=crop",
     overview: "A Greenwich elite requested their lower level be converted into a private speakeasy lounge, blending the aura of classic 1920s jazz clubs with cutting-edge integrated luxury entertaining infrastructure.",
     details: [
       "Massive custom walnut bar with integrated dual-tap commercial drafting systems.",
@@ -323,8 +323,8 @@ export const PORTFOLIO = [
       "Sound-absorbing ceiling accents to maintain ideal acoustic ambiance."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1572111867160-5a3d76b1ba7d?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524758631624-eca4cb4e1951?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -332,7 +332,7 @@ export const PORTFOLIO = [
     title: "Coastal Utility & Laundry", 
     category: "Laundry", 
     location: "Fairfield", 
-    img: "https://images.unsplash.com/photo-1558227691-41ea78d1f631?q=80&w=2070&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=2070&auto=format&fit=crop",
     overview: "We elevated a purely functional utility space into a stunning, highly-efficient coastal laundry room, demonstrating that every square inch of a luxury home deserves architectural attention.",
     details: [
       "Dual stacked washer/dryer units enclosed in sound-deadening custom cabinetry.",
@@ -341,8 +341,8 @@ export const PORTFOLIO = [
       "Built-in concealed drying racks and heavy-duty sliding hamper drawers."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1558227691-41ea78d1f631?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2069&auto=format&fit=crop"
     ]
   },
   { 
@@ -350,7 +350,7 @@ export const PORTFOLIO = [
     title: "Master Wardrobe Boutique", 
     category: "Closet", 
     location: "Westport", 
-    img: "https://images.unsplash.com/photo-1558904541-efa843a96f0a?q=80&w=2074&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1595521624992-48a59aef95e3?q=80&w=2074&auto=format&fit=crop",
     overview: "This master suite closet was designed to mimic the luxurious ambiance of a high-end designer retail boutique, ensuring dressing is a refined, inspiring start to the day.",
     details: [
       "Central freestanding quartz island with custom velvet-layered jewelry pull-outs.",
@@ -359,8 +359,8 @@ export const PORTFOLIO = [
       "Integrated motion-activated runway lighting."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1558904541-efa843a96f0a?q=80&w=2074&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1574635606612-581d4516be1a?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1595521624992-48a59aef95e3?q=80&w=2074&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -386,7 +386,7 @@ export const PORTFOLIO = [
     title: "Contemporary Sports Lounge", 
     category: "Basement Bar", 
     location: "Darien", 
-    img: "https://images.unsplash.com/photo-1572111867160-5a3d76b1ba7d?q=80&w=2069&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop",
     overview: "A highly illuminated, ultra-contemporary basement bar crafted specifically for entertaining during major sporting events, blending a high-tech media wall with luxury pour stations.",
     details: [
       "Massive multi-screen media wall framed entirely by custom quartz-clad pillars.",
@@ -395,8 +395,8 @@ export const PORTFOLIO = [
       "Polished concrete floors sealed with an ultra-high gloss protective resin."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1572111867160-5a3d76b1ba7d?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1591124441584-36774e1eabd4?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?q=80&w=2070&auto=format&fit=crop"
     ]
   },
   { 
@@ -404,7 +404,7 @@ export const PORTFOLIO = [
     title: "Compact Elevated Utility", 
     category: "Laundry", 
     location: "Ridgefield", 
-    img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2069&auto=format&fit=crop",
     overview: "Demonstrating that luxury scale is not always massive. We transformed a tiny second-floor closet into an incredibly high-functioning, intensely beautiful luxury washing station.",
     details: [
       "Stacked premium washer systems housed entirely in bespoke painted cabinetry.",
@@ -413,8 +413,8 @@ export const PORTFOLIO = [
       "Hidden pull-down ironing board flawlessly integrated into a faux drawer face."
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2069&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1558227691-41ea78d1f631?q=80&w=2070&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2069&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2070&auto=format&fit=crop"
     ]
   }
 ];

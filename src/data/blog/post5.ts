@@ -3,7 +3,7 @@ export const post5 = {
   title: "The Evolution of Basement Bars and Wine Cellars: Entertaining in Absolute Luxury",
   category: "Basement Bar",
   date: "April 05, 2026",
-  img: "https://images.unsplash.com/photo-1572111867160-5a3d76b1ba7d?q=80&w=2069&auto=format&fit=crop",
+  img: "https://images.unsplash.com/photo-1600607688969-a5bfcd64ee15?q=80&w=2069&auto=format&fit=crop",
   excerpt: "Transforming subterranean spaces into exclusive speakeasies and climate-controlled wine sanctuaries using advanced engineering and masterful design.",
   content: `
 # The Evolution of Basement Bars and Wine Cellars: Entertaining in Absolute Luxury

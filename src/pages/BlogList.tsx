@@ -25,7 +25,7 @@ export default function BlogList() {
                <Link to={`/blog/${post.id}`} key={post.id} className="group cursor-pointer flex flex-col bg-white border border-charcoal/5 shadow-sm hover:shadow-xl transition-all">
                   <div className="relative h-[250px] overflow-hidden">
                      <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors z-10" />
-                     <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                     <img src={post.img} alt={post.title} referrerPolicy="no-referrer" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                      <div className="absolute top-4 left-4 z-20 bg-charcoal px-3 py-1 text-[0.65rem] uppercase tracking-widest font-bold text-gold">
                         {post.category}
                      </div>
