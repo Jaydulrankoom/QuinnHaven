@@ -84,7 +84,7 @@ export default function DynamicLocationService() {
       {/* 1. HERO SECTION */}
       <section className="relative w-full flex items-center justify-center text-center mt-24 py-20 lg:py-32 min-h-[500px] md:min-h-[60vh]">
         <div className="absolute inset-0">
-          <img 
+          <img loading="lazy" 
             src={`https://images.unsplash.com/photo-${imgs.hero}?q=80&w=2070&auto=format&fit=crop`} 
             alt={seoData.heroTitle}
             className="w-full h-full object-cover"
@@ -138,7 +138,7 @@ export default function DynamicLocationService() {
             
             <div className="order-2 lg:order-1 relative">
               <div className="absolute inset-0 bg-gold/10 -translate-x-6 translate-y-6 rounded-sm -z-10" />
-              <img 
+              <img loading="lazy" 
                 src={`https://images.unsplash.com/photo-${imgs.exp}?q=80&w=2070&auto=format&fit=crop`} 
                 alt={`${serviceType} in ${locationName}`} 
                 referrerPolicy="no-referrer"
@@ -229,21 +229,21 @@ export default function DynamicLocationService() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${imgs.p1}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 1`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${imgs.p1}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 1`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif text-charcoal mb-2 group-hover:text-gold transition-colors">Architectural Masterpiece</h3>
               <p className="text-sm font-light text-charcoal/60">Massive custom architectural integration in {locationName} featuring stunning seamless luxury elements.</p>
             </div>
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${imgs.p2}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 2`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${imgs.p2}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 2`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif text-charcoal mb-2 group-hover:text-gold transition-colors">Modern Reorganization</h3>
               <p className="text-sm font-light text-charcoal/60">Sleek, heavily modernized layout structurally wrapping the entire living suite in seamless functional logic.</p>
             </div>
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${imgs.p3}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 3`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${imgs.p3}?q=80&w=2070&auto=format&fit=crop`} alt={`Luxury ${serviceType} project element 3`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif text-charcoal mb-2 group-hover:text-gold transition-colors">Estate Integration</h3>
               <p className="text-sm font-light text-charcoal/60">Luxury built-in spatial modifications perfectly enveloping the home, creating a dense, deeply beautiful asset.</p>

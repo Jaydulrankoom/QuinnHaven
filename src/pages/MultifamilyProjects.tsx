@@ -163,7 +163,7 @@ export default function MultifamilyProjects() {
             
             <div className="order-2 lg:order-1 relative">
               <div className="absolute inset-0 bg-gold/10 -translate-x-6 translate-y-6 rounded-sm -z-10" />
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2000&auto=format&fit=crop" 
                 alt="Modern multifamily luxury interior" 
                 referrerPolicy="no-referrer"

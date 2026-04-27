@@ -25,7 +25,7 @@ export default function StateLevelService({ slug }: { slug: string }) {
       {/* 1. HERO SECTION */}
       <section className="relative w-full flex items-center justify-center text-center mt-24 py-20 lg:py-32 min-h-[500px] md:min-h-[60vh]">
         <div className="absolute inset-0">
-          <img 
+          <img loading="lazy" 
             src={`https://images.unsplash.com/photo-${data.images.hero}?q=80&w=2070&auto=format&fit=crop`} 
             alt={data.heroTitle}
             className="w-full h-full object-cover"
@@ -86,7 +86,7 @@ export default function StateLevelService({ slug }: { slug: string }) {
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gold/5 transform translate-x-4 translate-y-4 rounded-sm" />
-              <img 
+              <img loading="lazy" 
                 src={`https://images.unsplash.com/photo-${data.images.overview}?q=80&w=2070&auto=format&fit=crop`} 
                 alt={`${data.heroTitle} Overview`} 
                 referrerPolicy="no-referrer"
@@ -185,21 +185,21 @@ export default function StateLevelService({ slug }: { slug: string }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${data.images.port1}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 1`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${data.images.port1}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 1`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif mb-2 group-hover:text-gold transition-colors">{data.portfolio.p1Title}</h3>
               <p className="text-sm font-light text-white/60">{data.portfolio.p1Desc}</p>
             </div>
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${data.images.port2}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 2`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${data.images.port2}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 2`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif mb-2 group-hover:text-gold transition-colors">{data.portfolio.p2Title}</h3>
               <p className="text-sm font-light text-white/60">{data.portfolio.p2Desc}</p>
             </div>
             <div className="group cursor-pointer">
               <div className="overflow-hidden rounded-sm h-[400px] mb-6">
-                <img src={`https://images.unsplash.com/photo-${data.images.port3}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 3`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img loading="lazy" src={`https://images.unsplash.com/photo-${data.images.port3}?q=80&w=2070&auto=format&fit=crop`} alt={`Project 3`} referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xl font-serif mb-2 group-hover:text-gold transition-colors">{data.portfolio.p3Title}</h3>
               <p className="text-sm font-light text-white/60">{data.portfolio.p3Desc}</p>

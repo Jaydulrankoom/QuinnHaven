@@ -163,7 +163,7 @@ export default function BuilderSupply() {
             
             <div className="order-2 lg:order-1 relative">
               <div className="absolute inset-0 bg-gold/10 -translate-x-6 translate-y-6 rounded-sm -z-10" />
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?q=80&w=2000&auto=format&fit=crop" 
                 alt="Stacked construction materials" 
                 referrerPolicy="no-referrer"

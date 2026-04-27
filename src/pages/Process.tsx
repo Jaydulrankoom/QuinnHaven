@@ -54,7 +54,7 @@ export default function Process() {
                         0{idx + 1}
                      </span>
                      <div className="relative z-10 w-full aspect-[4/3] rounded-sm overflow-hidden shadow-2xl border border-charcoal/5">
-                        <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
+                        <img loading="lazy" src={step.img} alt={step.title} className="w-full h-full object-cover" />
                      </div>
                   </div>
 

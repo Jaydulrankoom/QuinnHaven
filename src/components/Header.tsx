@@ -45,6 +45,8 @@ export default function Header() {
             <img 
               src={BRAND.logo} 
               alt="QuinnHaven Design" 
+              width="240"
+              height="40"
               className="h-10 w-auto transition-all duration-300" 
               style={{ 
                 filter: useLightLogo 
@@ -65,7 +67,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("about")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "about" ? null : "about")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
               About <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -102,7 +104,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("services")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
               Services <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -143,7 +145,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("products")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "products" ? null : "products")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
               Products <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -164,7 +166,7 @@ export default function Header() {
                       >
                          <div className="w-full h-24 xl:h-28 rounded-sm overflow-hidden mb-3 relative">
                            <div className="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-300 z-10" />
-                           <img 
+                           <img loading="lazy" 
                              src={p.img} 
                              alt={p.title} 
                              referrerPolicy="no-referrer" 
@@ -186,7 +188,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("portfolio")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "portfolio" ? null : "portfolio")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
               Portfolio <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -218,7 +220,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("locations")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "locations" ? null : "locations")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
               Locations <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -259,12 +261,12 @@ export default function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-0 left-0 w-full h-screen bg-cream z-40 pt-28 px-6 pb-24 overflow-y-auto"
+            className="fixed inset-0 w-full h-[100dvh] bg-cream z-40 pt-28 px-6 pb-24 overflow-y-auto"
           >
              <nav className="flex flex-col gap-6 text-charcoal">
-              <Link to="/" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Home</Link>
-              <Link to="/blog" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Blog</Link>
-              <Link to="/about" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">About</Link>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Home</Link>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Blog</Link>
+              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">About</Link>
               
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Services</span>
@@ -297,7 +299,7 @@ export default function Header() {
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Products</span>
                 <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                  {PRODUCTS.map(p => <Link key={p.id} to={`/products`} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{p.title}</Link>)}
+                  {PRODUCTS.map(p => <Link key={p.id} to={`/products`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{p.title}</Link>)}
                 </div>
               </div>
 
@@ -314,17 +316,17 @@ export default function Header() {
                 </div>
               </div>
 
-              <Link to="/case-studies" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Case Studies</Link>
+              <Link to="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Case Studies</Link>
 
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Locations</span>
                 <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                  {LOCATIONS.map(l => <Link key={l.id} to={`/locations/${l.id}`} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{l.name}</Link>)}
+                  {LOCATIONS.map(l => <Link key={l.id} to={`/locations/${l.id}`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{l.name}</Link>)}
                 </div>
               </div>
 
-              <Link to="/showroom" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Showroom</Link>
-              <Link to="/contact" className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Contact</Link>
+              <Link to="/showroom" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Showroom</Link>
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Contact</Link>
               
               <div className="mt-8">
                 <a href={`tel:${BRAND.phone}`} className="flex items-center justify-center gap-3 text-gold font-medium mb-6">

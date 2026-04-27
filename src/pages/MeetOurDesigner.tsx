@@ -42,7 +42,7 @@ export default function MeetOurDesigner() {
             {/* Portrait */}
             <div className="lg:col-span-5 relative">
               <div className="absolute inset-0 bg-gold/10 -translate-x-6 translate-y-6 rounded-sm -z-10 hidden md:block"></div>
-              <img 
+              <img loading="lazy" 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKUlsSeS4_s2ZcvEplpSTobkVDhz3a2XRqAQ&s" 
                 alt="Amanda Lai, CEO and Lead Designer" 
                 referrerPolicy="no-referrer"

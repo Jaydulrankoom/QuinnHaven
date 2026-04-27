@@ -110,7 +110,7 @@ export default function Portfolio() {
                 <Link to={`/portfolio/${project.id}`} key={project.id} className="group cursor-pointer block border border-charcoal/5 p-4 bg-cream hover:shadow-xl transition-all duration-500">
                    <div className="relative h-[400px] overflow-hidden mb-6">
                       <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                      <img 
+                      <img loading="lazy" 
                         src={project.img} 
                         alt={project.title} 
                         referrerPolicy="no-referrer"

@@ -68,7 +68,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
            <div className="order-2 md:order-1 relative">
              <div className="absolute inset-0 bg-gold/10 -translate-x-4 translate-y-4 rounded-sm -z-10" />
-             <img 
+             <img loading="lazy" 
                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
                alt="QuinnHaven Design Team at work" 
                referrerPolicy="no-referrer"
@@ -151,7 +151,7 @@ export default function About() {
                </div>
             </div>
             <div className="w-full md:w-1/2 h-[400px] md:h-auto">
-               <img 
+               <img loading="lazy" 
                  src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
                  alt="Designer showroom display with birch elements" 
                  referrerPolicy="no-referrer"

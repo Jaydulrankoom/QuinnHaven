@@ -9,7 +9,7 @@ export default function Showroom() {
       {/* HERO SECTION */}
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center pt-24">
         <div className="absolute inset-0 bg-charcoal">
-          <img 
+          <img loading="lazy" 
             src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
             alt="QuinnHaven Design Showroom" 
             referrerPolicy="no-referrer"
@@ -68,7 +68,7 @@ export default function Showroom() {
             
             {/* Image/Map Side */}
             <div className="relative h-[500px] bg-white border border-charcoal/5 p-4 shadow-xl">
-               <img 
+               <img loading="lazy" 
                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
                  alt="Showroom Location" 
                  referrerPolicy="no-referrer"
@@ -144,25 +144,25 @@ export default function Showroom() {
       {/* GALLERY GRID ROW */}
       <section className="grid grid-cols-2 md:grid-cols-4 bg-white border-t border-charcoal/5">
          <div className="aspect-square bg-charcoal relative group overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069" alt="Hardware Sample" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069" alt="Hardware Sample" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent flex items-end p-6">
               <span className="text-white font-serif text-xl">Premium Hardware</span>
             </div>
          </div>
          <div className="aspect-square bg-charcoal relative group overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1595514690025-a13a44d038fa?q=80&w=2070" alt="Cabinetry Mockup" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1595514690025-a13a44d038fa?q=80&w=2070" alt="Cabinetry Mockup" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent flex items-end p-6">
               <span className="text-white font-serif text-xl">Custom Cabinetry</span>
             </div>
          </div>
          <div className="aspect-square bg-charcoal relative group overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1574635606612-581d4516be1a?q=80&w=2070" alt="Stone Samples" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1574635606612-581d4516be1a?q=80&w=2070" alt="Stone Samples" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent flex items-end p-6">
               <span className="text-white font-serif text-xl">Stone & Quartz</span>
             </div>
          </div>
          <div className="aspect-square bg-charcoal relative group overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2074" alt="Tile Textures" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2074" alt="Tile Textures" referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent flex items-end p-6">
               <span className="text-white font-serif text-xl">Tile Finishes</span>
             </div>

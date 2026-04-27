@@ -57,7 +57,7 @@ export default function Products() {
              {displayProducts.map(product => (
                <Link to={`/products/${product.id}`} key={product.id} className="group bg-white p-4 border border-charcoal/5 shadow-sm hover:shadow-xl transition-all">
                   <div className="relative aspect-square overflow-hidden mb-4 bg-cream">
-                    <img src={product.img} alt={product.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img loading="lazy" src={product.img} alt={product.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute top-4 right-4 bg-charcoal/90 p-2 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all text-gold">
                       <ShoppingBag className="w-4 h-4" />
                     </div>

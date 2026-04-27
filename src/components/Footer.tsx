@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand & Socials */}
           <div className="lg:col-span-3 space-y-8">
             <Link to="/" className="inline-block">
-              <img 
+              <img loading="lazy" 
                 src={BRAND.logo} 
                 alt="QuinnHaven Design" 
                 className="h-10 w-auto brightness-0 invert" 

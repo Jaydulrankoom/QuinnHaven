@@ -17,12 +17,12 @@ export default function ProductDetail() {
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="bg-white p-6 border border-charcoal/5 shadow-xl">
                <div className="aspect-square relative overflow-hidden">
-                  <img src={product.img} alt={product.title} className="w-full h-full object-cover" />
+                  <img loading="lazy" src={product.img} alt={product.title} className="w-full h-full object-cover" />
                </div>
                <div className="grid grid-cols-3 gap-4 mt-4">
                  {[1,2,3].map(i => (
                     <div key={i} className="aspect-square bg-cream overflow-hidden opacity-50 hover:opacity-100 cursor-pointer transition-opacity">
-                       <img src={product.img} alt="Thumbnail" className="w-full h-full object-cover grayscale" />
+                       <img loading="lazy" src={product.img} alt="Thumbnail" className="w-full h-full object-cover grayscale" />
                     </div>
                  ))}
                </div>

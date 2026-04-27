@@ -55,6 +55,9 @@ export default function Home() {
            <img 
             src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop" 
             alt="Material Details" 
+            loading="lazy"
+            width="800"
+            height="1200"
             className="w-full h-full object-cover"
           />
         </motion.div>
@@ -146,6 +149,9 @@ export default function Home() {
               <img 
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
                 alt="QuinnHaven Craftsmanship" 
+                loading="lazy"
+                width="800"
+                height="500"
                 className="w-full h-[500px] object-cover shadow-xl rounded-sm" 
               />
             </div>
@@ -222,7 +228,7 @@ export default function Home() {
                    <div className="absolute inset-x-0 bottom-0 p-4 z-20 bg-gradient-to-t from-black/80 to-transparent">
                      <span className="font-serif text-lg text-white">{product.name}</span>
                    </div>
-                   <img src={product.img} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   <img src={product.img} alt={product.name} loading="lazy" width="400" height="400" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
              ))}
           </div>
@@ -242,7 +248,7 @@ export default function Home() {
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
                  <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                 <img src={SERVICES[0].img} alt="Kitchen Project" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                 <img src={SERVICES[0].img} alt="Kitchen Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                  <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
                     <span className="text-gold text-xs uppercase tracking-widest font-bold block mb-1">Kitchen Remodel</span>
                     <h4 className="font-serif text-xl text-charcoal">The Avon Culinary Estate</h4>
@@ -250,7 +256,7 @@ export default function Home() {
               </div>
               <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
                  <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                 <img src={SERVICES[2].img} alt="Bathroom Project" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                 <img src={SERVICES[2].img} alt="Bathroom Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                  <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
                     <span className="text-gold text-xs uppercase tracking-widest font-bold block mb-1">Bathroom Retreat</span>
                     <h4 className="font-serif text-xl text-charcoal">Wallingford Master Bath</h4>
@@ -317,7 +323,7 @@ export default function Home() {
                 </div>
              </div>
              <div className="relative h-[400px]">
-                <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=2070&auto=format&fit=crop" alt="Connecticut Architecture" className="w-full h-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=2070&auto=format&fit=crop" alt="Connecticut Architecture" loading="lazy" width="800" height="600" className="w-full h-full object-cover" />
              </div>
           </div>
         </div>
@@ -353,7 +359,7 @@ export default function Home() {
                   </div>
                </div>
                <div className="w-full md:w-1/2 h-[400px] md:h-auto">
-                  <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" alt="Showroom Selection Center" className="w-full h-full object-cover" />
+                  <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" alt="Showroom Selection Center" loading="lazy" width="800" height="600" className="w-full h-full object-cover" />
                </div>
             </div>
          </div>
@@ -379,7 +385,7 @@ export default function Home() {
                ].map((post, i) => (
                   <div key={i} className="group cursor-pointer">
                      <div className="h-[250px] overflow-hidden rounded-sm mb-6">
-                        <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={post.img} alt={post.title} loading="lazy" width="600" height="400" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                      </div>
                      <span className="text-gold uppercase tracking-widest text-[10px] font-bold block mb-2">{post.cat}</span>
                      <h4 className="font-serif text-xl text-charcoal leading-snug group-hover:text-gold transition-colors">{post.title}</h4>

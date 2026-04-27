@@ -29,7 +29,7 @@ export default function PortfolioDetail() {
       {/* HERO IMAGE */}
       <section className="px-6 pb-16">
         <div className="max-w-7xl mx-auto h-[50vh] md:h-[70vh] rounded-sm overflow-hidden border border-charcoal/5 shadow-2xl">
-          <img src={project.img} alt={project.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+          <img loading="lazy" src={project.img} alt={project.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
         </div>
       </section>
 
@@ -73,7 +73,7 @@ export default function PortfolioDetail() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {project.gallery.map((imgUrl, idx) => (
                 <div key={idx} className="h-[400px] md:h-[600px] overflow-hidden rounded-sm shadow-xl border border-charcoal/5">
-                  <img src={imgUrl} alt={`${project.title} view ${idx + 1}`} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                  <img loading="lazy" src={imgUrl} alt={`${project.title} view ${idx + 1}`} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>

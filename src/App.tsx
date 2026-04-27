@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Service from "./pages/Service";
@@ -25,10 +26,53 @@ import DynamicLocationService from "./pages/services/DynamicLocationService";
 
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
+import { useSEO } from "./hooks/useSEO";
+
+function DynamicSEO() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  let title = "QuinnHaven Design | Luxury Kitchen & Bathroom Remodeling in Connecticut";
+  let description = "Experience the pinnacle of custom cabinetry and spatial planning with QuinnHaven Design. Luxury kitchen and bathroom remodeling in Connecticut.";
+  
+  if (path.includes('/about') || path.includes('/meet-our-designer')) {
+    title = "About Us | QuinnHaven Design";
+    description = "Learn about QuinnHaven Design, Connecticut's premier experts in luxury kitchen and bathroom design and remodeling.";
+  } else if (path.includes('/services')) {
+    title = "Our Services | Luxury Kitchen & Bath Remodeling | QuinnHaven Design";
+    description = "Explore our comprehensive remodeling services including kitchen design, bathroom retreats, custom cabinetry and spatial planning in CT.";
+  } else if (path.includes('/portfolio') || path.includes('/case-studies')) {
+    title = "Portfolio & Case Studies | QuinnHaven Design";
+    description = "View our recent luxury remodeling projects, showcasing bespoke design and flawless execution across Connecticut.";
+  } else if (path.includes('/showroom')) {
+    title = "Wallingford Design Showroom | QuinnHaven Design";
+    description = "Visit our extensive design showroom in Wallingford, CT. See and feel premium materials, cabinetry, and hardware in person.";
+  } else if (path.includes('/contact')) {
+    title = "Contact Us | QuinnHaven Design";
+    description = "Get in touch with QuinnHaven Design to start planning your luxury kitchen or bathroom remodeling project in Connecticut.";
+  } else if (path.includes('/blog')) {
+    title = "Design Insights & Blog | QuinnHaven Design";
+    description = "Read the latest trends, insights, and inspiration for kitchen and bathroom design from the experts at QuinnHaven.";
+  } else if (path.length > 2) {
+    // Basic fallback for other pages (capitalize path)
+    const formattedPath = path.replace('/', '').replace(/-/g, ' ');
+    title = `${formattedPath.charAt(0).toUpperCase() + formattedPath.slice(1)} | QuinnHaven Design`;
+  }
+
+  useSEO({
+    title,
+    description,
+    canonical: `https://quinnhavendesign.com${path}`
+  });
+
+  return null;
+}
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <DynamicSEO />
+      <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
@@ -72,5 +116,6 @@ export default function App() {
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>
+    </>
   );
 }

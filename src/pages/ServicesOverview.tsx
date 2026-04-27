@@ -27,7 +27,7 @@ export default function ServicesOverview() {
                >
                   <div className="w-full sm:w-2/5 h-[300px] sm:h-auto overflow-hidden relative">
                      <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors z-10" />
-                     <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                     <img loading="lazy" src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   </div>
                   <div className="w-full sm:w-3/5 p-8 md:p-12 flex flex-col justify-center">
                      <h2 className="text-3xl font-serif text-charcoal mb-4 group-hover:text-gold transition-colors">{s.title}</h2>

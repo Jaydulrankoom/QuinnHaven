@@ -23,7 +23,7 @@ export default function Service() {
       {/* HERO */}
       <section className="relative h-[60vh] min-h-[500px] flex items-center">
         <div className="absolute inset-0">
-          <img src={data.img} alt={data.title} className="w-full h-full object-cover" />
+          <img loading="lazy" src={data.img} alt={data.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-charcoal/60 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent" />
         </div>
@@ -62,7 +62,7 @@ export default function Service() {
               </div>
             </div>
             <div className="relative h-[600px] rounded-sm overflow-hidden shadow-2xl border border-charcoal/5">
-               <img src={data.img} alt="Detail" className="w-full h-full object-cover" />
+               <img loading="lazy" src={data.img} alt="Detail" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
