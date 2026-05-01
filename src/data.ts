@@ -72,7 +72,7 @@ export const SERVICES = [
     process: ["Wardrobe Inventory Assessment", "3D Layout Optimization", "Accessory & Lighting Selection", "Build & Organization"]
   },
   { 
-    id: "basement-bar", 
+    id: "basement-bar-design", 
     title: "Basement Bar", 
     img: "https://images.unsplash.com/photo-1572111867160-5a3d76b1ba7d?q=80&w=2069&auto=format&fit=crop", 
     desc: "Entertain in sophistication with a custom wet bar.",
@@ -87,7 +87,7 @@ export const SERVICES = [
     process: ["Space & Utility Planning", "Bar Motif & Theme Conceptualization", "Appliance Specification", "Millwork & Stone Installation"]
   },
   { 
-    id: "home-office", 
+    id: "home-office-design", 
     title: "Home Office", 
     img: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=2070&auto=format&fit=crop", 
     desc: "Inspiring executive workspaces built for peak productivity.",
@@ -102,7 +102,7 @@ export const SERVICES = [
     process: ["Workflow Assessment", "Built-in & Desk Rendering", "Lighting & Ergonomic Review", "Installation"]
   },
   { 
-    id: "entryway-storage", 
+    id: "entryway-storage-design", 
     title: "Entryway Storage", 
     img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2069&auto=format&fit=crop", 
     desc: "Elegant mudrooms and drop zones that welcome you home.",
@@ -415,6 +415,24 @@ export const PORTFOLIO = [
     gallery: [
       "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2069&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2070&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: "luxury-entryway-foyer",
+    title: "Grand Modern Entryway",
+    category: "Entryway",
+    location: "Greenwich",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
+    overview: "A majestic modern entryway designed to make an unforgettable first impression. We introduced custom millwork, dramatic lighting, and seamlessly integrated hidden storage to balance elegant aesthetics with practical family utility.",
+    details: [
+      "Floor-to-ceiling custom white oak paneling with hidden coat closets and push-to-open hardware.",
+      "A stunning, floating stone bench integrated directly into the structural framing.",
+      "Custom brass and glass double-entry doors that flood the foyer with natural light.",
+      "Geometric, large-format imported marble flooring to anchor the grand space."
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070&auto=format&fit=crop"
     ]
   }
 ];

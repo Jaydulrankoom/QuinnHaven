@@ -130,9 +130,6 @@ export default function Header() {
                      <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Renovation</span>
                      <Link to="/services/bathroom-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Bathroom Remodeling</Link>
                      <Link to="/services/kitchen-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Kitchen Remodeling</Link>
-                     <Link to="/services/basement-bar-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Basement Bar Remodeling</Link>
-                     <Link to="/services/home-office-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Home Office Remodeling</Link>
-                     <Link to="/services/entryway-storage-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Entryway Storage Remodeling</Link>
                   </div>
                 </motion.div>
               )}
@@ -207,8 +204,7 @@ export default function Header() {
                   <Link to="/portfolio?category=Basement Bar" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Basement Bar</Link>
                   <Link to="/portfolio?category=Laundry" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Laundry</Link>
                   <Link to="/portfolio?category=Home Office" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Home Office</Link>
-                  <div className="w-full h-px bg-charcoal/10 my-2"></div>
-                  <Link to="/case-studies" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Case Studies</Link>
+                  <Link to="/portfolio?category=Entryway" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Entryway</Link>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -289,9 +285,6 @@ export default function Header() {
                   <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
                     <Link to="/services/bathroom-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Bathroom Remodeling</Link>
                     <Link to="/services/kitchen-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Kitchen Remodeling</Link>
-                    <Link to="/services/basement-bar-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Basement Bar Remodeling</Link>
-                    <Link to="/services/home-office-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Home Office Remodeling</Link>
-                    <Link to="/services/entryway-storage-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Entryway Storage Remodeling</Link>
                   </div>
                 </div>
               </div>
@@ -313,10 +306,9 @@ export default function Header() {
                   <Link to="/portfolio?category=Basement Bar" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Basement Bar</Link>
                   <Link to="/portfolio?category=Laundry" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Laundry</Link>
                   <Link to="/portfolio?category=Home Office" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Home Office</Link>
+                  <Link to="/portfolio?category=Entryway" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Entryway</Link>
                 </div>
               </div>
-
-              <Link to="/case-studies" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Case Studies</Link>
 
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Locations</span>

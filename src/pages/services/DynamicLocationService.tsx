@@ -118,7 +118,7 @@ export default function DynamicLocationService() {
                 to="/contact"
                 className="bg-gold text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-[#141162] transition-all duration-300 shadow-xl w-full sm:w-auto border border-gold hover:border-white"
               >
-                Get Free Estimate
+                Book a Consultation
               </Link>
               <Link 
                 to="/book-showroom" 
@@ -359,7 +359,7 @@ export default function DynamicLocationService() {
               to="/contact"
                className="bg-gold text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-white hover:text-charcoal transition-all duration-300 shadow-xl w-full sm:w-auto border border-gold hover:border-white"
             >
-              Get Free Estimate
+              Book a Consultation
             </Link>
             <Link 
               to="/book-showroom" 

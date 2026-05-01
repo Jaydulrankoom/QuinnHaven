@@ -173,28 +173,26 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {SERVICES.map((service) => (
-              <Link key={service.id} to={`/services/${service.id}`} className="group block bg-cream p-8 border border-charcoal/5 hover:border-gold transition-all duration-300">
-                <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-gold transition-colors">{service.title}</h3>
+            {[
+              { title: "Kitchen Design", desc: "Beautifully composed kitchens where layout, storage, and everyday functionality come together seamlessly.", link: "/services/kitchen-design" },
+              { title: "Bathroom Design", desc: "Elevated bathroom interiors designed to feel calm, practical, and effortlessly refined.", link: "/services/bathroom-design" },
+              { title: "Kitchen Cabinets", desc: "Well-crafted cabinetry selections that combine lasting quality with smart, design-forward storage.", link: "/services/custom-kitchen-cabinets" },
+              { title: "Countertops", desc: "Premium countertop surfaces chosen to enhance both the performance and visual impact of the space.", link: "/products/countertop" },
+              { title: "Closet Design", desc: "Tailored closet solutions that bring together organization, beauty, and ease of everyday living.", link: "/services/closet-design" },
+              { title: "Basement Bar", desc: "Sophisticated basement bar spaces designed for entertaining, relaxing, and maximizing underused areas.", link: "/services/basement-bar-design" },
+              { title: "Home Office", desc: "Purposeful home office designs that support focus, comfort, and a polished professional atmosphere.", link: "/services/home-office-design" },
+              { title: "Entryway Storage", desc: "Streamlined entryway storage that adds function, organization, and a welcoming sense of arrival.", link: "/services/entryway-storage-design" }
+            ].map((expertise, idx) => (
+              <Link key={idx} to={expertise.link} className="group block bg-cream p-8 border border-charcoal/5 hover:border-gold transition-all duration-300">
+                <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-gold transition-colors">{expertise.title}</h3>
                 <p className="text-charcoal/60 text-sm font-light leading-relaxed mb-6">
-                  {service.desc}
+                  {expertise.desc}
                 </p>
                 <span className="text-xs uppercase tracking-widest text-gold font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore <ChevronRight className="w-3 h-3" />
                 </span>
               </Link>
             ))}
-            
-            {/* Hardcoded Entryway Storage to complete the requested robust list */}
-            <Link to="/services/entryway-storage" className="group block bg-cream p-8 border border-charcoal/5 hover:border-gold transition-all duration-300">
-              <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-gold transition-colors">Entryway Storage</h3>
-              <p className="text-charcoal/60 text-sm font-light leading-relaxed mb-6">
-                Custom mudroom built-ins and elegant entryway organization logic.
-              </p>
-              <span className="text-xs uppercase tracking-widest text-gold font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
-                Explore <ChevronRight className="w-3 h-3" />
-              </span>
-            </Link>
           </div>
         </div>
       </section>

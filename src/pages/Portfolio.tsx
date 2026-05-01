@@ -1,13 +1,11 @@
 import { useSearchParams, Link } from "react-router-dom";
 import { PORTFOLIO } from "../data";
 
-const CATEGORIES = ["All", "Kitchen", "Bathroom", "Closet", "Basement Bar", "Laundry", "Home Office"];
-const LOCATIONS = ["All", ...Array.from(new Set(PORTFOLIO.map(p => p.location))).sort()];
+const CATEGORIES = ["All", "Kitchen", "Bathroom", "Closet", "Basement Bar", "Laundry", "Home Office", "Entryway"];
 
 export default function Portfolio() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "All";
-  const activeLocation = searchParams.get("location") || "All";
 
   const handleCategoryClick = (cat: string) => {
     const newParams = new URLSearchParams(searchParams);
@@ -19,20 +17,9 @@ export default function Portfolio() {
     setSearchParams(newParams);
   };
 
-  const handleLocationClick = (loc: string) => {
-    const newParams = new URLSearchParams(searchParams);
-    if (loc === "All") {
-      newParams.delete("location");
-    } else {
-      newParams.set("location", loc);
-    }
-    setSearchParams(newParams);
-  };
-
   const filteredProjects = PORTFOLIO.filter(p => {
     const matchCategory = activeCategory === "All" || p.category === activeCategory;
-    const matchLocation = activeLocation === "All" || p.location === activeLocation;
-    return matchCategory && matchLocation;
+    return matchCategory;
   });
 
   return (
@@ -64,24 +51,6 @@ export default function Portfolio() {
               </button>
             ))}
           </div>
-
-          <div className="w-px h-6 bg-charcoal/20 hidden md:block"></div>
-
-          <div className="max-w-4xl mx-auto px-6 flex flex-wrap justify-center gap-2">
-            {LOCATIONS.map(loc => (
-              <button
-                key={loc}
-                onClick={() => handleLocationClick(loc)}
-                className={`px-4 py-2 text-[10px] uppercase tracking-widest transition-all duration-300 font-bold rounded-full ${
-                  activeLocation === loc 
-                    ? "bg-gold text-white shadow-md" 
-                    : "border border-charcoal/10 text-charcoal/70 hover:border-gold hover:text-charcoal bg-white"
-                }`}
-              >
-                {loc}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -96,7 +65,6 @@ export default function Portfolio() {
                 onClick={() => {
                    const newParams = new URLSearchParams(searchParams);
                    newParams.delete("category");
-                   newParams.delete("location");
                    setSearchParams(newParams);
                 }}
                 className="mt-8 px-8 py-3 bg-charcoal text-white uppercase tracking-widest text-xs font-bold hover:bg-gold transition-colors"
