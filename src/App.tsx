@@ -113,7 +113,7 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         
         {/* Fallback */}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<GenericPage title="404 Page Not Found" />} />
       </Route>
     </Routes>
     </>

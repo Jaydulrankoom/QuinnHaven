@@ -119,7 +119,6 @@ export default function Header() {
                   <div className="flex-1 space-y-4 border-r border-charcoal/5 pr-8">
                      <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Design</span>
                      <Link to="/services/kitchen-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Kitchen Design</Link>
-                     <Link to="/services/custom-kitchen-cabinets" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Custom Kitchen Cabinets</Link>
                      <Link to="/services/bathroom-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Bathroom Design</Link>
                      <Link to="/services/closet-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Closet Design</Link>
                      <Link to="/services/basement-bar-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Basement Bar Design</Link>
@@ -271,7 +270,6 @@ export default function Header() {
                   <span className="text-sm font-bold text-charcoal mb-3 block">Design</span>
                   <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
                     <Link to="/services/kitchen-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Kitchen Design</Link>
-                    <Link to="/services/custom-kitchen-cabinets" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Custom Kitchen Cabinets</Link>
                     <Link to="/services/bathroom-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Bathroom Design</Link>
                     <Link to="/services/closet-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Closet Design</Link>
                     <Link to="/services/basement-bar-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Basement Bar Design</Link>

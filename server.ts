@@ -65,6 +65,19 @@ ${routes.map(route => `
       appType: "spa",
     });
     app.use(vite.middlewares);
+
+    // Fallback for development if Vite middleware doesn't catch it
+    app.use('*', async (req, res, next) => {
+      try {
+        const template = await fs.promises.readFile(path.resolve(process.cwd(), 'index.html'), 'utf-8');
+        const html = await vite.transformIndexHtml(req.originalUrl, template);
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      } catch (e) {
+        vite.ssrFixStacktrace(e as Error);
+        next(e);
+      }
+    });
+
   } else {
     // Production static serving
     const distPath = path.join(process.cwd(), 'dist');
