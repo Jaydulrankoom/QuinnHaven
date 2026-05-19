@@ -2,7 +2,7 @@ export const BRAND = {
   logo: "https://www.rankoom.com/wp-content/uploads/2026/04/Quinnhavendesign-Logo.png",
   phone: "+1 (860) 918-0388",
   email: "info@quinnhavendesign.com",
-  address: "121 N Plains Industrial Road, Unit C, Wallingford, CT, United States",
+  address: "121 N Plains Industrial Road, Unit C, Wallingford, CT 06492, United States",
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61573434015553",
     instagram: "https://www.instagram.com/quinnhaven_design/",

@@ -16,6 +16,7 @@ export interface StateSEOContent {
   overviewTitle: string;
   overviewPara1: string;
   overviewPara2: string;
+  overviewPara3?: string;
   processSteps: { title: string; desc: string }[];
   detailTitle: string;
   detailPara1: string;
@@ -32,8 +33,8 @@ export interface StateSEOContent {
 
 const KITCHEN_BATH_SEO: Record<string, StateSEOContent> = {
   "kitchen-design": {
-    heroTitle: "Premium Kitchen Design in Connecticut",
-    heroDesc: "Elevate your home with professional Kitchen Design in Connecticut. We create highly detailed, completely custom layouts that perfectly balance stunning aesthetics with intelligent daily functionality for your luxury property.",
+    heroTitle: "Thoughtful Kitchen Design in Connecticut",
+    heroDesc: "We design kitchens that are beautiful, practical, and built around the way you live—spaces that improve everyday function while adding lasting value to your home.",
     images: {
       hero: "1556910103-1c02745aae4d",
       overview: "1600585154340-be6161a56a0c",
@@ -43,8 +44,9 @@ const KITCHEN_BATH_SEO: Record<string, StateSEOContent> = {
     },
     trustStatement: "Award-winning architectural kitchen design trusted by homeowners across Connecticut.",
     overviewTitle: "Transform Your Home with Expert Kitchen Design",
-    overviewPara1: "The kitchen is undoubtedly the operational heart of any modern home. When undertaking Kitchen Design in Connecticut, our philosophy fundamentally rejects cookie-cutter, templated layouts. Instead, we architect completely bespoke environments that intelligently adapt to your family's exact culinary routines and lifestyle requirements. From precisely measured spatial flow and strategically placed work triangles to expansive luxury islands and concealed appliance walls, we ensure every singular aspect of the room is deeply purposeful.",
-    overviewPara2: "A genuinely high-end kitchen dramatically enhances how you live and interact within your space, bringing harmony to frantic mornings and elegant ease to evening entertaining. By integrating top-tier materials, intuitive lighting design, and sophisticated storage solutions, our comprehensive Kitchen Design in Connecticut actively significantly increases both your daily comfort and your property's long-term market value. We are intensely dedicated to delivering unparalleled design excellence that makes an undeniable statement.",
+    overviewPara1: "A well-designed kitchen should do more than look beautiful—it should support the way you cook, gather, entertain, and move through daily life. At QuinnHaven Design, we create kitchens that balance layout, storage, function, and material selection with a refined and timeless design approach.",
+    overviewPara2: "Our kitchen design service begins with understanding how you use your space. From on-site measurements and cabinetry configuration to island planning, appliance placement, traffic flow, and finish coordination, every detail is considered with both practicality and visual harmony in mind. We believe the most successful kitchens are the ones that feel effortless to live in while remaining elegant and highly functional.",
+    overviewPara3: "Whether you are renovating an existing home or planning a new build, our HIC-licensed and insured team provides a streamlined, one-stop experience from initial measurement and design through material selection, delivery, and installation coordination. With thoughtful guidance and professional support at every stage, we help bring clarity, confidence, and lasting value to every project.",
     processSteps: [
       { title: "Detailed At-Home Consultation", desc: "We comprehensively survey your current Connecticut kitchen, deeply analyzing the existing footprint, structural limitations, and natural lighting to form our initial architectural strategy." },
       { title: "Conceptual Layout & Work Flow", desc: "Our designers draft multiple intricate floor plan options, heavily prioritizing the functional work triangle, appliance placement, and optimal clearance zones for multiple cooks." },
@@ -142,9 +144,10 @@ const KITCHEN_BATH_SEO: Record<string, StateSEOContent> = {
       port3: "1554502570-3620f4c0ee47"
     },
     trustStatement: "Architecturally sound, visually stunning wet-room constructions across the state.",
-    overviewTitle: "Escaping to Your Private Connecticut Spa Sanctuary",
-    overviewPara1: "The primary en-suite is arguably the most intensely private and physically rejuvenating space in your entire property. Our approach to Bathroom Design in Connecticut strictly revolves around engineering an atmosphere of absolute luxury and profound architectural tranquility. We completely reject basic, cramped builder-grade layouts, opting instead to heavily re-imagine the entire footprint. Whether you desire a massive zero-entry walk-in shower surround clad in seamless monolithic stone slabs, or an incredibly dramatic freestanding soaking tub perfectly aligned beneath a custom chandelier, we execute the vision with absolute precision.",
-    overviewPara2: "A truly magnificent bathroom remodel is an incredibly complex convergence of intense plumbing strategy, highly advanced waterproofing science, and masterful aesthetic execution. When investing in high-end Bathroom Design in Connecticut, our clients heavily expect a highly flawless result that seamlessly performs as beautifully as it photographs. We heavily integrate advanced luxury features—including deeply powerful radiant floor heating, completely integrated digital shower valve controls, and stunning floating custom double vanities—to thoroughly elevate your daily grooming routine into a remarkably relaxing, five-star hotel experience.",
+    overviewTitle: "Bathroom Design That Balances Comfort and Function",
+    overviewPara1: "A well-designed bathroom should feel calm, functional, and easy to live in every day. At QuinnHaven Design, we create bathroom spaces that balance layout, storage, material selection, and visual simplicity to support both comfort and long-term value.",
+    overviewPara2: "Our bathroom design process begins with understanding how the space will be used. From vanity layout and shower planning to tile selection, lighting, storage, and fixture coordination, each detail is considered with both practicality and overall design harmony in mind. We focus on creating bathrooms that feel clean, efficient, and thoughtfully tailored to your daily routine.",
+    overviewPara3: "Whether you are updating a primary bath, guest bath, or powder room, our HIC-licensed and insured team provides a streamlined, one-stop experience—from measurement and design to material selection, delivery, and installation coordination—helping you move forward with clarity and confidence.",
     processSteps: [
       { title: "Structural & Plumbing Assessment", desc: "We intensely examine the underlying floor joists, heavy plumbing stacks, and explicit water pressure lines to completely guarantee the structural viability of massive stone elements and multi-head showers." },
       { title: "Spatial Flow Architecture", desc: "Our designers totally reconfigure the footprint, heavily aiming to create deeply expansive wet zones, completely separate enclosed water closets, and highly spacious dual-vanity grooming stations." },

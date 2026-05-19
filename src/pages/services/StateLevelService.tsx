@@ -82,6 +82,7 @@ export default function StateLevelService({ slug }: { slug: string }) {
               <div className="space-y-6 text-lg font-light text-charcoal/80 leading-relaxed mb-10">
                 <p>{data.overviewPara1}</p>
                 <p>{data.overviewPara2}</p>
+                {data.overviewPara3 && <p>{data.overviewPara3}</p>}
               </div>
             </div>
             <div className="relative">
@@ -147,7 +148,7 @@ export default function StateLevelService({ slug }: { slug: string }) {
                 <div className="w-14 h-14 bg-gold/10 text-gold flex items-center justify-center rounded-sm mb-8 group-hover:scale-110 transition-transform origin-left">
                   {icons[idx] || <Hammer />}
                 </div>
-                <h3 className="text-xl font-serif text-charcoal mb-4">{step.title}</h3>
+                <h3 className="text-[24px] font-serif text-charcoal mb-4">{step.title}</h3>
                 <p className="text-sm font-light text-charcoal/70 leading-relaxed">
                   {step.desc}
                 </p>

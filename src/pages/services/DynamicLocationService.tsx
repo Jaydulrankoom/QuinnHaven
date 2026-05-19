@@ -21,7 +21,9 @@ export default function DynamicLocationService() {
   let parsedLocation = "";
   let parsedService = "";
   
-  const knownCities = ["wallingford-ct", "new-haven-ct", "hartford-ct", "avon-ct", "norwalk-ct"];
+  const knownCities = [
+    "wallingford-ct", "new-haven-ct", "hartford-ct", "avon-ct", "norwalk-ct"
+  ];
   
   let isCityRoute = false;
   if (seoSlug) {
@@ -203,7 +205,7 @@ export default function DynamicLocationService() {
                 <div className="w-14 h-14 bg-gold/10 text-gold flex items-center justify-center rounded-sm mb-8 group-hover:scale-110 transition-transform origin-left">
                   {icons[idx] || <Hammer />}
                 </div>
-                <h3 className="text-xl font-serif text-charcoal mb-4">{step.title}</h3>
+                <h3 className="text-[24px] font-serif text-charcoal mb-4">{step.title}</h3>
                 <p className="text-sm font-light text-charcoal/70 leading-relaxed">
                   {step.desc}
                 </p>

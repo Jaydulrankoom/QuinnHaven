@@ -77,14 +77,14 @@ export default function Home() {
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] mb-8 font-light">
-              Luxury Kitchen & <br />
+            <h1 className="text-4xl md:text-[44px] lg:text-[54px] font-serif text-white leading-[1.1] mb-6 font-light">
+              Luxury Kitchen Cabinets & <br />
               <span className="italic text-gold-light">Bathroom Design</span> <br />
               in Connecticut.
             </h1>
             
-            <p className="text-lg text-white/80 font-light max-w-lg mb-10 leading-relaxed">
-              Experience the pinnacle of custom cabinetry and spatial planning. From master bathrooms to culinary-grade kitchens, we bring your ultimate vision to life with complete end-to-end service.
+            <p className="text-base md:text-lg text-white/80 font-light max-w-lg mb-8 leading-relaxed">
+              Based in Wallingford, Connecticut, QuinnHaven Design helps homeowners, builders, and designers create beautiful, functional spaces through thoughtful design, quality cabinetry, curated materials, and seamless project coordination.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6">
@@ -292,7 +292,7 @@ export default function Home() {
                    <div className="w-16 h-16 mx-auto bg-cream rounded-full flex items-center justify-center mb-6">
                       <step.icon className="w-6 h-6 text-gold" />
                    </div>
-                   <h4 className="font-serif text-lg text-charcoal mb-3">{step.title}</h4>
+                   <h4 className="font-serif text-[24px] text-charcoal mb-3">{step.title}</h4>
                    <p className="text-sm text-charcoal/60 font-light leading-relaxed px-2">{step.text}</p>
                 </div>
               ))}
@@ -310,14 +310,17 @@ export default function Home() {
                   Serving Connecticut's Premier Neighborhoods
                 </h2>
                 <p className="text-charcoal/70 font-light leading-relaxed mb-6">
-                  QuinnHaven proudly delivers exceptional kitchen remodeling and custom bath design across <strong>Connecticut</strong>. Our fully licensed installers and design experts understand the unique architectural logic and luxury real estate standards of the region.
+                  QuinnHaven proudly serves homeowners, builders, and designers across Wallingford and surrounding Connecticut communities, including many of the region’s most sought-after towns. Our team brings thoughtful design, quality materials, and personalized project support to homes that value both beauty and long-term investment.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-8">
                    <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Wallingford</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> New Haven</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Hartford</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Cheshire</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Glastonbury</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Farmington</div>
                    <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Avon</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Norwalk</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> West Hartford</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Madison</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Guilford</div>
                 </div>
              </div>
              <div className="relative h-[400px]">
@@ -332,12 +335,12 @@ export default function Home() {
          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="bg-charcoal text-white rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
                <div className="w-full md:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
-                  <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Experience the Quality</span>
+                  <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">VISIT THE SHOWROOM</span>
                   <h2 className="font-serif text-4xl text-white leading-tight mb-6">
-                    Visit Our Design Studio
+                    A More Thoughtful Way to Design
                   </h2>
                   <p className="text-white/70 font-light leading-relaxed mb-8">
-                    Step off the screen and into reality. Run your hands over our solid birch cabinetry, examine thick-cut marble, and sit down with our designers to map out your dream space over a cup of coffee.
+                    Our Wallingford design studio offers a hands-on experience where you can explore cabinetry, materials, and finish options up close. Meet with our team to review your space, discuss layout ideas tailored to your lifestyle, refine your selections, and move forward with clarity and confidence.
                   </p>
                   
                   <div className="space-y-4 mb-10">

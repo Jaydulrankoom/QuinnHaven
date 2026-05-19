@@ -146,7 +146,7 @@ export default function About() {
                <div className="space-y-4 border-t border-charcoal/10 pt-6">
                   <div className="flex items-center gap-3 text-charcoal text-sm font-medium">
                      <MapPin className="w-5 h-5 text-gold" />
-                     <span>121 N Plains Industrial Road, Unit C, Wallingford, CT</span>
+                     <span>{BRAND.address}</span>
                   </div>
                </div>
             </div>
