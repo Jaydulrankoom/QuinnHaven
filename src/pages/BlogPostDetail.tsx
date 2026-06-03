@@ -12,18 +12,18 @@ export default function BlogPostDetail() {
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-24 bg-cream">
        <article className="max-w-3xl mx-auto px-6 w-full">
-         <Link to="/blog" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-charcoal/50 hover:text-gold font-bold mb-12 transition-colors">
+         <Link to="/blog" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-charcoal/50 hover:text-brand font-bold mb-12 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
          </Link>
 
          <header className="mb-12">
             <div className="flex items-center gap-4 mb-6">
-                <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold">{post.category}</span>
+                <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold">{post.category}</span>
                 <span className="w-1 h-1 rounded-full bg-charcoal/20"></span>
                 <span className="text-charcoal/50 uppercase tracking-widest text-xs font-bold">{post.date}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-charcoal mb-8 leading-tight">{post.title}</h1>
-            <p className="text-xl text-charcoal/70 font-light leading-relaxed italic border-l-4 border-gold pl-6">
+            <p className="text-xl text-charcoal/70 font-light leading-relaxed italic border-l-4 border-brand pl-6">
                 {post.excerpt}
             </p>
          </header>

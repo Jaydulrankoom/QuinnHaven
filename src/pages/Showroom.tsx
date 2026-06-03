@@ -17,7 +17,7 @@ export default function Showroom() {
           />
         </div>
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Our Design Studio</span>
+          <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Our Design Studio</span>
           <h1 className="text-5xl md:text-7xl font-serif text-white mb-6">Experience It In Person</h1>
           <p className="text-lg md:text-xl font-light text-white/80">
             Digital screens cannot convey the authentic touch of solid hardwoods, the structural weight of heavy European hinges, or the true veining of natural stone.
@@ -29,30 +29,30 @@ export default function Showroom() {
       <section className="py-24 bg-white border-b border-charcoal/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-[#141162] mb-6">Step Off the Screen</h2>
+            <h2 className="font-serif text-3xl md:text-5xl text-brand mb-6">Step Off the Screen</h2>
             <p className="text-charcoal/70 font-light max-w-2xl mx-auto text-lg">
               A luxury renovation requires tactile confirmation. Visit our Wallingford showroom to explore our curated libraries of cabinetry, stone, and architectural hardware.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-gold transition-colors duration-300">
-              <Layers className="w-10 h-10 text-gold mx-auto mb-6" />
-              <h3 className="font-serif text-2xl text-[#141162] mb-4">Tactile Materials</h3>
+            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-brand transition-colors duration-300">
+              <Layers className="w-10 h-10 text-brand mx-auto mb-6" />
+              <h3 className="font-serif text-2xl text-brand mb-4">Tactile Materials</h3>
               <p className="font-light text-charcoal/70 text-sm leading-relaxed">
                 Run your hands over painted and stained finishes. Examine the thickness of our solid wood dovetail drawers and test the silent precision of our soft-close mechanisms.
               </p>
             </div>
-            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-gold transition-colors duration-300">
-              <Coffee className="w-10 h-10 text-gold mx-auto mb-6" />
-              <h3 className="font-serif text-2xl text-[#141162] mb-4">Private Consultation</h3>
+            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-brand transition-colors duration-300">
+              <Coffee className="w-10 h-10 text-brand mx-auto mb-6" />
+              <h3 className="font-serif text-2xl text-brand mb-4">Private Consultation</h3>
               <p className="font-light text-charcoal/70 text-sm leading-relaxed">
                 Sit down with a senior design architect over a cup of coffee. We will review your blueprints, discuss your lifestyle needs, and map out an initial vision.
               </p>
             </div>
-            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-gold transition-colors duration-300">
-              <Ruler className="w-10 h-10 text-gold mx-auto mb-6" />
-              <h3 className="font-serif text-2xl text-[#141162] mb-4">3D Spatial Planning</h3>
+            <div className="p-8 bg-cream border border-charcoal/5 text-center group hover:border-brand transition-colors duration-300">
+              <Ruler className="w-10 h-10 text-brand mx-auto mb-6" />
+              <h3 className="font-serif text-2xl text-brand mb-4">3D Spatial Planning</h3>
               <p className="font-light text-charcoal/70 text-sm leading-relaxed">
                 Experience your new space before construction begins. We use our showroom's presentation displays to guide you through photorealistic 3D renderings of your project.
               </p>
@@ -74,31 +74,31 @@ export default function Showroom() {
                  referrerPolicy="no-referrer"
                  className="w-full h-full object-cover"
                />
-               <div className="absolute -bottom-8 -right-8 bg-[#141162] text-white p-8 shadow-2xl hidden md:block">
-                  <span className="font-serif text-3xl block mb-2 text-gold">Ready?</span>
+               <div className="absolute -bottom-8 -right-8 bg-brand text-white p-8 shadow-2xl hidden md:block">
+                  <span className="font-serif text-3xl block mb-2 text-brand">Ready?</span>
                   <p className="font-light text-sm tracking-widest uppercase">Walk-ins Welcome</p>
                </div>
             </div>
 
             {/* Info Side */}
             <div className="lg:pl-10">
-              <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Visit Us</span>
-              <h2 className="font-serif text-4xl text-[#141162] mb-10">Showroom Details</h2>
+              <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Visit Us</span>
+              <h2 className="font-serif text-4xl text-brand mb-10">Showroom Details</h2>
 
               <div className="space-y-8 mb-12">
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-gold shrink-0 mt-1" />
+                  <MapPin className="w-6 h-6 text-brand shrink-0 mt-1" />
                   <div>
                     <h4 className="font-bold uppercase tracking-widest text-xs mb-1 text-charcoal/50">Address</h4>
-                    <p className="text-lg text-[#141162] font-semibold">{BRAND.address}</p>
-                    <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="text-gold text-sm font-bold tracking-widest uppercase hover:text-[#141162] transition-colors mt-2 inline-block">
+                    <p className="text-lg text-brand font-semibold">{BRAND.address}</p>
+                    <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="text-brand text-sm font-bold tracking-widest uppercase hover:text-brand transition-colors mt-2 inline-block">
                       Get Directions & Reviews →
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Clock className="w-6 h-6 text-gold shrink-0 mt-1" />
+                  <Clock className="w-6 h-6 text-brand shrink-0 mt-1" />
                   <div>
                     <h4 className="font-bold uppercase tracking-widest text-xs mb-1 text-charcoal/50">Hours of Operation</h4>
                     <ul className="text-charcoal/80 space-y-1">
@@ -111,27 +111,27 @@ export default function Showroom() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-gold shrink-0 mt-1" />
+                  <Phone className="w-6 h-6 text-brand shrink-0 mt-1" />
                   <div>
                     <h4 className="font-bold uppercase tracking-widest text-xs mb-1 text-charcoal/50">Direct Line</h4>
-                    <p className="text-lg text-[#141162] font-semibold">{BRAND.phone}</p>
+                    <p className="text-lg text-brand font-semibold">{BRAND.phone}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-gold shrink-0 mt-1" />
+                  <Mail className="w-6 h-6 text-brand shrink-0 mt-1" />
                   <div>
                     <h4 className="font-bold uppercase tracking-widest text-xs mb-1 text-charcoal/50">Email inquiries</h4>
-                    <p className="text-lg text-[#141162] font-semibold">{BRAND.email}</p>
+                    <p className="text-lg text-brand font-semibold">{BRAND.email}</p>
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/book-showroom" className="bg-[#141162] text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-gold transition-colors text-center">
+                <Link to="/book-showroom" className="bg-brand text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-charcoal transition-colors text-center">
                   Book VIP Consultation
                 </Link>
-                <a href={`tel:${BRAND.phone}`} className="border border-[#141162] hover:bg-[#141162] hover:text-white text-[#141162] px-8 py-4 uppercase tracking-widest text-xs font-bold transition-colors text-center">
+                <a href={`tel:${BRAND.phone}`} className="border border-brand hover:border-charcoal hover:bg-charcoal hover:text-white text-brand px-8 py-4 uppercase tracking-widest text-xs font-bold transition-colors text-center">
                   Call Studio
                 </a>
               </div>

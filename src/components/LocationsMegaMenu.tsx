@@ -46,15 +46,15 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
               onMouseEnter={() => setActiveLocation(loc)}
               className={`text-left px-4 py-3 rounded-sm text-sm transition-all flex items-center justify-between group ${
                 activeLocation.id === loc.id 
-                  ? "bg-white shadow-sm text-gold font-medium border border-charcoal/5" 
-                  : "text-charcoal hover:bg-white/60 hover:text-gold border border-transparent"
+                  ? "bg-white shadow-sm text-brand font-medium border border-charcoal/5" 
+                  : "text-charcoal hover:bg-white/60 hover:text-brand border border-transparent"
               }`}
             >
               <span className="flex items-center gap-3">
-                <MapPin className={`w-4 h-4 ${activeLocation.id === loc.id ? "text-gold" : "text-charcoal/30 group-hover:text-gold/60"}`} />
+                <MapPin className={`w-4 h-4 ${activeLocation.id === loc.id ? "text-brand" : "text-charcoal/30 group-hover:text-brand/60"}`} />
                 {locName}
               </span>
-              <ChevronRight className={`w-3 h-3 transition-opacity ${activeLocation.id === loc.id ? "opacity-100 text-gold" : "opacity-0 group-hover:opacity-50"}`} />
+              <ChevronRight className={`w-3 h-3 transition-opacity ${activeLocation.id === loc.id ? "opacity-100 text-brand" : "opacity-0 group-hover:opacity-50"}`} />
             </button>
           );
         })}
@@ -63,8 +63,8 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
       {/* Right Panel: Services */}
       <div className="w-[65%] p-10 bg-white relative">
         <div className="flex items-center gap-3 border-b border-charcoal/5 pb-5 mb-8">
-          <MapPin className="w-5 h-5 text-gold" />
-          <h3 className="text-xl xl:text-2xl font-serif text-[#141162]">
+          <MapPin className="w-5 h-5 text-brand" />
+          <h3 className="text-xl xl:text-2xl font-serif text-brand">
             Services in {activeLocation.name.endsWith("CT") ? activeLocation.name : `${activeLocation.name}, CT`}
           </h3>
         </div>
@@ -72,7 +72,7 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
         <div className="grid grid-cols-2 gap-10">
           {/* Design Category */}
           <div>
-            <span className="flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-[0.2em] mb-5">
+            <span className="flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-[0.2em] mb-5">
               <PencilRuler className="w-4 h-4" /> Design
             </span>
             <ul className="space-y-4">
@@ -86,11 +86,11 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
                     <Link 
                       to={`/services/${slug}`} 
                       onClick={onLinkClick}
-                      className="text-sm font-light text-charcoal/80 hover:text-gold transition-colors block leading-snug group"
+                      className="text-sm font-light text-charcoal/80 hover:text-brand transition-colors block leading-snug group"
                     >
                       <span className="relative inline-block pb-0.5 overflow-hidden">
                         {service}
-                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-brand -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300"></span>
                       </span>
                     </Link>
                   </li>
@@ -101,7 +101,7 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
 
           {/* Renovation Category */}
           <div>
-             <span className="flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-[0.2em] mb-5">
+             <span className="flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-[0.2em] mb-5">
               <Wrench className="w-4 h-4" /> Renovation
             </span>
             <ul className="space-y-4">
@@ -115,11 +115,11 @@ export default function LocationsMegaMenu({ onLinkClick }: { onLinkClick: () => 
                      <Link 
                       to={`/services/${slug}`} 
                       onClick={onLinkClick}
-                      className="text-sm font-light text-charcoal/80 hover:text-gold transition-colors block leading-snug group"
+                      className="text-sm font-light text-charcoal/80 hover:text-brand transition-colors block leading-snug group"
                     >
                       <span className="relative inline-block pb-0.5 overflow-hidden">
                         {service}
-                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gold -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-brand -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300"></span>
                       </span>
                     </Link>
                   </li>

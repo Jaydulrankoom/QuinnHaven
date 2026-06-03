@@ -22,13 +22,13 @@ export default function Footer() {
               Elevating homes with premium kitchen and bathroom designs. Crafted with precision, designed for life.
             </p>
             <div className="flex space-x-5">
-              <a href={BRAND.socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold transition-all">
+              <a href={BRAND.socials.instagram} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-brand hover:border-brand transition-all">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href={BRAND.socials.facebook} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold transition-all">
+              <a href={BRAND.socials.facebook} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-brand hover:border-brand transition-all">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href={BRAND.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold transition-all">
+              <a href={BRAND.socials.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-brand hover:border-brand transition-all">
                 <Linkedin className="w-4 h-4" />
               </a>
             </div>
@@ -40,8 +40,8 @@ export default function Footer() {
             <ul className="space-y-4 text-sm font-light opacity-80">
               {SERVICES.map(s => (
                 <li key={s.id}>
-                  <Link to={`/services/${s.id}`} className="hover:text-gold transition-colors flex items-center gap-2 group">
-                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                  <Link to={`/services/${s.id}`} className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                      {s.title}
                   </Link>
                 </li>
@@ -54,38 +54,38 @@ export default function Footer() {
              <h4 className="font-serif text-2xl mb-6 text-white border-b border-white/10 pb-4 inline-block">Company</h4>
              <ul className="space-y-4 text-sm font-light opacity-80">
                <li>
-                 <Link to="/about" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/about" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     About Us
                  </Link>
                </li>
                <li>
-                 <Link to="/meet-our-designer" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/meet-our-designer" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     Meet Our Designer
                  </Link>
                </li>
                <li>
-                 <Link to="/project-management" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/project-management" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     Project Management
                  </Link>
                </li>
                <li>
-                 <Link to="/builder-supply" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/builder-supply" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     Builder Supply
                  </Link>
                </li>
                <li>
-                 <Link to="/multifamily-projects" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/multifamily-projects" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     Multifamily Projects
                  </Link>
                </li>
                <li>
-                 <Link to="/showroom" className="hover:text-gold transition-colors flex items-center gap-2 group">
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                 <Link to="/showroom" className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                     Showroom
                  </Link>
                </li>
@@ -98,8 +98,8 @@ export default function Footer() {
              <ul className="space-y-4 text-sm font-light opacity-80">
               {LOCATIONS.map(l => (
                 <li key={l.id}>
-                  <Link to={`/locations/${l.id}`} className="hover:text-gold transition-colors flex items-center gap-2 group">
-                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-gold" />
+                  <Link to={`/locations/${l.id}`} className="hover:text-brand-accent transition-colors flex items-center gap-2 group">
+                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all text-brand-accent" />
                      {l.name}
                   </Link>
                 </li>
@@ -113,16 +113,16 @@ export default function Footer() {
               <h4 className="font-serif text-2xl mb-6 text-white border-b border-white/10 pb-4 inline-block">Contact Us</h4>
               <ul className="space-y-4 text-sm font-light opacity-80">
                 <li className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-                  <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">{BRAND.address}</a>
+                  <MapPin className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
+                  <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="hover:text-brand-accent transition-colors">{BRAND.address}</a>
                 </li>
                 <li className="flex items-center gap-4">
-                  <Phone className="w-5 h-5 text-gold shrink-0" />
-                  <a href={`tel:${BRAND.phone}`} className="hover:text-gold transition-colors">{BRAND.phone}</a>
+                  <Phone className="w-5 h-5 text-brand-accent shrink-0" />
+                  <a href={`tel:${BRAND.phone}`} className="hover:text-brand-accent transition-colors">{BRAND.phone}</a>
                 </li>
                 <li className="flex items-center gap-4">
-                  <Mail className="w-5 h-5 text-gold shrink-0" />
-                  <a href={`mailto:${BRAND.email}`} className="hover:text-gold transition-colors">{BRAND.email}</a>
+                  <Mail className="w-5 h-5 text-brand-accent shrink-0" />
+                  <a href={`mailto:${BRAND.email}`} className="hover:text-brand-accent transition-colors">{BRAND.email}</a>
                 </li>
               </ul>
             </div>

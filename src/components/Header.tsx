@@ -59,15 +59,15 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center justify-center gap-3 xl:gap-5 px-2 shrink-0">
-          <Link to="/" className="text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">Home</Link>
-          <Link to="/blog" className="text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">Blog</Link>
+          <Link to="/" className="text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">Home</Link>
+          <Link to="/blog" className="text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">Blog</Link>
           {/* About Menu */}
           <div 
             className="relative py-8"
             onMouseEnter={() => setActiveDropdown("about")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button onClick={() => setActiveDropdown(activeDropdown === "about" ? null : "about")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "about" ? null : "about")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">
               About <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -82,14 +82,14 @@ export default function Header() {
                   <Link
                     to="/about"
                     onClick={() => setActiveDropdown(null)}
-                    className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors"
+                    className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors"
                   >
                     Our Story
                   </Link>
                   <Link
                     to="/meet-our-designer"
                     onClick={() => setActiveDropdown(null)}
-                    className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors"
+                    className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors"
                   >
                     Meet Our Designer
                   </Link>
@@ -104,7 +104,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("services")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">
               Services <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -118,17 +118,17 @@ export default function Header() {
                 >
                   <div className="flex-1 space-y-4 border-r border-charcoal/5 pr-8">
                      <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Design</span>
-                     <Link to="/services/kitchen-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Kitchen Design</Link>
-                     <Link to="/services/bathroom-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Bathroom Design</Link>
-                     <Link to="/services/closet-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Closet Design</Link>
-                     <Link to="/services/basement-bar-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Basement Bar Design</Link>
-                     <Link to="/services/home-office-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Home Office Design</Link>
-                     <Link to="/services/entryway-storage-design" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Entryway Storage Design</Link>
+                     <Link to="/services/kitchen-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Kitchen Design</Link>
+                     <Link to="/services/bathroom-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Bathroom Design</Link>
+                     <Link to="/services/closet-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Closet Design</Link>
+                     <Link to="/services/basement-bar-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Basement Bar Design</Link>
+                     <Link to="/services/home-office-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Home Office Design</Link>
+                     <Link to="/services/entryway-storage-design" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Entryway Storage Design</Link>
                   </div>
                   <div className="flex-1 space-y-4">
                      <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Renovation</span>
-                     <Link to="/services/bathroom-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Bathroom Remodeling</Link>
-                     <Link to="/services/kitchen-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-gold transition-colors block">Kitchen Remodeling</Link>
+                     <Link to="/services/bathroom-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Bathroom Remodeling</Link>
+                     <Link to="/services/kitchen-remodeling" className="text-sm font-medium text-charcoal/70 hover:text-brand transition-colors block">Kitchen Remodeling</Link>
                   </div>
                 </motion.div>
               )}
@@ -141,7 +141,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("products")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button onClick={() => setActiveDropdown(activeDropdown === "products" ? null : "products")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "products" ? null : "products")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">
               Products <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -169,7 +169,7 @@ export default function Header() {
                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                            />
                          </div>
-                         <span className="font-serif text-sm text-charcoal group-hover:text-gold transition-colors text-center">{p.title}</span>
+                         <span className="font-serif text-sm text-charcoal group-hover:text-brand transition-colors text-center">{p.title}</span>
                       </Link>
                     ))}
                   </div>
@@ -184,7 +184,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("portfolio")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button onClick={() => setActiveDropdown(activeDropdown === "portfolio" ? null : "portfolio")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "portfolio" ? null : "portfolio")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">
               Portfolio <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -196,14 +196,14 @@ export default function Header() {
                   transition={{ duration: 0.2 }}
                   className="absolute top-full left-1/2 -translate-x-1/2 w-56 bg-white border border-charcoal/5 shadow-2xl py-4 flex flex-col gap-2 rounded-sm"
                 >
-                  <Link to="/portfolio" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">All Projects</Link>
-                  <Link to="/portfolio?category=Kitchen" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Kitchen</Link>
-                  <Link to="/portfolio?category=Bathroom" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Bathroom</Link>
-                  <Link to="/portfolio?category=Closet" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Closet</Link>
-                  <Link to="/portfolio?category=Basement Bar" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Basement Bar</Link>
-                  <Link to="/portfolio?category=Laundry" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Laundry</Link>
-                  <Link to="/portfolio?category=Home Office" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Home Office</Link>
-                  <Link to="/portfolio?category=Entryway" className="px-6 py-2 text-sm text-charcoal hover:bg-gold/10 hover:text-gold transition-colors">Entryway</Link>
+                  <Link to="/portfolio" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">All Projects</Link>
+                  <Link to="/portfolio?category=Kitchen" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Kitchen</Link>
+                  <Link to="/portfolio?category=Bathroom" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Bathroom</Link>
+                  <Link to="/portfolio?category=Closet" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Closet</Link>
+                  <Link to="/portfolio?category=Basement Bar" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Basement Bar</Link>
+                  <Link to="/portfolio?category=Laundry" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Laundry</Link>
+                  <Link to="/portfolio?category=Home Office" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Home Office</Link>
+                  <Link to="/portfolio?category=Entryway" className="px-6 py-2 text-sm text-charcoal hover:bg-brand/10 hover:text-brand transition-colors">Entryway</Link>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -215,7 +215,7 @@ export default function Header() {
             onMouseEnter={() => setActiveDropdown("locations")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button onClick={() => setActiveDropdown(activeDropdown === "locations" ? null : "locations")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-gold transition-colors">
+            <button onClick={() => setActiveDropdown(activeDropdown === "locations" ? null : "locations")} className="flex items-center gap-1 text-[10px] xl:text-[11px] font-semibold tracking-[0.1em] uppercase hover:text-brand transition-colors">
               Locations <ChevronDown className="w-3 h-3 opacity-60" />
             </button>
             <AnimatePresence>
@@ -229,13 +229,13 @@ export default function Header() {
 
         {/* Desktop CTA & Phone */}
         <div className="hidden lg:flex flex-1 items-center justify-end gap-3 xl:gap-6 z-50">
-          <a href={`tel:${BRAND.phone.replace(/[^0-9]/g, '')}`} className="flex items-center gap-2 text-xs xl:text-sm font-medium hover:text-gold transition-colors shrink-0">
+          <a href={`tel:${BRAND.phone.replace(/[^0-9]/g, '')}`} className="flex items-center gap-2 text-xs xl:text-sm font-medium hover:text-brand transition-colors shrink-0">
             <Phone className="w-4 h-4" />
             <span className="tracking-wide inline-block">{BRAND.phone}</span>
           </a>
           <Link
             to="/contact"
-            className="border border-gold text-gold hover:bg-gold hover:text-white px-4 py-3 xl:px-6 tracking-[0.1em] text-[10px] xl:text-[11px] font-semibold uppercase transition-all duration-300 shrink-0"
+            className="bg-brand text-white hover:bg-charcoal hover:text-white border border-brand hover:border-charcoal px-4 py-3 xl:px-6 tracking-[0.1em] text-[10px] xl:text-[11px] font-semibold uppercase transition-all duration-300 shrink-0"
           >
             Contact
           </Link>
@@ -259,67 +259,67 @@ export default function Header() {
             className="fixed inset-0 w-full h-[100dvh] bg-cream z-40 pt-28 px-6 pb-24 overflow-y-auto"
           >
              <nav className="flex flex-col gap-6 text-charcoal">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Home</Link>
-              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Blog</Link>
-              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">About</Link>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-brand border-b border-charcoal/5 pb-2">Home</Link>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-brand border-b border-charcoal/5 pb-2">Blog</Link>
+              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-brand border-b border-charcoal/5 pb-2">About</Link>
               
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Services</span>
                 
                 <div className="mb-4">
                   <span className="text-sm font-bold text-charcoal mb-3 block">Design</span>
-                  <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                    <Link to="/services/kitchen-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Kitchen Design</Link>
-                    <Link to="/services/bathroom-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Bathroom Design</Link>
-                    <Link to="/services/closet-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Closet Design</Link>
-                    <Link to="/services/basement-bar-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Basement Bar Design</Link>
-                    <Link to="/services/home-office-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Home Office Design</Link>
-                    <Link to="/services/entryway-storage-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Entryway Storage Design</Link>
+                  <div className="flex flex-col gap-3 pl-4 border-l border-brand/20">
+                    <Link to="/services/kitchen-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Kitchen Design</Link>
+                    <Link to="/services/bathroom-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Bathroom Design</Link>
+                    <Link to="/services/closet-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Closet Design</Link>
+                    <Link to="/services/basement-bar-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Basement Bar Design</Link>
+                    <Link to="/services/home-office-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Home Office Design</Link>
+                    <Link to="/services/entryway-storage-design" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Entryway Storage Design</Link>
                   </div>
                 </div>
 
                 <div>
                   <span className="text-sm font-bold text-charcoal mb-3 block">Renovation</span>
-                  <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                    <Link to="/services/bathroom-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Bathroom Remodeling</Link>
-                    <Link to="/services/kitchen-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-gold">Kitchen Remodeling</Link>
+                  <div className="flex flex-col gap-3 pl-4 border-l border-brand/20">
+                    <Link to="/services/bathroom-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Bathroom Remodeling</Link>
+                    <Link to="/services/kitchen-remodeling" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium text-charcoal/70 hover:text-brand">Kitchen Remodeling</Link>
                   </div>
                 </div>
               </div>
 
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Products</span>
-                <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                  {PRODUCTS.map(p => <Link key={p.id} to={`/products`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{p.title}</Link>)}
+                <div className="flex flex-col gap-3 pl-4 border-l border-brand/20">
+                  {PRODUCTS.map(p => <Link key={p.id} to={`/products`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">{p.title}</Link>)}
                 </div>
               </div>
 
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Portfolio</span>
-                <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                  <Link to="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">All Projects</Link>
-                  <Link to="/portfolio?category=Kitchen" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Kitchen</Link>
-                  <Link to="/portfolio?category=Bathroom" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Bathroom</Link>
-                  <Link to="/portfolio?category=Closet" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Closet</Link>
-                  <Link to="/portfolio?category=Basement Bar" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Basement Bar</Link>
-                  <Link to="/portfolio?category=Laundry" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Laundry</Link>
-                  <Link to="/portfolio?category=Home Office" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Home Office</Link>
-                  <Link to="/portfolio?category=Entryway" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">Entryway</Link>
+                <div className="flex flex-col gap-3 pl-4 border-l border-brand/20">
+                  <Link to="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">All Projects</Link>
+                  <Link to="/portfolio?category=Kitchen" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Kitchen</Link>
+                  <Link to="/portfolio?category=Bathroom" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Bathroom</Link>
+                  <Link to="/portfolio?category=Closet" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Closet</Link>
+                  <Link to="/portfolio?category=Basement Bar" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Basement Bar</Link>
+                  <Link to="/portfolio?category=Laundry" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Laundry</Link>
+                  <Link to="/portfolio?category=Home Office" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Home Office</Link>
+                  <Link to="/portfolio?category=Entryway" onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">Entryway</Link>
                 </div>
               </div>
 
               <div>
                 <span className="text-xl font-serif text-charcoal mb-4 block border-b border-charcoal/5 pb-2">Locations</span>
-                <div className="flex flex-col gap-3 pl-4 border-l border-gold/20">
-                  {LOCATIONS.map(l => <Link key={l.id} to={`/locations/${l.id}`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-gold">{l.name}</Link>)}
+                <div className="flex flex-col gap-3 pl-4 border-l border-brand/20">
+                  {LOCATIONS.map(l => <Link key={l.id} to={`/locations/${l.id}`} onClick={() => setMobileMenuOpen(false)} className="text-sm font-medium uppercase tracking-widest text-charcoal/70 hover:text-brand">{l.name}</Link>)}
                 </div>
               </div>
 
-              <Link to="/showroom" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Showroom</Link>
-              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-gold border-b border-charcoal/5 pb-2">Contact</Link>
+              <Link to="/showroom" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-brand border-b border-charcoal/5 pb-2">Showroom</Link>
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif text-charcoal hover:text-brand border-b border-charcoal/5 pb-2">Contact</Link>
               
               <div className="mt-8">
-                <a href={`tel:${BRAND.phone}`} className="flex items-center justify-center gap-3 text-gold font-medium mb-6">
+                <a href={`tel:${BRAND.phone}`} className="flex items-center justify-center gap-3 text-brand font-medium mb-6">
                   <Phone className="w-5 h-5"/> {BRAND.phone}
                 </a>
               </div>

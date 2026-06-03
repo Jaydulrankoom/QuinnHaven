@@ -22,7 +22,7 @@ export default function Location() {
         <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 text-center text-white mt-24">
           <motion.span 
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-2 text-gold uppercase tracking-[0.2em] text-sm font-bold mb-6"
+            className="flex items-center justify-center gap-2 text-white uppercase tracking-[0.2em] text-sm font-bold mb-6"
           >
             <MapPin className="w-4 h-4" /> QuinnHaven in {locationObj.name}
           </motion.span>
@@ -43,7 +43,7 @@ export default function Location() {
           >
             <Link 
               to="/contact" 
-              className="inline-block bg-gold text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-white hover:text-charcoal transition-all shadow-xl"
+              className="inline-block bg-brand text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-charcoal hover:text-white transition-all shadow-xl"
             >
               Book Your Free Consultation
             </Link>
@@ -65,7 +65,7 @@ export default function Location() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
             
             <div className="lg:col-span-3">
-              <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Design Excellence</span>
+              <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Design Excellence</span>
               <h2 className="font-serif text-4xl lg:text-5xl mb-8 text-charcoal leading-tight">Elevating Homes in {locationObj.name}</h2>
               <div className="prose prose-lg text-charcoal/70 font-light font-sans mb-12 max-w-none">
                 {Array.isArray(locationObj.seoCopy) ? (
@@ -85,10 +85,10 @@ export default function Location() {
                   { title: "Luxury Bathrooms", desc: "Spa-like sanctuaries featuring radiant heat and zero-entry wet rooms." },
                   { title: "Premium Closets", desc: "Boutique-style wardrobes that elegantly display and protect your garments." }
                 ].map((service, idx) => (
-                  <div key={idx} className="border border-charcoal/10 bg-white p-8 group hover:border-gold transition-colors duration-300">
-                    <h3 className="font-serif text-2xl mb-3 text-charcoal group-hover:text-gold transition-colors">{service.title}</h3>
+                  <div key={idx} className="border border-charcoal/10 bg-white p-8 group hover:border-brand transition-colors duration-300">
+                    <h3 className="font-serif text-2xl mb-3 text-charcoal group-hover:text-brand transition-colors">{service.title}</h3>
                     <p className="text-sm font-light text-charcoal/70 mb-6">{service.desc}</p>
-                    <Link to="/services" className="text-xs uppercase tracking-widest font-bold text-charcoal group-hover:text-gold flex items-center gap-1 transition-colors">
+                    <Link to="/services" className="text-xs uppercase tracking-widest font-bold text-charcoal group-hover:text-brand flex items-center gap-1 transition-colors">
                       Learn More <ChevronRight className="w-3 h-3" />
                     </Link>
                   </div>
@@ -108,8 +108,8 @@ export default function Location() {
                       "Flawless Communication"
                     ].map((benefit, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                          <Check className="w-3 h-3 text-gold" />
+                        <div className="w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
+                          <Check className="w-3 h-3 text-brand" />
                         </div>
                         <span className="text-charcoal/80 font-medium text-sm">{benefit}</span>
                       </div>
@@ -121,7 +121,7 @@ export default function Location() {
             {/* SHOWROOM / CONTACT SIDEBAR */}
             <div className="lg:col-span-2">
               <div className="sticky top-32">
-                <div className="bg-charcoal text-white p-8 md:p-12 shadow-2xl relative overflow-hidden border-t-[4px] border-gold">
+                <div className="bg-charcoal text-white p-8 md:p-12 shadow-2xl relative overflow-hidden border-t-[4px] border-brand">
                   <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                     <MapPin className="w-64 h-64 -mr-10 -mt-10" />
                   </div>
@@ -130,34 +130,34 @@ export default function Location() {
                   
                   <div className="relative z-10 space-y-8">
                     <div className="flex items-start gap-4">
-                        <MapPin className="text-gold w-6 h-6 shrink-0 mt-1" />
+                        <MapPin className="text-brand w-6 h-6 shrink-0 mt-1" />
                         <div>
                           <strong className="block text-xs uppercase tracking-widest mb-2 font-bold text-white/50">Address</strong>
                           <span className="font-light opacity-90 text-base leading-relaxed block">{BRAND.address}</span>
-                          <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="text-gold text-xs font-bold tracking-widest uppercase hover:text-white transition-colors mt-3 inline-flex items-center gap-1">
+                          <a href="https://maps.app.goo.gl/7EudUhLDBgbzo6B46" target="_blank" rel="noopener noreferrer" className="text-brand text-xs font-bold tracking-widest uppercase hover:text-white transition-colors mt-3 inline-flex items-center gap-1">
                             Get Directions <ChevronRight className="w-3 h-3" />
                           </a>
                         </div>
                     </div>
                     
                     <div className="flex items-start gap-4">
-                        <Phone className="text-gold w-6 h-6 shrink-0 mt-1" />
+                        <Phone className="text-brand w-6 h-6 shrink-0 mt-1" />
                         <div>
                           <strong className="block text-xs uppercase tracking-widest mb-2 font-bold text-white/50">Phone</strong>
-                          <a href={`tel:${BRAND.phone}`} className="font-light opacity-90 text-base hover:text-gold transition-colors">{BRAND.phone}</a>
+                          <a href={`tel:${BRAND.phone}`} className="font-light opacity-90 text-base hover:text-brand transition-colors">{BRAND.phone}</a>
                         </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                        <Mail className="text-gold w-6 h-6 shrink-0 mt-1" />
+                        <Mail className="text-brand w-6 h-6 shrink-0 mt-1" />
                         <div>
                           <strong className="block text-xs uppercase tracking-widest mb-2 font-bold text-white/50">Email</strong>
-                          <a href={`mailto:${BRAND.email}`} className="font-light opacity-90 text-base hover:text-gold transition-colors">{BRAND.email}</a>
+                          <a href={`mailto:${BRAND.email}`} className="font-light opacity-90 text-base hover:text-brand transition-colors">{BRAND.email}</a>
                         </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                        <Clock className="text-gold w-6 h-6 shrink-0 mt-1" />
+                        <Clock className="text-brand w-6 h-6 shrink-0 mt-1" />
                         <div>
                           <strong className="block text-xs uppercase tracking-widest mb-2 font-bold text-white/50">Hours</strong>
                           <span className="font-light opacity-90 text-base leading-relaxed block">Mon-Fri: 9am - 5pm<br/>Sat: By Appointment<br/>Sun: Closed</span>
@@ -165,7 +165,7 @@ export default function Location() {
                     </div>
                   </div>
 
-                  <Link to="/contact" className="relative z-10 block text-center w-full mt-12 bg-white text-charcoal py-5 uppercase tracking-widest text-sm font-bold hover:bg-gold hover:text-white transition-colors duration-300">
+                  <Link to="/contact" className="relative z-10 block text-center w-full mt-12 bg-white text-charcoal py-5 uppercase tracking-widest text-sm font-bold hover:bg-charcoal hover:text-white transition-colors duration-300">
                     Schedule an Appointment
                   </Link>
                 </div>

@@ -28,7 +28,7 @@ export default function Service() {
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-transparent" />
         </div>
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 text-center text-white">
-          <span className="text-gold uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">Our Expertise</span>
+          <span className="text-brand uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">Our Expertise</span>
           <h1 className="text-5xl md:text-7xl font-serif mb-6">{data.title}</h1>
           <p className="text-xl font-light opacity-90 max-w-2xl mx-auto">{data.subtitle}</p>
         </div>
@@ -52,8 +52,8 @@ export default function Service() {
               <div className="space-y-4">
                 {data.benefits.map((benefit: string, i: number) => (
                   <div key={i} className="flex items-center gap-4 bg-white p-4 border border-charcoal/5 shadow-sm">
-                    <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                      <Check className="w-4 h-4 text-gold" />
+                    <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
+                      <Check className="w-4 h-4 text-brand" />
                     </div>
                     <span className="font-semibold text-sm uppercase tracking-wider text-charcoal hidden sm:block">{benefit}</span>
                     <span className="font-semibold text-sm tracking-wider text-charcoal sm:hidden">{benefit}</span>
@@ -74,8 +74,8 @@ export default function Service() {
             <h2 className="font-serif text-3xl md:text-4xl text-center text-charcoal mb-16">The Implementation Process</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                {data.process.map((step: string, i: number) => (
-                 <div key={i} className="p-8 border border-charcoal/10 hover:border-gold transition-colors text-center bg-cream">
-                    <span className="text-gold font-serif text-4xl mb-4 block">0{i + 1}</span>
+                 <div key={i} className="p-8 border border-charcoal/10 hover:border-brand transition-colors text-center bg-cream">
+                    <span className="text-brand font-serif text-4xl mb-4 block">0{i + 1}</span>
                     <h3 className="uppercase tracking-widest text-xs font-bold text-charcoal">{step}</h3>
                  </div>
                ))}
@@ -91,8 +91,8 @@ export default function Service() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/80 to-charcoal/90" />
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <Quote className="w-12 h-12 text-gold/50 mx-auto mb-6" />
-          <h3 className="font-serif text-3xl mb-6 text-gold">Premium Materials</h3>
+          <Quote className="w-12 h-12 text-brand/50 mx-auto mb-6" />
+          <h3 className="font-serif text-3xl mb-6 text-brand">Premium Materials</h3>
           <p className="font-light text-2xl leading-relaxed text-white/90">
             {data.materials}
           </p>
@@ -114,7 +114,7 @@ export default function Service() {
               { q: "Can I bring my own contractor?", a: "Absolutely. We are happy to supply the design and materials directly to your chosen professional." }
             ].map((faq, i) => (
               <div key={i} className="bg-white border border-charcoal/10 p-8">
-                <h4 className="font-semibold text-lg mb-3 text-gold">{faq.q}</h4>
+                <h4 className="font-semibold text-lg mb-3 text-brand">{faq.q}</h4>
                 <p className="font-light text-charcoal/70">{faq.a}</p>
               </div>
             ))}
@@ -123,13 +123,13 @@ export default function Service() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gold/10">
+      <section className="py-24 bg-brand/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-serif text-4xl text-charcoal mb-8">Ready to transform your space?</h2>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
              <Link 
               to="/contact" 
-              className="bg-charcoal text-cream px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-all duration-300 shadow-xl"
+              className="bg-charcoal text-cream px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-all duration-300 shadow-xl"
             >
               Book Free Consultation
             </Link>

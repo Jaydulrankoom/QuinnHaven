@@ -39,7 +39,7 @@ export default function FAQ() {
     <div className="flex flex-col min-h-screen pt-24 bg-cream">
        <section className="bg-charcoal text-white py-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Knowledge Base</span>
+          <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Knowledge Base</span>
           <h1 className="text-5xl md:text-7xl font-serif mb-8">Frequently Asked Questions</h1>
           <p className="text-xl font-light text-white/70 max-w-2xl mx-auto leading-relaxed">
             Transparent answers regarding our processes, materials, and pricing to help you make an informed decision for your luxury renovation.
@@ -56,13 +56,13 @@ export default function FAQ() {
                      <div key={idx} className="bg-white border border-charcoal/10 shadow-sm overflow-hidden">
                         <button 
                            onClick={() => toggleQ(faq.q)}
-                           className="w-full flex items-center justify-between p-6 text-left hover:bg-gold/5 transition-colors focus:outline-none"
+                           className="w-full flex items-center justify-between p-6 text-left hover:bg-brand/5 transition-colors focus:outline-none"
                         >
-                           <span className={`text-lg font-medium pr-8 ${openQ === faq.q ? 'text-gold' : 'text-charcoal'}`}>
+                           <span className={`text-lg font-medium pr-8 ${openQ === faq.q ? 'text-brand' : 'text-charcoal'}`}>
                               {faq.q}
                            </span>
                            <span className="text-charcoal/40 shrink-0">
-                              {openQ === faq.q ? <Minus className="w-5 h-5 text-gold" /> : <Plus className="w-5 h-5" />}
+                              {openQ === faq.q ? <Minus className="w-5 h-5 text-brand" /> : <Plus className="w-5 h-5" />}
                            </span>
                         </button>
                         <div 
@@ -86,7 +86,7 @@ export default function FAQ() {
            <p className="text-lg text-charcoal/60 font-light mb-10">
               Our design team is standing by to discuss the specific technical or aesthetic parameters of your project.
            </p>
-          <Link to="/contact" className="inline-flex bg-charcoal text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors">
+          <Link to="/contact" className="inline-flex bg-charcoal text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-colors">
              Contact Our Studio
           </Link>
         </div>

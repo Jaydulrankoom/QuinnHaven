@@ -33,7 +33,7 @@ export default function Home() {
           }}
           className="hidden lg:block absolute right-[-5%] top-[15%] w-[40vw] h-[55vh] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(20,17,98,0.4)] border border-white/5"
         >
-           <div className="absolute inset-0 bg-[#141162]/10 mix-blend-overlay z-10" />
+           <div className="absolute inset-0 bg-brand/10 mix-blend-overlay z-10" />
            <img 
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
             alt="Luxury Kitchen Preview" 
@@ -51,7 +51,7 @@ export default function Home() {
           }}
           className="hidden lg:block absolute right-[25%] bottom-[10%] w-[25vw] h-[35vh] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(20,17,98,0.5)] border border-white/10"
         >
-           <div className="absolute inset-0 bg-[#141162]/20 mix-blend-overlay z-10" />
+           <div className="absolute inset-0 bg-brand/20 mix-blend-overlay z-10" />
            <img 
             src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop" 
             alt="Material Details" 
@@ -71,15 +71,15 @@ export default function Home() {
             className="max-w-2xl"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-[1px] w-12 bg-gold"></div>
-              <span className="text-gold uppercase tracking-[0.3em] text-xs font-semibold">
+              <div className="h-[1px] w-12 bg-brand-accent"></div>
+              <span className="text-brand-accent uppercase tracking-[0.3em] text-xs font-semibold">
                 QuinnHaven Design
               </span>
             </div>
             
             <h1 className="text-4xl md:text-[44px] lg:text-[54px] font-serif text-white leading-[1.1] mb-6 font-light">
               Luxury Kitchen Cabinets & <br />
-              <span className="italic text-gold-light">Bathroom Design</span> <br />
+              <span className="italic text-brand-accent">Bathroom Design</span> <br />
               in Connecticut.
             </h1>
             
@@ -90,13 +90,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-6">
               <Link 
                 to="/contact" 
-                className="bg-gold text-white px-8 py-4 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-charcoal transition-all duration-300 text-center"
+                className="bg-brand text-white px-8 py-4 uppercase tracking-widest text-sm font-medium hover:bg-charcoal hover:text-white transition-all duration-300 text-center"
               >
                 Book a Consultation
               </Link>
               <Link 
                 to="/showroom" 
-                className="border border-white/30 text-white px-8 py-4 uppercase tracking-widest text-sm font-medium hover:bg-white/10 transition-all duration-300 text-center flex items-center justify-center gap-2"
+                className="border border-white/50 text-white px-8 py-4 uppercase tracking-widest text-sm font-medium hover:bg-brand hover:border-brand transition-all duration-300 text-center flex items-center justify-center gap-2"
               >
                 Visit Showroom
               </Link>
@@ -130,8 +130,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div>
-              <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Who We Are</span>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#141162] leading-tight mb-6">
+              <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Who We Are</span>
+              <h2 className="font-serif text-4xl md:text-5xl text-brand leading-tight mb-6">
                 Uncompromising Craftsmanship & Personalized Design
               </h2>
               <p className="text-charcoal/70 leading-relaxed text-lg mb-6 font-light">
@@ -140,12 +140,12 @@ export default function Home() {
               <p className="text-charcoal/70 leading-relaxed text-lg mb-8 font-light">
                 By pairing elite components with meticulous attention to detail, our passionate team ensures your home not only looks breathtaking but functions flawlessly.
               </p>
-              <Link to="/about" className="inline-flex items-center gap-2 uppercase tracking-widest text-sm font-semibold text-[#141162] hover:text-gold transition-colors pb-1 border-b border-[#141162]/20 hover:border-gold">
+              <Link to="/about" className="inline-flex items-center gap-2 uppercase tracking-widest text-sm font-semibold text-brand hover:text-brand transition-colors pb-1 border-b border-brand/20 hover:border-brand">
                 Learn More About Us <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gold/10 translate-x-4 translate-y-4 rounded-sm -z-10" />
+              <div className="absolute inset-0 bg-brand/10 translate-x-4 translate-y-4 rounded-sm -z-10" />
               <img 
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
                 alt="QuinnHaven Craftsmanship" 
@@ -163,8 +163,8 @@ export default function Home() {
       <section className="py-24 bg-white border-y border-charcoal/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Our Expertise</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#141162] leading-tight mb-6">
+            <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Our Expertise</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-brand leading-tight mb-6">
               Comprehensive Design & Remodeling Services
             </h2>
             <p className="text-charcoal/70 font-light text-lg">
@@ -183,12 +183,12 @@ export default function Home() {
               { title: "Home Office", desc: "Purposeful home office designs that support focus, comfort, and a polished professional atmosphere.", link: "/services/home-office-design" },
               { title: "Entryway Storage", desc: "Streamlined entryway storage that adds function, organization, and a welcoming sense of arrival.", link: "/services/entryway-storage-design" }
             ].map((expertise, idx) => (
-              <Link key={idx} to={expertise.link} className="group block bg-cream p-8 border border-charcoal/5 hover:border-gold transition-all duration-300">
-                <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-gold transition-colors">{expertise.title}</h3>
+              <Link key={idx} to={expertise.link} className="group block bg-cream p-8 border border-charcoal/5 hover:border-brand transition-all duration-300">
+                <h3 className="font-serif text-xl text-charcoal mb-3 group-hover:text-brand transition-colors">{expertise.title}</h3>
                 <p className="text-charcoal/60 text-sm font-light leading-relaxed mb-6">
                   {expertise.desc}
                 </p>
-                <span className="text-xs uppercase tracking-widest text-gold font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-xs uppercase tracking-widest text-brand font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
                   Explore <ChevronRight className="w-3 h-3" />
                 </span>
               </Link>
@@ -202,12 +202,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-2xl">
-               <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Premium Components</span>
+               <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Premium Components</span>
                <h2 className="font-serif text-4xl md:text-5xl leading-tight">
                  A Curated Material Selection
                </h2>
             </div>
-            <Link to="/showroom" className="inline-flex items-center gap-2 uppercase tracking-widest text-sm font-semibold text-gold hover:text-white transition-colors">
+            <Link to="/showroom" className="inline-flex items-center gap-2 uppercase tracking-widest text-sm font-semibold text-brand hover:text-white transition-colors">
               Visit Showroom <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -237,8 +237,8 @@ export default function Home() {
       <section className="py-24 bg-cream">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Signature Work</span>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#141162] leading-tight mb-8">
+              <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Signature Work</span>
+              <h2 className="font-serif text-4xl md:text-5xl text-brand leading-tight mb-8">
                 Recent Transformations
               </h2>
            </div>
@@ -248,7 +248,7 @@ export default function Home() {
                  <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                  <img src={SERVICES[0].img} alt="Kitchen Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                  <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
-                    <span className="text-gold text-xs uppercase tracking-widest font-bold block mb-1">Kitchen Remodel</span>
+                    <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Kitchen Remodel</span>
                     <h4 className="font-serif text-xl text-charcoal">The Avon Culinary Estate</h4>
                  </div>
               </div>
@@ -256,14 +256,14 @@ export default function Home() {
                  <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                  <img src={SERVICES[2].img} alt="Bathroom Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                  <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
-                    <span className="text-gold text-xs uppercase tracking-widest font-bold block mb-1">Bathroom Retreat</span>
+                    <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Bathroom Retreat</span>
                     <h4 className="font-serif text-xl text-charcoal">Wallingford Master Bath</h4>
                  </div>
               </div>
            </div>
            
            <div className="text-center">
-              <Link to="/portfolio" className="inline-block border border-[#141162] text-[#141162] px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-[#141162] hover:text-white transition-all duration-300">
+              <Link to="/portfolio" className="inline-block bg-brand text-white px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-charcoal hover:text-white transition-all duration-300">
                 View Full Portfolio
               </Link>
            </div>
@@ -274,8 +274,8 @@ export default function Home() {
       <section className="py-24 bg-white border-y border-charcoal/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Our Methodology</span>
-              <h2 className="font-serif text-3xl md:text-4xl text-[#141162] leading-tight">
+              <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Our Methodology</span>
+              <h2 className="font-serif text-3xl md:text-4xl text-brand leading-tight">
                 A Seamless 5-Step Process
               </h2>
            </div>
@@ -290,7 +290,7 @@ export default function Home() {
               ].map((step, i) => (
                 <div key={i} className="text-center">
                    <div className="w-16 h-16 mx-auto bg-cream rounded-full flex items-center justify-center mb-6">
-                      <step.icon className="w-6 h-6 text-gold" />
+                      <step.icon className="w-6 h-6 text-brand" />
                    </div>
                    <h4 className="font-serif text-[24px] text-charcoal mb-3">{step.title}</h4>
                    <p className="text-sm text-charcoal/60 font-light leading-relaxed px-2">{step.text}</p>
@@ -305,22 +305,22 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="bg-white p-12 md:p-16 border border-charcoal/5 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center rounded-sm">
              <div>
-                <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Local Expertise</span>
-                <h2 className="font-serif text-3xl md:text-4xl text-[#141162] leading-tight mb-6">
+                <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Local Expertise</span>
+                <h2 className="font-serif text-3xl md:text-4xl text-brand leading-tight mb-6">
                   Serving Connecticut's Premier Neighborhoods
                 </h2>
                 <p className="text-charcoal/70 font-light leading-relaxed mb-6">
                   QuinnHaven proudly serves homeowners, builders, and designers across Wallingford and surrounding Connecticut communities, including many of the region’s most sought-after towns. Our team brings thoughtful design, quality materials, and personalized project support to homes that value both beauty and long-term investment.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-8">
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Wallingford</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Cheshire</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Glastonbury</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Farmington</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Avon</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> West Hartford</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Madison</div>
-                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-gold" /> Guilford</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Wallingford</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Cheshire</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Glastonbury</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Farmington</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Avon</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> West Hartford</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Madison</div>
+                   <div className="flex items-center gap-2 text-sm font-medium text-charcoal/80"><MapPin className="w-4 h-4 text-brand" /> Guilford</div>
                 </div>
              </div>
              <div className="relative h-[400px]">
@@ -335,7 +335,7 @@ export default function Home() {
          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="bg-charcoal text-white rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
                <div className="w-full md:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
-                  <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">VISIT THE SHOWROOM</span>
+                  <span className="text-brand-accent uppercase tracking-[0.2em] text-xs font-bold block mb-4">VISIT THE SHOWROOM</span>
                   <h2 className="font-serif text-4xl text-white leading-tight mb-6">
                     A More Thoughtful Way to Design
                   </h2>
@@ -345,7 +345,7 @@ export default function Home() {
                   
                   <div className="space-y-4 mb-10">
                     <div className="flex items-start gap-4">
-                      <Box className="w-6 h-6 text-gold shrink-0 mt-1" />
+                      <Box className="w-6 h-6 text-brand-accent shrink-0 mt-1" />
                       <div>
                         <span className="block font-bold text-sm tracking-wide">Wallingford Headquarters</span>
                         <span className="block text-white/60 text-sm mt-1">{BRAND.address}</span>
@@ -354,7 +354,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                     <Link to="/showroom" className="inline-block bg-gold text-white px-8 py-4 uppercase tracking-widest text-sm font-bold hover:bg-white hover:text-charcoal transition-all duration-300">
+                     <Link to="/showroom" className="inline-block bg-brand text-white px-8 py-4 uppercase tracking-widest text-sm font-bold hover:bg-charcoal hover:text-white transition-all duration-300">
                        Schedule a Visit
                      </Link>
                   </div>
@@ -371,8 +371,8 @@ export default function Home() {
          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
               <div className="max-w-2xl">
-                 <span className="text-gold uppercase tracking-[0.2em] text-xs font-bold block mb-4">Design Journal</span>
-                 <h2 className="font-serif text-4xl md:text-5xl text-[#141162] leading-tight">
+                 <span className="text-brand uppercase tracking-[0.2em] text-xs font-bold block mb-4">Design Journal</span>
+                 <h2 className="font-serif text-4xl md:text-5xl text-brand leading-tight">
                    Insights & Inspiration
                  </h2>
               </div>
@@ -388,8 +388,8 @@ export default function Home() {
                      <div className="h-[250px] overflow-hidden rounded-sm mb-6">
                         <img src={post.img} alt={post.title} loading="lazy" width="600" height="400" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                      </div>
-                     <span className="text-gold uppercase tracking-widest text-[10px] font-bold block mb-2">{post.cat}</span>
-                     <h4 className="font-serif text-xl text-charcoal leading-snug group-hover:text-gold transition-colors">{post.title}</h4>
+                     <span className="text-brand uppercase tracking-widest text-[10px] font-bold block mb-2">{post.cat}</span>
+                     <h4 className="font-serif text-xl text-charcoal leading-snug group-hover:text-brand transition-colors">{post.title}</h4>
                   </div>
                ))}
             </div>
@@ -408,7 +408,7 @@ export default function Home() {
                  ))}
                </div>
                <span className="font-serif text-3xl text-charcoal">5.0 Star Rating</span>
-               <a href="https://share.google/WM2fwolZH2GQJx4nr" target="_blank" rel="noreferrer" className="text-sm font-semibold uppercase tracking-widest text-gold hover:text-charcoal transition-colors mt-2">
+               <a href="https://share.google/WM2fwolZH2GQJx4nr" target="_blank" rel="noreferrer" className="text-sm font-semibold uppercase tracking-widest text-brand hover:text-charcoal transition-colors mt-2">
                  Read All Google Reviews
                </a>
             </div>
@@ -460,7 +460,7 @@ export default function Home() {
            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link 
                 to="/contact" 
-                className="bg-gold text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-white hover:text-charcoal transition-all duration-300"
+                className="bg-brand text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-charcoal hover:text-white transition-all duration-300"
               >
                 Book Consultation
               </Link>

@@ -4,8 +4,9 @@
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --color-gold: #B8995E;
-  --color-gold-light: #d4b881;
+  --color-brand: #141162;
+  --color-brand-light: #201b94;
+  --color-brand-accent: #8984ff;
   --color-charcoal: #1a1a1a;
   --color-charcoal-light: #2a2a2a;
   --color-cream: #f5f2ed;
@@ -15,6 +16,18 @@ body {
   background-color: var(--color-cream);
   color: var(--color-charcoal);
   font-family: var(--font-sans);
+}
+
+:root {
+  --active-brand-text: var(--color-brand);
+}
+
+.bg-charcoal {
+  --active-brand-text: var(--color-brand-accent);
+}
+
+.bg-white, .bg-cream {
+  --active-brand-text: var(--color-brand);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,16 +42,40 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid rgba(26, 26, 26, 0.05);
 }
 
-.text-gold {
-  color: var(--color-gold);
+.text-brand {
+  color: var(--active-brand-text);
 }
 
-.bg-gold {
-  background-color: var(--color-gold);
+.hover\:text-brand:hover {
+  color: var(--active-brand-text);
 }
 
-.bg-gold-light {
-  background-color: var(--color-gold-light);
+.group:hover .group-hover\:text-brand {
+  color: var(--active-brand-text);
+}
+
+.text-brand-light {
+  color: var(--color-brand-light);
+}
+
+.text-brand-accent {
+  color: var(--color-brand-accent);
+}
+
+.bg-brand {
+  background-color: var(--color-brand);
+}
+
+.bg-brand-light {
+  background-color: var(--color-brand-light);
+}
+
+.border-brand {
+  border-color: var(--color-brand);
+}
+
+.border-brand-light {
+  border-color: var(--color-brand-light);
 }
 
 .bg-charcoal {

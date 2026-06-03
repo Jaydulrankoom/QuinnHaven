@@ -35,7 +35,7 @@ export default function Process() {
       {/* HEADER */}
       <section className="bg-charcoal text-white py-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-          <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">How It Works</span>
+          <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold mb-4 block">How It Works</span>
           <h1 className="text-5xl md:text-7xl font-serif mb-8">Our Proven Process</h1>
           <p className="text-xl font-light text-white/70 max-w-2xl mx-auto leading-relaxed">
             Eliminating the anxiety of high-end remodeling through transparency, advanced 3D technology, and rigorous project management.
@@ -60,7 +60,7 @@ export default function Process() {
 
                   <div className="w-full lg:w-1/2 flex flex-col justify-center">
                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-serif text-xl shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center font-serif text-xl shrink-0">
                            {idx + 1}
                         </div>
                         <h2 className="text-3xl lg:text-4xl font-serif text-charcoal">{step.title}</h2>
@@ -79,7 +79,7 @@ export default function Process() {
       <section className="bg-white py-24 border-t border-charcoal/5">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="font-serif text-4xl text-charcoal mb-8">Ready to begin Step 1?</h2>
-          <Link to="/contact" className="inline-flex bg-charcoal text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-gold transition-colors">
+          <Link to="/contact" className="inline-flex bg-charcoal text-white px-10 py-5 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-colors">
              Book Your Initial Consultation
           </Link>
         </div>
