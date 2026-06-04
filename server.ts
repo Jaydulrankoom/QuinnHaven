@@ -82,9 +82,16 @@ ${routes.map(route => `
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath, { setHeaders: setCacheHeaders, index: false }));
     
+    let cachedTemplate: string | null = null;
     app.get('*', async (req, res) => {
       try {
-        let template = await fs.promises.readFile(path.join(distPath, 'index.html'), 'utf-8');
+        let template = cachedTemplate;
+        if (!template) {
+          template = await fs.promises.readFile(path.join(distPath, 'index.html'), 'utf-8');
+          if (process.env.NODE_ENV === 'production') {
+            cachedTemplate = template;
+          }
+        }
         
         let title = "QuinnHaven Design | Luxury Kitchen & Bathroom Remodeling in Connecticut";
         let description = "Experience the pinnacle of custom cabinetry and spatial planning with QuinnHaven Design. Luxury kitchen and bathroom remodeling in Connecticut.";

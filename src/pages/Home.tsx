@@ -10,13 +10,17 @@ export default function Home() {
       {/* 1. LAYERED 3D HERO SECTION */}
       <section className="relative h-screen min-h-[800px] w-full overflow-hidden bg-charcoal flex items-center">
         {/* Background Base */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 scale-105"
-          style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1734')",
-            transform: "translateZ(0)" 
-          }}
-        />
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1734"
+            srcSet="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1734 1734w"
+            sizes="100vw"
+            alt="Luxury Kitchen and Bath Design"
+            fetchPriority="high"
+            className="w-full h-full object-cover opacity-40 scale-105"
+            style={{ transform: "translateZ(0)" }}
+          />
+        </div>
         
         {/* Subtle Brand & Charcoal Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#141162]/90 via-charcoal/80 to-[#141162]/20 mix-blend-multiply" />

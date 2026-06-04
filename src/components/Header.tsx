@@ -47,6 +47,8 @@ export default function Header() {
               alt="QuinnHaven Design" 
               width="240"
               height="40"
+              fetchPriority="high"
+              decoding="async"
               className="h-10 w-auto transition-all duration-300" 
               style={{ 
                 filter: useLightLogo 
