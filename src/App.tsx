@@ -1,32 +1,32 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Service from "./pages/Service";
-import Location from "./pages/Location";
-import Portfolio from "./pages/Portfolio";
-import PortfolioDetail from "./pages/PortfolioDetail";
-import Contact from "./pages/Contact";
-import GenericPage from "./pages/GenericPage";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import BlogList from "./pages/BlogList";
-import BlogPostDetail from "./pages/BlogPostDetail";
-import ServicesOverview from "./pages/ServicesOverview";
-import Process from "./pages/Process";
-import FAQ from "./pages/FAQ";
-import About from "./pages/About";
-import MeetOurDesigner from "./pages/MeetOurDesigner";
-import Showroom from "./pages/Showroom";
-import ShowroomContact from "./pages/ShowroomContact";
-import ProjectManagement from "./pages/ProjectManagement";
-import BuilderSupply from "./pages/BuilderSupply";
-import MultifamilyProjects from "./pages/MultifamilyProjects";
-import DynamicLocationService from "./pages/services/DynamicLocationService";
-
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfUse from "./pages/TermsOfUse";
 import { useSEO } from "./hooks/useSEO";
+
+// Lazy load non-critical routes to reduce main bundle size
+const About = lazy(() => import("./pages/About"));
+const MeetOurDesigner = lazy(() => import("./pages/MeetOurDesigner"));
+const Showroom = lazy(() => import("./pages/Showroom"));
+const ShowroomContact = lazy(() => import("./pages/ShowroomContact"));
+const ServicesOverview = lazy(() => import("./pages/ServicesOverview"));
+const DynamicLocationService = lazy(() => import("./pages/services/DynamicLocationService"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Location = lazy(() => import("./pages/Location"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const PortfolioDetail = lazy(() => import("./pages/PortfolioDetail"));
+const BlogList = lazy(() => import("./pages/BlogList"));
+const BlogPostDetail = lazy(() => import("./pages/BlogPostDetail"));
+const ProjectManagement = lazy(() => import("./pages/ProjectManagement"));
+const BuilderSupply = lazy(() => import("./pages/BuilderSupply"));
+const MultifamilyProjects = lazy(() => import("./pages/MultifamilyProjects"));
+const Process = lazy(() => import("./pages/Process"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
+const Contact = lazy(() => import("./pages/Contact"));
+const GenericPage = lazy(() => import("./pages/GenericPage"));
 
 function DynamicSEO() {
   const location = useLocation();
@@ -72,50 +72,51 @@ export default function App() {
   return (
     <>
       <DynamicSEO />
-      <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="meet-our-designer" element={<MeetOurDesigner />} />
-        <Route path="showroom" element={<Showroom />} />
-        <Route path="book-showroom" element={<ShowroomContact />} />
-        
-        {/* Dynamic Service Routes */}
-        <Route path="services" element={<ServicesOverview />} />
-        <Route path="services/:seoSlug" element={<DynamicLocationService />} />
-        
-        {/* Products */}
-        <Route path="products" element={<Products />} />
-        <Route path="products/:productId" element={<ProductDetail />} />
-        
-        {/* Dynamic Location Routes */}
-        <Route path="locations/:locationId" element={<Location />} />
-        
-        {/* Portfolio */}
-        <Route path="portfolio" element={<Portfolio />} />
-        <Route path="portfolio/:projectId" element={<PortfolioDetail />} />
-        
-        {/* Blog & CMS */}
-        <Route path="blog" element={<BlogList />} />
-        <Route path="blog/:postId" element={<BlogPostDetail />} />
-        
-        {/* Misc Pages (Case Studies, Project Mgmt, etc.) */}
-        <Route path="project-management" element={<ProjectManagement />} />
-        <Route path="builder-supply" element={<BuilderSupply />} />
-        <Route path="multifamily-projects" element={<MultifamilyProjects />} />
-        <Route path="case-studies" element={<Portfolio />} />
-        <Route path="showroom" element={<Showroom />} />
-        <Route path="process" element={<Process />} />
-        <Route path="faq" element={<FAQ />} />
-        <Route path="privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="terms-of-use" element={<TermsOfUse />} />
+      <Suspense fallback={<div className="h-screen w-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin"></div></div>}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="meet-our-designer" element={<MeetOurDesigner />} />
+            <Route path="showroom" element={<Showroom />} />
+            <Route path="book-showroom" element={<ShowroomContact />} />
+            
+            {/* Dynamic Service Routes */}
+            <Route path="services" element={<ServicesOverview />} />
+            <Route path="services/:seoSlug" element={<DynamicLocationService />} />
+            
+            {/* Products */}
+            <Route path="products" element={<Products />} />
+            <Route path="products/:productId" element={<ProductDetail />} />
+            
+            {/* Dynamic Location Routes */}
+            <Route path="locations/:locationId" element={<Location />} />
+            
+            {/* Portfolio */}
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="portfolio/:projectId" element={<PortfolioDetail />} />
+            
+            {/* Blog & CMS */}
+            <Route path="blog" element={<BlogList />} />
+            <Route path="blog/:postId" element={<BlogPostDetail />} />
+            
+            {/* Misc Pages (Case Studies, Project Mgmt, etc.) */}
+            <Route path="project-management" element={<ProjectManagement />} />
+            <Route path="builder-supply" element={<BuilderSupply />} />
+            <Route path="multifamily-projects" element={<MultifamilyProjects />} />
+            <Route path="case-studies" element={<Portfolio />} />
+            <Route path="process" element={<Process />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="terms-of-use" element={<TermsOfUse />} />
 
-        <Route path="contact" element={<Contact />} />
-        
-        {/* Fallback */}
-        <Route path="*" element={<GenericPage title="404 Page Not Found" />} />
-      </Route>
-    </Routes>
+            <Route path="contact" element={<Contact />} />
+            
+            {/* Fallback */}
+            <Route path="*" element={<GenericPage title="404 Page Not Found" />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 }

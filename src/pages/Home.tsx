@@ -13,7 +13,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-40 scale-105"
           style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1734')",
             transform: "translateZ(0)" 
           }}
         />
@@ -35,8 +35,12 @@ export default function Home() {
         >
            <div className="absolute inset-0 bg-brand/10 mix-blend-overlay z-10" />
            <img 
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" 
+            srcSet="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1734 1734w"
+            sizes="(max-width: 1024px) 100vw, 40vw"
             alt="Luxury Kitchen Preview" 
+            width="800"
+            height="500"
             className="w-full h-full object-cover"
           />
         </motion.div>

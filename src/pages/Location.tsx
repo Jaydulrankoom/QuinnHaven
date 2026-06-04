@@ -1,8 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { MapPin, Phone, Clock, Mail, ChevronRight, Check } from "lucide-react";
 import { BRAND, LOCATIONS } from "../data";
-import Spline from '@splinetool/react-spline';
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import React, { lazy, Suspense } from "react";
+
+const Spline = lazy(() => import('@splinetool/react-spline'));
 
 export default function Location() {
   const { locationId } = useParams();
@@ -14,7 +16,9 @@ export default function Location() {
       {/* 3D ANIMATED HERO */}
       <section className="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-charcoal">
         <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
+          <Suspense fallback={<div className="w-full h-full bg-charcoal" />}>
+            <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
+          </Suspense>
         </div>
         <div className="absolute inset-0 bg-charcoal/60 z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent z-10" />

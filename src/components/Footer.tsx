@@ -14,6 +14,8 @@ export default function Footer() {
               <img loading="lazy" 
                 src={BRAND.logo} 
                 alt="QuinnHaven Design" 
+                width="240"
+                height="40"
                 className="h-10 w-auto brightness-0 invert" 
                 style={{ filter: "brightness(0) invert(1)" }} 
               />
