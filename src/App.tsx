@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import { useSEO } from "./hooks/useSEO";
+import { SERVICES, LOCATIONS } from "./data";
 
 // Lazy load non-critical routes to reduce main bundle size
 const About = lazy(() => import("./pages/About"));
@@ -38,9 +39,46 @@ function DynamicSEO() {
   if (path.includes('/about') || path.includes('/meet-our-designer')) {
     title = "About Us | QuinnHaven Design";
     description = "Learn about QuinnHaven Design, Connecticut's premier experts in luxury kitchen and bathroom design and remodeling.";
-  } else if (path.includes('/services')) {
-    title = "Our Services | Luxury Kitchen & Bath Remodeling | QuinnHaven Design";
+  } else if (path.startsWith('/services/') && path.length > 10) {
+    const slug = path.replace('/services/', '');
+    
+    let matchedService = SERVICES.find(s => slug.startsWith(s.id));
+    let serviceName = matchedService ? matchedService.title : '';
+    let locationName = '';
+    
+    if (matchedService) {
+        let locStr = slug.substring(matchedService.id.length + 1); // +1 for the dash
+        if (locStr.endsWith('-ct')) {
+            locStr = locStr.substring(0, locStr.length - 3);
+        }
+        let matchedLocation = LOCATIONS.find(l => l.id === locStr);
+        locationName = matchedLocation ? matchedLocation.name : locStr.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    } else {
+        const words = slug.split('-');
+        let hasCT = words[words.length-1].toLowerCase() === 'ct';
+        if (hasCT) words.pop();
+        serviceName = words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    if (serviceName && locationName) {
+        let displayLocation = locationName === 'Connecticut' ? 'Connecticut' : `${locationName}, CT`;
+        title = `${serviceName} in ${displayLocation} | Quinn Haven Design`;
+        description = `Looking for ${serviceName.toLowerCase()} in ${displayLocation}? Quinn Haven Design offers premier luxury design and remodeling services in your area. Contact us today.`;
+    } else {
+        title = `${serviceName} | Quinn Haven Design`;
+        description = `Learn more about ${serviceName} services from Quinn Haven Design. We bring luxury and expert craftsmanship to every project.`;
+    }
+  } else if (path === '/services') {
+    title = "Our Services | Luxury Kitchen & Bath Remodeling | Quinn Haven Design";
     description = "Explore our comprehensive remodeling services including kitchen design, bathroom retreats, custom cabinetry and spatial planning in CT.";
+  } else if (path.startsWith('/locations/') && path.length > 11) {
+    const locId = path.replace('/locations/', '');
+    const matchedLoc = LOCATIONS.find(l => l.id === locId);
+    const locationName = matchedLoc ? matchedLoc.name : locId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    
+    let displayLocation = locationName === 'Connecticut' ? 'Connecticut' : `${locationName}, CT`;
+    title = `Luxury Kitchen & Bath Remodeling in ${displayLocation} | Quinn Haven Design`;
+    description = `Quinn Haven Design provides expert luxury kitchen and bathroom remodeling services in ${displayLocation}. Transform your home with our bespoke design solutions.`;
   } else if (path.includes('/portfolio') || path.includes('/case-studies')) {
     title = "Portfolio & Case Studies | QuinnHaven Design";
     description = "View our recent luxury remodeling projects, showcasing bespoke design and flawless execution across Connecticut.";
