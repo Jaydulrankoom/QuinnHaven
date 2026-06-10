@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .page-header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .stats-strip {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+        .stats-strip span {
+            font-weight: 500;
+            color: var(--text);
+        }
+        .search-bar {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--bg);
+            color: var(--text);
+            width: 300px;
+        }
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .filter-tab {
+            padding: 12px 0;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+        .filter-tab:hover {
+            color: var(--text);
+        }
+        .filter-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .bulk-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .type-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .badge-published {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--green);
+        }
+        .badge-draft {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--muted);
+        }
+        .post-title-link {
+            color: var(--text);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .post-title-link:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.error {
+            background-color: var(--red);
+            color: white;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item active">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <h1>Blog Posts</h1>
+                <div class="page-header-actions">
+                    <a href="/admin/blog-editor.html" class="btn btn-primary">Add New Post</a>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="stats-strip" id="stats-strip">
+                    <div id="stat-published"><span>0</span> Published</div>
+                    <div>·</div>
+                    <div id="stat-drafts"><span>0</span> Drafts</div>
+                    <div>·</div>
+                    <div id="stat-total"><span>0</span> Total</div>
+                </div>
+
+                <div class="filter-tabs" id="filter-tabs">
+                    <div class="filter-tab active" data-status="all">All</div>
+                    <div class="filter-tab" data-status="published">Published</div>
+                    <div class="filter-tab" data-status="draft">Drafts</div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="bulk-actions">
+                        <select id="bulk-action-select" class="form-input" style="width: auto;">
+                            <option value="">Bulk Actions</option>
+                            <option value="publish">Publish Selected</option>
+                            <option value="unpublish">Unpublish Selected</option>
+                            <option value="delete">Delete Selected</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="applyBulkAction()">Apply</button>
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <select id="category-filter" class="form-input" style="width: 200px;">
+                            <option value="all">All Categories</option>
+                        </select>
+                        <input type="text" id="search-input" class="search-bar" placeholder="Search posts...">
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px; text-align: center;"><input type="checkbox" id="select-all"></th>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Author</th>
+                                    <th>Date</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="posts-table-body">
+                                <tr>
+                                    <td colspan="7" class="text-center" style="padding: 32px; color: var(--muted);">Loading posts...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Action successful!</div>
+
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        let allPosts = [];
+        let categories = [];
+
+        async function loadData() {
+            try {
+                const [postsRes, catRes] = await Promise.all([
+                    fetch('/api/blog'),
+                    fetch('/api/blog/categories/list')
+                ]);
+                
+                if (postsRes.ok) {
+                    const data = await postsRes.json();
+                    allPosts = data.posts || [];
+                }
+                
+                if (catRes.ok) {
+                    const data = await catRes.json();
+                    categories = data.categories || [];
+                }
+                
+                updateStats();
+                populateCategoryFilter();
+                renderTable();
+            } catch (err) {
+                console.error("Error loading blog data:", err);
+                document.getElementById('posts-table-body').innerHTML = `
+                    <tr><td colspan="7" class="text-center" style="color:var(--red);">Error loading posts.</td></tr>
+                `;
+            }
+        }
+
+        function updateStats() {
+            const total = allPosts.length;
+            const published = allPosts.filter(p => p.status === 'published').length;
+            const drafts = allPosts.filter(p => p.status === 'draft').length;
+            
+            document.getElementById('stat-total').innerHTML = \`<span>\${total}</span> Total\`;
+            document.getElementById('stat-published').innerHTML = \`<span>\${published}</span> Published\`;
+            document.getElementById('stat-drafts').innerHTML = \`<span>\${drafts}</span> Drafts\`;
+        }
+
+        function populateCategoryFilter() {
+            const select = document.getElementById('category-filter');
+            select.innerHTML = '<option value="all">All Categories</option>';
+            categories.forEach(cat => {
+                if (cat) {
+                    const opt = document.createElement('option');
+                    opt.value = cat;
+                    opt.textContent = cat;
+                    select.appendChild(opt);
+                }
+            });
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'N/A';
+            return new Date(dateStr).toLocaleDateString();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('posts-table-body');
+            const searchStr = document.getElementById('search-input').value.toLowerCase();
+            const statusFilter = document.querySelector('.filter-tab.active').dataset.status;
+            const categoryFilter = document.getElementById('category-filter').value;
+            
+            let filtered = allPosts;
+            
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(p => p.status === statusFilter);
+            }
+            
+            if (categoryFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === categoryFilter);
+            }
+            
+            if (searchStr.trim() !== '') {
+                filtered = filtered.filter(p => 
+                    (p.title && p.title.toLowerCase().includes(searchStr)) || 
+                    (p.content && p.content.toLowerCase().includes(searchStr))
+                );
+            }
+            
+            if (filtered.length === 0) {
+                if (allPosts.length === 0) {
+                    tbody.innerHTML = \`
+                        <tr>
+                            <td colspan="7">
+                                <div class="empty-state">
+                                    <h3 style="margin-bottom: 16px; color: var(--text);">No blog posts yet</h3>
+                                    <p style="margin-bottom: 24px;">Start sharing your insights and projects with the world.</p>
+                                    <a href="/admin/blog-editor.html" class="btn btn-primary">Create Your First Post</a>
+                                </div>
+                            </td>
+                        </tr>
+                    \`;
+                } else {
+                    tbody.innerHTML = \`<tr><td colspan="7" class="text-center" style="padding: 32px; color: var(--muted);">No posts match your filters.</td></tr>\`;
+                }
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(post => {
+                const isPublished = post.status === 'published';
+                return \`
+                    <tr>
+                        <td style="text-align: center;">
+                            <input type="checkbox" class="post-checkbox box-sizing-override" value="\${post.id}">
+                        </td>
+                        <td>
+                            <a href="/blog-editor.html?id=\${post.id}" class="post-title-link">\${post.title || 'Untitled'}</a>
+                        </td>
+                        <td>\${post.category || 'Uncategorized'}</td>
+                        <td>
+                            <span class="type-badge \${isPublished ? 'badge-published' : 'badge-draft'}">
+                                \${isPublished ? 'Published' : 'Draft'}
+                            </span>
+                        </td>
+                        <td style="color: var(--muted);">\${post.author || 'QuinnHaven Design Team'}</td>
+                        <td style="color: var(--muted); font-size: 13px;">
+                            \${formatDate(isPublished ? post.publishDate : post.lastModified)}
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="display:flex; gap:8px; justify-content:flex-end;">
+                                <a href="/blog-editor.html?id=\${post.id}" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">Edit</a>
+                                <button onclick="togglePublish('\${post.id}', \${isPublished})" class="btn btn-secondary" style="padding: 4px 8px; font-size: 12px;">
+                                    \${isPublished ? 'Unpublish' : 'Publish'}
+                                </button>
+                                <button onclick="confirmDelete('\${post.id}')" class="btn btn-danger" style="padding: 4px 8px; font-size: 12px;">Del</button>
+                            </div>
+                        </td>
+                    </tr>
+                \`;
+            }).join('');
+            
+            // Checkbox sync
+            syncSelectAll();
+        }
+
+        // Filters Event Listeners
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                renderTable();
+            });
+        });
+
+        document.getElementById('search-input').addEventListener('input', renderTable);
+        document.getElementById('category-filter').addEventListener('change', renderTable);
+
+        // Actions
+        async function togglePublish(id, currentlyPublished) {
+            const action = currentlyPublished ? 'unpublish' : 'publish';
+            try {
+                const res = await fetch(\`/api/blog/\${id}/\${action}\`, { method: 'PUT' });
+                if (res.ok) {
+                    showToast(\`Post \${currentlyPublished ? 'unpublished' : 'published'} successfully!\`);
+                    // Update locally
+                    const idx = allPosts.findIndex(p => p.id === id);
+                    if (idx > -1) {
+                        allPosts[idx].status = currentlyPublished ? 'draft' : 'published';
+                        updateStats();
+                        renderTable();
+                    }
+                } else {
+                    showToast('Error updating status.', true);
+                }
+            } catch (err) {
+                showToast('Network error.', true);
+            }
+        }
+
+        async function confirmDelete(id) {
+            if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+            
+            try {
+                const res = await fetch(\`/api/blog/\${id}\`, { method: 'DELETE' });
+                if (res.ok) {
+                    showToast('Post deleted successfully.');
+                    allPosts = allPosts.filter(p => p.id !== id);
+                    updateStats();
+                    renderTable();
+                } else {
+                    showToast('Error deleting post.', true);
+                }
+            } catch (err) {
+                showToast('Network error.', true);
+            }
+        }
+
+        // Bulk Actions
+        document.getElementById('select-all').addEventListener('change', (e) => {
+            const checkboxes = document.querySelectorAll('.post-checkbox');
+            checkboxes.forEach(cb => cb.checked = e.target.checked);
+        });
+
+        function syncSelectAll() {
+            const selectAll = document.getElementById('select-all');
+            const checkboxes = document.querySelectorAll('.post-checkbox');
+            selectAll.checked = checkboxes.length > 0 && Array.from(checkboxes).every(cb => cb.checked);
+        }
+        
+        // Use event delegation for dynamically created checkboxes
+        document.getElementById('posts-table-body').addEventListener('change', (e) => {
+            if (e.target.classList.contains('post-checkbox')) {
+                syncSelectAll();
+            }
+        });
+
+        async function applyBulkAction() {
+            const action = document.getElementById('bulk-action-select').value;
+            if (!action) return;
+            
+            const selected = Array.from(document.querySelectorAll('.post-checkbox:checked')).map(cb => cb.value);
+            if (selected.length === 0) {
+                alert('Please select at least one post.');
+                return;
+            }
+            
+            if (action === 'delete') {
+                if (!confirm(\`Are you sure you want to delete \${selected.length} posts?\`)) return;
+            }
+            
+            let successCount = 0;
+            
+            // Process sequentially for simplicity and safety
+            for (const id of selected) {
+                try {
+                    let endpoint = '/api/blog/' + id;
+                    let method = 'PUT';
+                    
+                    if (action === 'delete') method = 'DELETE';
+                    else if (action === 'publish') endpoint += '/publish';
+                    else if (action === 'unpublish') endpoint += '/unpublish';
+                    
+                    const res = await fetch(endpoint, { method });
+                    if (res.ok) successCount++;
+                } catch(e) { console.error('Bulk action error on id', id, e); }
+            }
+            
+            showToast(\`Successfully applied action to \${successCount} posts.\`);
+            
+            // Reset state
+            document.getElementById('bulk-action-select').value = '';
+            document.getElementById('select-all').checked = false;
+            
+            // Reload fully to get accurate state
+            loadData();
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            if (isError) {
+                toast.classList.add('error');
+            } else {
+                toast.classList.remove('error');
+            }
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Init
+        loadData();
+    </script>
+</body>
+</html>

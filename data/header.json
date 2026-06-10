@@ -1,0 +1,7 @@
+{
+  "logo": { "text":"QuinnHaven", "subtext":"Kitchen & Bathroom Design", "imageUrl":"" },
+  "phone": "",
+  "email": "Info@quinnhavendesign.com",
+  "ctaButton": { "text":"Schedule a Consultation", "url":"/contact.html" },
+  "announcementBar": { "enabled":false, "text":"", "bgColor":"#b8975a" }
+}

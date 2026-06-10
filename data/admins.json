@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Quin",
+      "password": "setup_new_password",
+      "name": "Quin",
+      "role": "superadmin",
+      "created": "2025-01-01"
+    }
+  ]
+}

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Location - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        .page-header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .breadcrumb a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .char-counter {
+            font-size: 11px;
+            color: var(--muted);
+            text-align: right;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .seo-hint {
+            font-size: 12px;
+            color: #3b82f6;
+            margin-top: 4px;
+        }
+
+        .ql-container.ql-snow {
+            border-color: var(--border) !important;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 16px;
+            min-height: 400px;
+            background: var(--bg);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .ql-toolbar.ql-snow {
+            background: var(--surface2);
+            border-radius: 8px 8px 0 0;
+            border-color: var(--border) !important;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.error {
+            background-color: var(--red);
+            color: white;
+        }
+
+        /* Services List */
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .service-checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg);
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .service-checkbox-item:hover {
+            border-color: var(--gold);
+        }
+
+        /* Duplicate Content Warning */
+        .warning-banner {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid #f59e0b;
+            color: #d97706;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .warning-banner.show {
+            display: flex;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio-list.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-editor.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item active">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <div class="breadcrumb">
+                <a href="/admin/locations.html">Locations</a> 
+                <span>/</span> 
+                <span id="breadcrumb-current">Edit Location</span>
+            </div>
+
+            <header class="topbar">
+                <h1 id="page-heading">Edit Location</h1>
+                <div class="topbar-actions">
+                    <a href="/admin/locations.html" class="btn btn-secondary">Cancel</a>
+                    <button id="save-btn" class="btn btn-primary">Save Changes</button>
+                    <a id="preview-btn" href="#" target="_blank" class="btn btn-secondary" style="display:none;">Live Preview ↗</a>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <form id="location-form" onsubmit="event.preventDefault();">
+                    
+                    <!-- Duplicate Content Warning -->
+                    <div id="content-warning" class="warning-banner">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        Warning: This page has less than 300 words of content. To rank well in local SEO, add more unique content specific to this location.
+                    </div>
+
+                    <!-- Section 1: SEO Settings -->
+                    <div class="card">
+                        <div class="card-header">SEO Settings</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Meta Title</label>
+                                <input type="text" id="meta-title" class="form-input" placeholder="SEO Document Title">
+                                <div class="seo-hint" id="keyword-hint">Hint: Include "Kitchen Design [City] CT"</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Description</label>
+                                <textarea id="meta-desc" class="form-textarea" style="height: 60px;" placeholder="Brief description for search engines"></textarea>
+                                <span class="char-counter" id="meta-desc-counter">0/160</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Page Content -->
+                    <div class="card">
+                        <div class="card-header">Page Content</div>
+                        <div class="form-group">
+                            <label>Hero Headline</label>
+                            <input type="text" id="hero-headline" class="form-input" placeholder="e.g. Kitchen & Bathroom Design in Wallingford, CT">
+                        </div>
+                        <div class="form-group">
+                            <label>Hero Sub-headline</label>
+                            <textarea id="hero-subheadline" class="form-textarea" style="height: 60px;" placeholder="e.g. Bringing luxury design to your home..."></textarea>
+                        </div>
+                        <div class="form-group mb-0">
+                            <label style="display:flex; justify-content:space-between;">
+                                Main Body Content
+                                <span id="word-count" style="font-weight:normal; font-size: 12px; color: var(--muted);">0 words</span>
+                            </label>
+                            <div id="editor-container"></div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Services List -->
+                    <div class="card">
+                        <div class="card-header">Services offered in this location</div>
+                        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Select which services are actively provided in this specific market.</p>
+                        <div class="services-list" id="services-checklist">
+                            <!-- Populated dynamically -->
+                            Loading services...
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Local Details -->
+                    <div class="card">
+                        <div class="card-header">Local Details</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Driving Distance / Accessibility</label>
+                                <input type="text" id="driving-distance" class="form-input" placeholder="e.g. Only 15 minutes from our showroom">
+                            </div>
+                            <div class="form-group">
+                                <label>Local Area Description</label>
+                                <textarea id="local-desc" class="form-textarea" style="height: 80px;" placeholder="Brief highlight about the local area..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Location saved successfully!</div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Initialize Quill
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Write unique local SEO content for this specific city...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [2, 3, 4, false] }],
+                    ['bold', 'italic', 'underline'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // State
+        let locationId = null;
+        let locationData = null;
+        const coreServices = [
+            { id: 'kitchen-design', name: 'Kitchen Design' },
+            { id: 'bathroom-design', name: 'Bathroom Design' },
+            { id: 'pantry-design', name: 'Pantry Design' },
+            { id: 'closet-design', name: 'Closet Design' },
+            { id: 'bar-design', name: 'Bar Design' },
+            { id: 'laundry-room-design', name: 'Laundry Room Design' },
+            { id: 'mudroom-design', name: 'Mudroom Design' }
+        ];
+
+        // DOM Elements
+        const metaTitleInput = document.getElementById('meta-title');
+        const metaDescInput = document.getElementById('meta-desc');
+        const heroHeadlineInput = document.getElementById('hero-headline');
+        const heroSubheadlineInput = document.getElementById('hero-subheadline');
+        const drivingDistanceInput = document.getElementById('driving-distance');
+        const localDescInput = document.getElementById('local-desc');
+        const keywordHint = document.getElementById('keyword-hint');
+
+        // Initialization
+        async function runInit() {
+            const params = new URLSearchParams(window.location.search);
+            locationId = params.get('id');
+            
+            if (!locationId) {
+                alert("No location ID provided!");
+                window.location.href = '/admin/locations.html';
+                return;
+            }
+
+            await loadLocation();
+            renderChecklist();
+            setupEventListeners();
+            checkWordCount();
+        }
+
+        async function loadLocation() {
+            try {
+                const res = await fetch('/api/content/locations');
+                if (res.ok) {
+                    const data = await res.json();
+                    locationData = data.locations.find(l => l.id === locationId);
+                    
+                    if (!locationData) {
+                        alert("Location not found.");
+                        window.location.href = '/admin/locations.html';
+                        return;
+                    }
+
+                    document.getElementById('page-heading').textContent = 'Edit: ' + locationData.city;
+                    document.getElementById('breadcrumb-current').textContent = locationData.city;
+                    document.getElementById('preview-btn').href = '/locations/' + locationData.slug;
+                    document.getElementById('preview-btn').style.display = 'inline-block';
+                    
+                    keywordHint.textContent = \`Hint: Try "Kitchen Design \${locationData.city} CT" or "Bathroom Remodeling \${locationData.city} CT"\`;
+                    
+                    // Populate fields
+                    metaTitleInput.value = locationData.metaTitle || '';
+                    metaDescInput.value = locationData.metaDescription || '';
+                    updateMetaDescCounter();
+
+                    heroHeadlineInput.value = locationData.heroHeadline || '';
+                    heroSubheadlineInput.value = locationData.heroSubheadline || '';
+                    
+                    drivingDistanceInput.value = locationData.drivingDistance || '';
+                    localDescInput.value = locationData.localDescription || '';
+                    
+                    if (locationData.bodyContent) {
+                        quill.root.innerHTML = locationData.bodyContent;
+                    }
+
+                } else {
+                    alert("Failed to load location data.");
+                }
+            } catch (err) {
+                console.error("Error", err);
+                alert("Network error.");
+            }
+        }
+
+        function renderChecklist() {
+            const container = document.getElementById('services-checklist');
+            const activeServices = locationData.activeServices || coreServices.map(s => s.id);
+            
+            container.innerHTML = coreServices.map(s => {
+                const isChecked = activeServices.includes(s.id);
+                return \`
+                    <label class="service-checkbox-item">
+                        <input type="checkbox" name="services" value="\${s.id}" \${isChecked ? 'checked' : ''}>
+                        \${s.name}
+                    </label>
+                \`;
+            }).join('');
+        }
+
+        function setupEventListeners() {
+            document.getElementById('save-btn').addEventListener('click', saveLocation);
+            metaDescInput.addEventListener('input', updateMetaDescCounter);
+            quill.on('text-change', checkWordCount);
+        }
+
+        function updateMetaDescCounter() {
+            const len = metaDescInput.value.length;
+            document.getElementById('meta-desc-counter').textContent = \`\${len}/160\`;
+        }
+
+        function checkWordCount() {
+            const text = quill.getText().trim();
+            const words = text ? text.split(/\\s+/).length : 0;
+            
+            document.getElementById('word-count').textContent = \`\${words} words\`;
+            
+            const warningEl = document.getElementById('content-warning');
+            if (words < 300) {
+                warningEl.classList.add('show');
+            } else {
+                warningEl.classList.remove('show');
+            }
+        }
+
+        function getCheckedServices() {
+            const checkboxes = document.querySelectorAll('input[name="services"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        async function saveLocation() {
+            const payload = {
+                metaTitle: metaTitleInput.value.trim(),
+                metaDescription: metaDescInput.value.trim(),
+                heroHeadline: heroHeadlineInput.value.trim(),
+                heroSubheadline: heroSubheadlineInput.value.trim(),
+                bodyContent: quill.root.innerHTML,
+                drivingDistance: drivingDistanceInput.value.trim(),
+                localDescription: localDescInput.value.trim(),
+                activeServices: getCheckedServices()
+            };
+
+            const btn = document.getElementById('save-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(\`/api/content/locations/\${locationId}\`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (res.ok) {
+                    showToast('Location saved successfully!');
+                } else {
+                    const error = await res.json();
+                    alert("Error saving: " + (error.message || 'Unknown error'));
+                }
+            } catch (err) {
+                alert("Network error while saving.");
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            if (isError) toast.classList.add('error');
+            else toast.classList.remove('error');
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        runInit();
+    </script>
+</body>
+</html>

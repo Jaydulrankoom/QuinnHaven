@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        .editor-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+            align-items: start;
+        }
+        
+        @media (max-width: 1024px) {
+            .editor-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .editor-main {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .title-input {
+            width: 100%;
+            font-size: 32px;
+            font-weight: 700;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+        }
+        
+        .title-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .permalink-bar {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+        }
+        
+        .permalink-slug {
+            color: var(--gold);
+        }
+        
+        .ql-container.ql-snow {
+            border-color: var(--border) !important;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 16px;
+            min-height: 500px;
+            background: var(--bg);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .ql-toolbar.ql-snow {
+            background: var(--surface2);
+            border-radius: 8px 8px 0 0;
+            border-color: var(--border) !important;
+        }
+        
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .image-preview-container {
+            width: 100%;
+            height: 160px;
+            background: var(--surface2);
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .image-preview-container.has-image {
+            border-style: solid;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .tag-chip {
+            background: var(--surface2);
+            padding: 4px 8px;
+            border-radius: 16px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border);
+        }
+        .tag-remove {
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: bold;
+        }
+        .tag-remove:hover {
+            color: var(--red);
+        }
+        
+        .seo-preview {
+            padding: 16px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-top: 16px;
+            pointer-events: none;
+            user-select: none;
+        }
+        .seo-preview-title {
+            color: #1a0dab;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .seo-preview-link {
+            color: #006621;
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .seo-preview-desc {
+            color: #545454;
+            font-size: 13px;
+            line-height: 1.4;
+            font-family: Arial, sans-serif;
+        }
+        
+        .char-counter {
+            font-size: 11px;
+            color: var(--muted);
+            text-align: right;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .unsaved-indicator {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .unsaved-indicator.show {
+            opacity: 1;
+            color: var(--gold);
+        }
+        
+        .new-category-input-group {
+            display: none;
+            margin-top: 8px;
+        }
+        .new-category-input-group.show {
+            display: flex;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item active">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <div style="display:flex; align-items:center; gap: 16px;">
+                    <h1 id="page-heading">Add New Post</h1>
+                    <span id="unsaved-indicator" class="unsaved-indicator">Unsaved changes ⏺</span>
+                </div>
+                <div class="topbar-actions">
+                    <a href="/admin/blog-list.html" class="btn btn-secondary">Back to List</a>
+                    <button id="top-preview-btn" class="btn btn-secondary" disabled>Preview</button>
+                    <button id="top-save-draft-btn" class="btn btn-secondary">Save Draft</button>
+                    <button id="top-publish-btn" class="btn btn-primary">Publish</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="editor-layout">
+                    <!-- Left Column -->
+                    <div class="editor-main">
+                        <div>
+                            <input type="text" id="post-title" class="title-input" placeholder="Post Title">
+                            <div class="permalink-bar">
+                                <strong>Permalink:</strong>&nbsp;quinnhavendesign.com/blog/<span id="permalink-slug" class="permalink-slug"></span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div id="editor-container"></div>
+                        </div>
+
+                        <div class="card" style="margin-top: 16px; padding: 20px;">
+                            <label style="font-weight: 600; display: block; margin-bottom: 8px;">Excerpt</label>
+                            <textarea id="post-excerpt" class="form-textarea" style="min-height: 80px;" placeholder="Leave blank to auto-generate from content..."></textarea>
+                            <span style="font-size:12px; color:var(--muted);">Displayed on blog listings and snippets</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <aside>
+                        <!-- Publish Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Publish</h3>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="post-status" class="form-input">
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>Publish Date</label>
+                                <input type="date" id="post-date" class="form-input">
+                            </div>
+                            
+                            <div class="actions-grid">
+                                <button id="panel-save-draft-btn" class="btn btn-secondary" style="width:100%;">Save Draft</button>
+                                <button id="panel-publish-btn" class="btn btn-primary" style="width:100%;">Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- Featured Image Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Featured Image</h3>
+                            <div id="featured-image-preview" class="image-preview-container">
+                                <span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>
+                            </div>
+                            <input type="text" id="featured-image-url" class="form-input" placeholder="Image URL (e.g. /uploads/image.jpg)" style="margin-bottom:8px;">
+                            <div style="display:flex; justify-content:space-between;">
+                                <button type="button" id="remove-image-btn" class="btn btn-secondary" style="font-size:12px; padding: 4px 8px;">Remove</button>
+                            </div>
+                        </div>
+
+                        <!-- Category Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Category</h3>
+                            <select id="post-category" class="form-input">
+                                <option value="Uncategorized">Uncategorized</option>
+                            </select>
+                            <a href="#" id="show-new-category-link" style="font-size: 13px; color: var(--gold); text-decoration: none; display:inline-block; margin-top:8px;">+ Add New Category</a>
+                            
+                            <div id="new-category-group" class="new-category-input-group">
+                                <input type="text" id="new-category-input" class="form-input" placeholder="New Category Name">
+                                <button id="add-category-btn" type="button" class="btn btn-secondary">Add</button>
+                            </div>
+                        </div>
+
+                        <!-- Tags Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Tags</h3>
+                            <input type="text" id="tag-input" class="form-input" placeholder="Add tag + press Enter">
+                            <div id="tags-container" class="tags-container"></div>
+                        </div>
+
+                        <!-- SEO Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">SEO Optimization</h3>
+                            
+                            <div class="form-group">
+                                <label>Meta Title</label>
+                                <input type="text" id="meta-title" class="form-input" placeholder="Auto-generated if blank">
+                                <span class="char-counter" id="meta-title-counter">0/60</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Meta Description</label>
+                                <textarea id="meta-desc" class="form-textarea" style="min-height: 80px;" placeholder="Brief description for search engines"></textarea>
+                                <span class="char-counter" id="meta-desc-counter">0/160</span>
+                            </div>
+
+                            <div class="seo-preview">
+                                <div class="seo-preview-link">quinnhavendesign.com › blog › <span id="seo-slug">...</span></div>
+                                <div class="seo-preview-title" id="seo-title-preview">No Title Set</div>
+                                <div class="seo-preview-desc" id="seo-desc-preview">Please provide a meta description or an excerpt to see how your post might look in search results.</div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Post saved!</div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Setup Quill
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Write your content here...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [2, 3, 4, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link', 'image', 'video'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // State variables
+        let currentPostId = null;
+        let isDirty = false;
+        let tagsList = [];
+        
+        // DOM Elements
+        const titleInput = document.getElementById('post-title');
+        const permalinkSlug = document.getElementById('permalink-slug');
+        const excerptInput = document.getElementById('post-excerpt');
+        const statusSelect = document.getElementById('post-status');
+        const dateInput = document.getElementById('post-date');
+        const featuredImageUrl = document.getElementById('featured-image-url');
+        const categorySelect = document.getElementById('post-category');
+        const tagInput = document.getElementById('tag-input');
+        const metaTitleInput = document.getElementById('meta-title');
+        const metaDescInput = document.getElementById('meta-desc');
+
+        // Initialization
+        async function runInit() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            
+            // Set today's date safely
+            dateInput.value = new Date().toISOString().split('T')[0];
+
+            await loadCategories();
+
+            if (id) {
+                currentPostId = id;
+                document.getElementById('page-heading').textContent = 'Edit Post';
+                document.getElementById('top-preview-btn').disabled = false;
+                await loadPost(id);
+            }
+            
+            setupEventListeners();
+            updateSEO(); // Initial render
+        }
+
+        async function loadCategories() {
+            try {
+                const res = await fetch('/api/blog/categories/list');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.categories && data.categories.length > 0) {
+                        categorySelect.innerHTML = '';
+                        data.categories.forEach(cat => {
+                            if(cat) {
+                                categorySelect.innerHTML += \`<option value="\${cat}">\${cat}</option>\`;
+                            }
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to load categories', err);
+            }
+        }
+
+        async function loadPost(id) {
+            try {
+                const res = await fetch('/api/blog/' + id);
+                if (res.ok) {
+                    const data = await res.json();
+                    const p = data.post;
+                    
+                    titleInput.value = p.title || '';
+                    permalinkSlug.textContent = p.slug || '';
+                    if (p.content) {
+                        quill.root.innerHTML = p.content;
+                    }
+                    excerptInput.value = p.excerpt || '';
+                    statusSelect.value = p.status || 'draft';
+                    if (p.publishDate) dateInput.value = p.publishDate.split('T')[0];
+                    featuredImageUrl.value = p.featuredImage || '';
+                    updateImagePreview(p.featuredImage);
+                    
+                    // Add Category if missing
+                    if (p.category) {
+                        const exists = Array.from(categorySelect.options).some(o => o.value === p.category);
+                        if (!exists) {
+                            categorySelect.innerHTML += \`<option value="\${p.category}">\${p.category}</option>\`;
+                        }
+                        categorySelect.value = p.category;
+                    }
+
+                    if (Array.isArray(p.tags)) {
+                        tagsList = p.tags;
+                        renderTags();
+                    }
+                    
+                    metaTitleInput.value = p.metaTitle || '';
+                    metaDescInput.value = p.metaDescription || '';
+
+                } else {
+                    alert('Post not found');
+                    window.location.href = '/admin/blog-list.html';
+                }
+            } catch (err) {
+                console.error("Error loading post", err);
+            }
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Track changes
+            const trackChange = () => {
+                isDirty = true;
+                document.getElementById('unsaved-indicator').classList.add('show');
+            };
+            
+            titleInput.addEventListener('input', () => {
+                trackChange();
+                updateSlug();
+                updateSEO();
+            });
+            
+            quill.on('text-change', trackChange);
+            
+            [excerptInput, statusSelect, dateInput, featuredImageUrl, categorySelect, metaTitleInput, metaDescInput].forEach(el => {
+                el.addEventListener('input', () => {
+                    trackChange();
+                    updateSEO();
+                });
+                el.addEventListener('change', trackChange);
+            });
+
+            // Featured Image logic
+            featuredImageUrl.addEventListener('input', (e) => {
+                updateImagePreview(e.target.value);
+            });
+            
+            document.getElementById('remove-image-btn').addEventListener('click', () => {
+                featuredImageUrl.value = '';
+                updateImagePreview('');
+                trackChange();
+            });
+
+            // Tags Logic
+            tagInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const val = tagInput.value.trim();
+                    if (val && !tagsList.includes(val)) {
+                        tagsList.push(val);
+                        renderTags();
+                        trackChange();
+                    }
+                    tagInput.value = '';
+                }
+            });
+
+            // Custom Category Logic
+            document.getElementById('show-new-category-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('new-category-group').classList.toggle('show');
+            });
+            
+            document.getElementById('add-category-btn').addEventListener('click', async () => {
+                const newCat = document.getElementById('new-category-input').value.trim();
+                if (!newCat) return;
+                
+                try {
+                    const res = await fetch('/api/blog/categories', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ category: newCat })
+                    });
+                    
+                    if (res.ok) {
+                        const exists = Array.from(categorySelect.options).some(o => o.value === newCat);
+                        if (!exists) {
+                            categorySelect.innerHTML += \`<option value="\${newCat}">\${newCat}</option>\`;
+                        }
+                        categorySelect.value = newCat;
+                        document.getElementById('new-category-input').value = '';
+                        document.getElementById('new-category-group').classList.remove('show');
+                        trackChange();
+                    }
+                } catch(e) {}
+            });
+
+            // Save Buttons
+            document.getElementById('top-save-draft-btn').addEventListener('click', () => savePost('draft'));
+            document.getElementById('panel-save-draft-btn').addEventListener('click', () => savePost('draft'));
+            
+            document.getElementById('top-publish-btn').addEventListener('click', () => savePost('published'));
+            document.getElementById('panel-publish-btn').addEventListener('click', () => savePost('published'));
+            
+            document.getElementById('top-preview-btn').addEventListener('click', () => {
+                if (permalinkSlug.textContent) {
+                    window.open('/blog/' + permalinkSlug.textContent, '_blank');
+                }
+            });
+        }
+
+        // Helpers
+        function generateSlug(text) {
+            return text.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').substring(0, 60).replace(/-+$/, '');
+        }
+
+        function updateSlug() {
+            if (!currentPostId || titleInput.value.length > 0) {
+                permalinkSlug.textContent = generateSlug(titleInput.value);
+            }
+        }
+
+        function updateImagePreview(url) {
+            const preview = document.getElementById('featured-image-preview');
+            if (url && url.trim() !== '') {
+                preview.style.backgroundImage = \`url(\${url})\`;
+                preview.innerHTML = '';
+                preview.classList.add('has-image');
+            } else {
+                preview.style.backgroundImage = 'none';
+                preview.innerHTML = '<span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>';
+                preview.classList.remove('has-image');
+            }
+        }
+
+        function renderTags() {
+            const container = document.getElementById('tags-container');
+            container.innerHTML = '';
+            tagsList.forEach((tag, idx) => {
+                const el = document.createElement('div');
+                el.className = 'tag-chip';
+                el.innerHTML = \`
+                    \${tag}
+                    <span class="tag-remove" onclick="removeTag(\${idx})">×</span>
+                \`;
+                container.appendChild(el);
+            });
+        }
+        
+        window.removeTag = function(idx) {
+            tagsList.splice(idx, 1);
+            renderTags();
+            isDirty = true;
+            document.getElementById('unsaved-indicator').classList.add('show');
+        };
+
+        function updateSEO() {
+            // Counters
+            const tLen = metaTitleInput.value.length;
+            const dLen = metaDescInput.value.length;
+            document.getElementById('meta-title-counter').textContent = \`\${tLen}/60\`;
+            document.getElementById('meta-desc-counter').textContent = \`\${dLen}/160\`;
+            
+            // Preview Updates
+            const previewTitle = document.getElementById('seo-title-preview');
+            const previewDesc = document.getElementById('seo-desc-preview');
+            const previewSlug = document.getElementById('seo-slug');
+            
+            const autoTitle = titleInput.value ? (titleInput.value + ' | QuinnHaven') : 'New Post | QuinnHaven';
+            previewTitle.textContent = metaTitleInput.value || autoTitle;
+            
+            let desc = metaDescInput.value || excerptInput.value;
+            if (!desc) {
+                const contentText = quill.getText().trim();
+                desc = contentText.substring(0, 150) + (contentText.length > 150 ? '...' : '');
+            }
+            previewDesc.textContent = desc || 'Provides a brief overview of the post...';
+            
+            previewSlug.textContent = permalinkSlug.textContent || 'new-post';
+        }
+
+        // Saving logic
+        async function savePost(overrideStatus) {
+            if (overrideStatus) {
+                statusSelect.value = overrideStatus;
+            }
+            
+            if (!titleInput.value.trim()) {
+                alert("Please enter a title for the post.");
+                titleInput.focus();
+                return;
+            }
+
+            const payload = {
+                title: titleInput.value.trim(),
+                content: quill.root.innerHTML,
+                excerpt: excerptInput.value.trim(),
+                category: categorySelect.value,
+                tags: tagsList,
+                featuredImage: featuredImageUrl.value.trim(),
+                status: statusSelect.value,
+                metaTitle: metaTitleInput.value.trim(),
+                metaDescription: metaDescInput.value.trim()
+            };
+
+            const endpoint = currentPostId ? \`/api/blog/\${currentPostId}\` : '/api/blog';
+            const method = currentPostId ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(endpoint, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    isDirty = false;
+                    document.getElementById('unsaved-indicator').classList.remove('show');
+                    
+                    if (!currentPostId) {
+                        currentPostId = data.post.id;
+                        history.replaceState(null, '', '?id=' + currentPostId);
+                        document.getElementById('page-heading').textContent = 'Edit Post';
+                        document.getElementById('top-preview-btn').disabled = false;
+                        updateSlug(); // To make sure it matches the auto-generated backend slug
+                    }
+                    
+                    showToast(\`Post \${statusSelect.value === 'published' ? 'published' : 'saved as draft'} successfully!\`);
+                } else {
+                    const data = await res.json();
+                    alert("Error saving: " + data.message);
+                }
+            } catch (err) {
+                alert("Error saving post.");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        window.addEventListener('beforeunload', (e) => {
+            if (isDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        runInit();
+    </script>
+</body>
+</html>

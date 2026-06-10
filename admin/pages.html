@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pages - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .page-header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .search-bar {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--bg);
+            color: var(--text);
+            width: 300px;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .filter-tab {
+            padding: 12px 0;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            color: var(--text);
+        }
+
+        .filter-tab.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-dot.exists {
+            background-color: var(--green);
+        }
+
+        .status-dot.missing {
+            background-color: var(--muted);
+            opacity: 0.5;
+        }
+
+        .type-badge {
+            background-color: var(--surface2);
+            color: var(--muted);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .type-core { border-left: 2px solid #a855f7; }
+        .type-service { border-left: 2px solid #3b82f6; }
+        .type-product { border-left: 2px solid #eab308; }
+        .type-location { border-left: 2px solid #ef4444; }
+        .type-portfolio { border-left: 2px solid #10b981; }
+        .type-blog { border-left: 2px solid #f97316; }
+        
+        .url-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .url-link:hover {
+            color: var(--blue);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item active">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-posts.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-edit.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-manager.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <h1>All Pages</h1>
+                <div class="page-header-actions">
+                    <input type="text" id="search-input" class="search-bar" placeholder="Search pages by title...">
+                    <button class="btn btn-secondary" disabled title="Feature coming soon">Add New Page</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="filter-tabs" id="filter-tabs">
+                    <div class="filter-tab active" data-filter="all">All</div>
+                    <div class="filter-tab" data-filter="core">Core Pages</div>
+                    <div class="filter-tab" data-filter="service">Services</div>
+                    <div class="filter-tab" data-filter="product">Products</div>
+                    <div class="filter-tab" data-filter="location">Locations</div>
+                    <div class="filter-tab" data-filter="portfolio">Portfolio</div>
+                    <div class="filter-tab" data-filter="blog">Blog</div>
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>URL Path</th>
+                                    <th>Last Modified</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pages-table-body">
+                                <tr>
+                                    <td colspan="6" class="text-center" style="padding: 32px; color: var(--muted);">Loading pages...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        let allPages = [];
+
+        async function fetchPages() {
+            try {
+                const res = await fetch('/api/pages');
+                const data = await res.json();
+                if (data.success) {
+                    allPages = data.pages;
+                    renderTable('all');
+                }
+            } catch (err) {
+                console.error("Error fetching pages:", err);
+                document.getElementById('pages-table-body').innerHTML = `
+                    <tr><td colspan="6" class="text-center" style="color:var(--red);">Error loading pages.</td></tr>
+                `;
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Not created';
+            const date = new Date(dateString);
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+
+        function renderTable(filterStr = 'all', searchStr = '') {
+            const tbody = document.getElementById('pages-table-body');
+            
+            let filtered = allPages;
+            
+            if (filterStr !== 'all') {
+                filtered = filtered.filter(p => p.type === filterStr);
+            }
+            
+            if (searchStr.trim() !== '') {
+                const lowerSearch = searchStr.toLowerCase();
+                filtered = filtered.filter(p => p.title.toLowerCase().includes(lowerSearch));
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 32px; color: var(--muted);">No pages found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(page => `
+                <tr>
+                    <td>
+                        <span class="status-dot ${page.exists ? 'exists' : 'missing'}" title="${page.exists ? 'Data file exists' : 'Data file not created'}"></span>
+                    </td>
+                    <td style="font-weight: 500;">${page.title}</td>
+                    <td>
+                        <span class="type-badge type-${page.type}">${page.type}</span>
+                    </td>
+                    <td>
+                        <a href="${page.url}" target="_blank" class="url-link">${page.url}</a>
+                    </td>
+                    <td style="color: var(--muted); font-size: 13px;">
+                        ${formatDate(page.lastModified)}
+                    </td>
+                    <td style="text-align: right;">
+                        <a href="${page.editPage}" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Edit</a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Setup tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const filter = tab.getAttribute('data-filter');
+                const search = document.getElementById('search-input').value;
+                renderTable(filter, search);
+            });
+        });
+
+        // Setup search
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const search = e.target.value;
+            const activeTab = document.querySelector('.filter-tab.active').getAttribute('data-filter');
+            renderTable(activeTab, search);
+        });
+
+        // Init
+        fetchPages();
+    </script>
+</body>
+</html>

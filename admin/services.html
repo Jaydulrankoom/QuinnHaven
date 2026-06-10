@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .banner {
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid #60A5FA;
+            color: #2563EB;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            border-color: var(--gold);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface2);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .service-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 4px 0;
+        }
+
+        .service-slug {
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .service-meta {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .service-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 12px;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 64px 24px;
+            background: var(--surface);
+            border-radius: 8px;
+            border: 1px dashed var(--border);
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio-list.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-editor.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item active">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <h1>Services</h1>
+            </header>
+            
+            <main class="main-content">
+                <div class="banner">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    QuinnHaven offers 7 core services. Click any service to edit its page content.
+                </div>
+
+                <div class="services-grid" id="services-grid">
+                    <div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--muted);">Loading services...</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Emojis for services based on ID or ID matching
+        function getServiceIcon(id) {
+            const map = {
+                'kitchen-design': '🍽️',
+                'bathroom-design': '🚿',
+                'pantry-design': '🥫',
+                'closet-design': '👗',
+                'bar-design': '🍷',
+                'laundry-room-design': '🧺',
+                'mudroom-design': '👢'
+            };
+            return map[id] || '🛠️';
+        }
+
+        async function loadServices() {
+            try {
+                const res = await fetch('/api/content/services');
+                if (res.ok) {
+                    const data = await res.json();
+                    renderGrid(data.services || []);
+                } else {
+                    showError("Failed to load services.");
+                }
+            } catch (err) {
+                console.error("Error loading services:", err);
+                showError("Network error loading services.");
+            }
+        }
+
+        function renderGrid(services) {
+            const grid = document.getElementById('services-grid');
+            
+            if (services.length === 0) {
+                grid.innerHTML = \`<div class="empty-state">No services found.</div>\`;
+                return;
+            }
+
+            grid.innerHTML = services.map(service => {
+                const icon = getServiceIcon(service.id);
+                const lastModified = service.lastModified ? new Date(service.lastModified).toLocaleDateString() : 'Never';
+                
+                return \`
+                    <div class="service-card">
+                        <div class="service-icon">\${icon}</div>
+                        <div class="service-content">
+                            <h3 class="service-title">\${service.name}</h3>
+                            <div class="service-slug">/services/\${service.id}</div>
+                            <div class="service-meta">Last modified: \${lastModified}</div>
+                            
+                            <div class="service-actions">
+                                <a href="/service-editor.html?id=\${service.id}" class="btn btn-primary" style="padding: 6px 16px;">Edit Content</a>
+                                <a href="/services/\${service.id}" target="_blank" class="btn btn-secondary" style="padding: 6px 16px;">Live Preview ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                \`;
+            }).join('');
+        }
+
+        function showError(msg) {
+            document.getElementById('services-grid').innerHTML = \`<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--red);">\${msg}</div>\`;
+        }
+
+        loadServices();
+    </script>
+</body>
+</html>

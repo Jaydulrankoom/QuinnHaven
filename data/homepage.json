@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "headline": "Connecticut's Premier Kitchen & Bathroom Design Showroom",
+    "subheadline": "10+ years of transforming Connecticut homes with custom cabinetry, countertops, and full-service design in Wallingford, New Haven, Hartford, Avon, and Norwalk.",
+    "ctaPrimary": {"text":"Schedule a Consultation","url":"/contact.html"},
+    "ctaSecondary": {"text":"View Our Portfolio","url":"/portfolio/"},
+    "backgroundImage": ""
+  },
+  "aboutStrip": {
+    "headline": "Full-Service Kitchen & Bathroom Design",
+    "body": "From consultation to design to product selection and project coordination — QuinnHaven handles every step. We serve homeowners, builders, contractors, interior designers, architects, and multifamily developers across Connecticut.",
+    "stats": [
+      {"number":"10+","label":"Years of Experience"},
+      {"number":"500+","label":"Projects Completed"},
+      {"number":"6","label":"CT Locations Served"},
+      {"number":"40+","label":"Website Pages"}
+    ]
+  },
+  "servicesSection": {
+    "headline": "Our Services",
+    "subheadline": "From kitchen design to custom cabinetry, we offer a complete range of services."
+  },
+  "ctaBanner": {
+    "headline": "Ready to Transform Your Kitchen or Bathroom?",
+    "body": "Visit our Wallingford showroom to see cabinets, countertops, and tile in person. Schedule a free design consultation today.",
+    "buttonText": "Schedule Your Free Consultation",
+    "buttonUrl": "/contact.html"
+  }
+}

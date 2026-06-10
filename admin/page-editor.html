@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Editor - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        .ql-toolbar.ql-snow, .ql-container.ql-snow {
+            border-color: var(--border);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+        }
+        .ql-editor {
+            min-height: 250px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+        .breadcrumb a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: var(--text);
+            text-decoration: underline;
+        }
+        .char-counter {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: right;
+            margin-top: 4px;
+        }
+        .char-counter.limit-exceeded {
+            color: var(--red);
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .unsaved-indicator {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            margin-right: 16px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item active">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-posts.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-edit.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-manager.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <div>
+                    <div class="breadcrumb">
+                        <a href="/admin/pages.html">Pages</a> > <span id="breadcrumb-page-name">Page</span>
+                    </div>
+                    <h1 id="page-title">Editing: Page</h1>
+                </div>
+                <div class="topbar-actions" style="display: flex; align-items: center;">
+                    <span class="unsaved-indicator" id="unsaved-indicator">• Unsaved changes</span>
+                    <a id="preview-btn" href="#" target="_blank" class="btn btn-secondary" style="margin-right: 12px;">Live Preview</a>
+                    <button id="save-btn" class="btn btn-primary">Publish changes</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <form id="editor-form" onsubmit="event.preventDefault();">
+                    
+                    <!-- Page Header & SEO Section -->
+                    <div class="card">
+                        <h2 class="card-title">Page Headers & SEO</h2>
+                        <div class="form-group">
+                            <label for="meta-title">SEO Title (Browser Tab Title)</label>
+                            <input type="text" id="meta-title" class="form-input" placeholder="e.g. About Us | QuinnHaven Design">
+                        </div>
+                        <div class="form-group">
+                            <label for="meta-description">SEO Meta Description</label>
+                            <textarea id="meta-description" class="form-textarea" style="min-height:80px;" placeholder="Brief description for search engines..."></textarea>
+                            <div class="char-counter" id="char-counter">0/160</div>
+                        </div>
+                        
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:24px;">
+                            <div class="form-group mb-0">
+                                <label for="hero-headline">Page Hero Headline (H1)</label>
+                                <input type="text" id="hero-headline" class="form-input">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="hero-subheadline">Page Hero Sub-headline</label>
+                                <input type="text" id="hero-subheadline" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Section -->
+                    <div class="card">
+                        <h2 class="card-title">Main Content</h2>
+                        <div class="form-group mb-0">
+                            <label>Body Content</label>
+                            <div id="body-editor"></div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="card">
+                        <h2 class="card-title">Call to Action (CTA) Section</h2>
+                        <div class="form-group">
+                            <label for="cta-headline">CTA Headline</label>
+                            <input type="text" id="cta-headline" class="form-input" placeholder="e.g. Ready to start your project?">
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+                            <div class="form-group mb-0">
+                                <label for="cta-btn-text">CTA Button Text</label>
+                                <input type="text" id="cta-btn-text" class="form-input" placeholder="e.g. Contact Us">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="cta-btn-url">CTA Button URL</label>
+                                <input type="text" id="cta-btn-url" class="form-input" placeholder="e.g. /contact.html">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Page status updated!</div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Parse URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageId = urlParams.get('page');
+
+        if (!pageId) {
+            window.location.href = '/admin/pages.html';
+        }
+
+        // Format Page ID for Title
+        const formatTitle = (str) => {
+            return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        };
+        const pageName = formatTitle(pageId);
+        
+        // Update UI
+        document.getElementById('breadcrumb-page-name').textContent = pageName;
+        document.getElementById('page-title').textContent = 'Editing: ' + pageName;
+        document.getElementById('preview-btn').href = '/' + pageId + (pageId === 'portfolio' ? '/' : '.html');
+
+        // Quill Initialization
+        const quill = new Quill('#body-editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [2, 3, 4, false] }],
+                    ['bold', 'italic', 'underline', 'link'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Unsaved Changes Logic
+        let isUnsaved = false;
+        const unsavedIndicator = document.getElementById('unsaved-indicator');
+        
+        function markUnsaved() {
+            if (!isUnsaved) {
+                isUnsaved = true;
+                unsavedIndicator.style.display = 'inline-block';
+            }
+        }
+        
+        function markSaved() {
+            isUnsaved = false;
+            unsavedIndicator.style.display = 'none';
+        }
+
+        // Attach listeners to track changes
+        document.querySelectorAll('.form-input, .form-textarea').forEach(el => {
+            el.addEventListener('input', markUnsaved);
+        });
+
+        quill.on('text-change', function(delta, oldDelta, source) {
+            if (source === 'user') {
+                markUnsaved();
+            }
+        });
+
+        // Character Counter for Meta Description
+        const metaDescInput = document.getElementById('meta-description');
+        const charCounter = document.getElementById('char-counter');
+        
+        metaDescInput.addEventListener('input', () => {
+            const length = metaDescInput.value.length;
+            charCounter.textContent = length + '/160';
+            if (length > 160) {
+                charCounter.classList.add('limit-exceeded');
+            } else {
+                charCounter.classList.remove('limit-exceeded');
+            }
+        });
+
+        // Load content
+        const defaultData = {
+            metaTitle: pageName + " | QuinnHaven Design",
+            metaDescription: "",
+            heroHeadline: pageName,
+            heroSubheadline: "",
+            bodyContent: "",
+            ctaHeadline: "Ready to start your project?",
+            ctaButtonText: "Contact Us",
+            ctaButtonUrl: "/contact.html"
+        };
+        let pageData = {};
+
+        async function loadData() {
+            try {
+                // Call dynamic backend endpoint mapping
+                const res = await fetch(\`/api/content/\${pageId}\`);
+                if (res.ok) {
+                    pageData = await res.json();
+                } else {
+                    // Fallback to default structure if the backend route doesn't exist or file is missing
+                    pageData = { ...defaultData };
+                    console.warn(\`Page data for \${pageId} not found or route missing, using defaults.\`);
+                }
+            } catch (err) {
+                // Fallback on network error
+                pageData = { ...defaultData };
+                console.warn(\`Error fetching \${pageId}, using defaults.\`, err);
+            }
+            
+            // Populate Fields
+            document.getElementById('meta-title').value = pageData.metaTitle || defaultData.metaTitle;
+            document.getElementById('meta-description').value = pageData.metaDescription || defaultData.metaDescription;
+            document.getElementById('hero-headline').value = pageData.heroHeadline || defaultData.heroHeadline;
+            document.getElementById('hero-subheadline').value = pageData.heroSubheadline || defaultData.heroSubheadline;
+            document.getElementById('cta-headline').value = pageData.ctaHeadline || defaultData.ctaHeadline;
+            document.getElementById('cta-btn-text').value = pageData.ctaButtonText || defaultData.ctaButtonText;
+            document.getElementById('cta-btn-url').value = pageData.ctaButtonUrl || defaultData.ctaButtonUrl;
+            
+            quill.root.innerHTML = pageData.bodyContent || defaultData.bodyContent;
+
+            // Trigger input event to update char counter immediately
+            metaDescInput.dispatchEvent(new Event('input'));
+            
+            // Starting state is saved
+            setTimeout(markSaved, 50);
+        }
+
+        // Save Function
+        document.getElementById('save-btn').addEventListener('click', async () => {
+            const btn = document.getElementById('save-btn');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<span class="spinner"></span> Saving...';
+            btn.disabled = true;
+
+            const updatedData = {
+                metaTitle: document.getElementById('meta-title').value,
+                metaDescription: document.getElementById('meta-description').value,
+                heroHeadline: document.getElementById('hero-headline').value,
+                heroSubheadline: document.getElementById('hero-subheadline').value,
+                bodyContent: quill.root.innerHTML,
+                ctaHeadline: document.getElementById('cta-headline').value,
+                ctaButtonText: document.getElementById('cta-btn-text').value,
+                ctaButtonUrl: document.getElementById('cta-btn-url').value
+            };
+
+            const payload = { ...pageData, ...updatedData };
+
+            try {
+                const res = await fetch(\`/api/content/\${pageId}\`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await res.json();
+                
+                if (res.ok && result.success) {
+                    showToast('Page saved successfully!');
+                    markSaved();
+                    pageData = payload; // Sync local state
+                } else {
+                    // Alert error if backend rejected it (route exists but failed)
+                    alert('Error saving: ' + (result.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error(err);
+                alert(\`Failed to save \${pageName}. Make sure the backend supports /api/content/\${pageId} routing.\`);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Warning before leaving with unsaved changes
+        window.addEventListener('beforeunload', function (e) {
+            if (isUnsaved) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Init
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Editor - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .menu-list {
+            margin-top: 16px;
+        }
+        .menu-item {
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+            background: var(--bg);
+            border-radius: 6px;
+        }
+        .menu-item.dragging {
+            opacity: 0.5;
+            background: var(--surface2);
+        }
+        .menu-item-header {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: var(--surface2);
+            border-radius: 6px;
+        }
+        .drag-handle {
+            cursor: grab;
+            padding: 0 16px 0 8px;
+            color: var(--muted);
+            font-size: 18px;
+            user-select: none;
+        }
+        .item-details {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .item-label {
+            font-weight: 500;
+        }
+        .item-url {
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+        .children-container {
+            padding: 8px 16px 8px 48px;
+            display: none;
+            border-top: 1px solid var(--border);
+        }
+        .children-container.expanded {
+            display: block;
+        }
+        .inline-edit-form {
+            display: none;
+            flex-grow: 1;
+            gap: 12px;
+            align-items: center;
+        }
+        .inline-edit-form.active {
+            display: flex;
+        }
+        .item-details.hidden {
+            display: none;
+        }
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-backdrop.show {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--bg);
+            padding: 24px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 90%;
+            border: 1px solid var(--border);
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/admin/blog-posts.html" class="nav-item">All Posts</a>
+                <a href="/admin/admin/blog-edit.html" class="nav-item">New Post</a>
+                <a href="/admin/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <!-- Highlight this menu item -->
+                <a href="/admin/admin/menu-editor.html" class="nav-item active">Menu Manager</a>
+                <a href="/admin/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <h1>Menu Editor</h1>
+                <div class="topbar-actions">
+                    <button class="btn btn-secondary" onclick="openAddModal()">+ Add Menu Item</button>
+                    <button id="save-menu-btn" class="btn btn-primary" onclick="saveMenu()">Save Menu</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="card mb-4">
+                    <h2 class="mb-4" style="font-size: 16px; font-weight: 600;">Main Navigation</h2>
+                    <p style="color:var(--muted); font-size:14px; margin-bottom: 16px;">
+                        Drag and drop items to reorder them. Click "Save Menu" when finished to apply changes to the live site.
+                    </p>
+                    <div id="menu-container" class="menu-list">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="mb-4" style="font-size: 16px; font-weight: 600;">Quick Templates</h2>
+                    <p style="color:var(--muted); font-size:14px; margin-bottom: 16px;">
+                        Quickly add pre-built submenu structures. You must save to keep changes.
+                    </p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="resetMenu()">Reset to Default Menu</button>
+                        <button class="btn btn-secondary" onclick="addServicesMenu()">Add Services Submenu</button>
+                        <button class="btn btn-secondary" onclick="addProductsMenu()">Add Products Submenu</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="add-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <h2 class="mb-4" style="font-size: 18px; font-weight: 600;">Add Menu Item</h2>
+            <div class="form-group">
+                <label>Label</label>
+                <input type="text" id="new-item-label" class="form-input" placeholder="e.g. Services">
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input type="text" id="new-item-url" class="form-input" placeholder="e.g. /services.html">
+            </div>
+            <div class="form-group">
+                <label>Parent Item (Optional)</label>
+                <select id="new-item-parent" class="form-input">
+                    <option value="">-- Main Menu (Top Level) --</option>
+                    <!-- Filled by JS -->
+                </select>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+                <button class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitAddItem()">Add Item</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Menu saved successfully!</div>
+
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Generate rough UUID
+        function generateId() {
+            return 'id-' + Math.random().toString(36).substr(2, 9);
+        }
+
+        let menuData = { mainMenu: [] };
+        let draggedEl = null;
+
+        async function loadMenu() {
+            try {
+                const res = await fetch('/api/menu');
+                if (res.ok) {
+                    menuData = await res.json();
+                } else {
+                    menuData = { mainMenu: [] }; // fallback
+                }
+                if (!menuData.mainMenu) menuData.mainMenu = [];
+                renderMenu();
+            } catch (err) {
+                console.error("Error loading menu", err);
+            }
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+            
+            menuData.mainMenu.forEach((item) => {
+                const el = createMenuNode(item, null);
+                container.appendChild(el);
+            });
+            
+            updateParentDropdown();
+        }
+
+        function createMenuNode(item, parentId) {
+            const div = document.createElement('div');
+            div.className = 'menu-item';
+            div.dataset.id = item.id;
+            div.dataset.parentId = parentId || 'root';
+            div.draggable = true;
+            
+            // Drag Events
+            div.addEventListener('dragstart', handleDragStart);
+            div.addEventListener('dragover', handleDragOver);
+            div.addEventListener('dragend', handleDragEnd);
+
+            const hasChildren = item.children && item.children.length > 0;
+            
+            let html = \`
+                <div class="menu-item-header">
+                    <div class="drag-handle">⠿</div>
+                    
+                    <div class="item-details" id="details-\${item.id}">
+                        <span class="item-label">\${item.label}</span>
+                        <span class="item-url">\${item.url}</span>
+                    </div>
+
+                    <div class="inline-edit-form" id="edit-form-\${item.id}">
+                        <input type="text" id="edit-label-\${item.id}" class="form-input box-sizing-override" value="\${item.label}" style="width: 150px; padding: 4px 8px; font-size: 13px;">
+                        <input type="text" id="edit-url-\${item.id}" class="form-input box-sizing-override" value="\${item.url}" style="width: 150px; padding: 4px 8px; font-size: 13px;">
+                        <button class="btn btn-primary" onclick="saveEdit('\${item.id}')" style="padding: 4px 12px; font-size: 12px;">Save</button>
+                        <button class="btn btn-secondary" onclick="cancelEdit('\${item.id}')" style="padding: 4px 12px; font-size: 12px;">Cancel</button>
+                    </div>
+
+                    <div class="actions">
+                        \${!parentId ? \`<button class="btn btn-secondary" onclick="addChild('\${item.id}')" style="padding: 4px 8px; font-size: 12px;">+ Add Child</button>\` : ''}
+                        <button class="btn btn-secondary" onclick="startEdit('\${item.id}')" style="padding: 4px 8px; font-size: 12px;">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteItem('\${item.id}')" style="padding: 4px 8px; font-size: 12px;">Delete</button>
+                        \${hasChildren ? \`
+                            <button class="btn btn-secondary" onclick="toggleChildren('\${item.id}')" style="padding: 4px 8px; font-size: 12px;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="expander-icon-\${item.id}"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                        \` : ''}
+                    </div>
+                </div>
+            \`;
+
+            if (item.children) {
+                html += \`<div class="children-container" id="children-\${item.id}">\`;
+                // Will populate children manually below to bind events
+                html += \`</div>\`;
+            }
+
+            div.innerHTML = html;
+
+            if (item.children) {
+                const childContainer = div.querySelector(\`#children-\${item.id}\`);
+                item.children.forEach(child => {
+                    const childEl = createMenuNode(child, item.id);
+                    childContainer.appendChild(childEl);
+                });
+            }
+
+            return div;
+        }
+
+        // --- Drag and Drop Logic --- //
+        function handleDragStart(e) {
+            draggedEl = e.currentTarget;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', e.currentTarget.innerHTML);
+            setTimeout(() => e.currentTarget.classList.add('dragging'), 0);
+            e.stopPropagation();
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const target = e.currentTarget;
+            if (target && target !== draggedEl && target.dataset.parentId === draggedEl.dataset.parentId) {
+                const box = target.getBoundingClientRect();
+                const offset = e.clientY - box.top - (box.height / 2);
+                if (offset < 0) {
+                    target.parentNode.insertBefore(draggedEl, target);
+                } else {
+                    target.parentNode.insertBefore(draggedEl, target.nextSibling);
+                }
+            }
+        }
+
+        function handleDragEnd(e) {
+            e.currentTarget.classList.remove('dragging');
+            e.stopPropagation();
+            rebuildMenuData(); // Sync the global menuData object based on new DOM structure
+        }
+
+        // Rebuild menuData array purely from DOM
+        function rebuildMenuData() {
+            const newMenu = [];
+            document.querySelectorAll('#menu-container > .menu-item').forEach(mainEl => {
+                const mainId = mainEl.dataset.id;
+                const mainItem = findItemInTree(menuData.mainMenu, mainId);
+                if (!mainItem) return;
+                
+                const newMain = { ...mainItem, children: [] };
+                
+                const childContainer = mainEl.querySelector('.children-container');
+                if (childContainer) {
+                    childContainer.querySelectorAll('.menu-item').forEach(childEl => {
+                        const childId = childEl.dataset.id;
+                        const childItem = findItemInTree(menuData.mainMenu, childId);
+                        if(childItem) newMain.children.push({ ...childItem });
+                    });
+                }
+                
+                if (newMain.children.length === 0) delete newMain.children;
+                newMenu.push(newMain);
+            });
+            menuData.mainMenu = newMenu;
+        }
+
+        function findItemInTree(treeList, id) {
+            for (let item of treeList) {
+                if (item.id === id) return item;
+                if (item.children) {
+                    const found = findItemInTree(item.children, id);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        // --- UI Interactions --- //
+        window.toggleChildren = function(id) {
+            const container = document.getElementById('children-' + id);
+            if (container) {
+                container.classList.toggle('expanded');
+                const svg = document.querySelector('.expander-icon-' + id);
+                if (container.classList.contains('expanded')) {
+                    svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>';
+                } else {
+                    svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>';
+                }
+            }
+        };
+
+        window.startEdit = function(id) {
+            document.getElementById('details-' + id).classList.add('hidden');
+            document.getElementById('edit-form-' + id).classList.add('active');
+        };
+
+        window.cancelEdit = function(id) {
+            document.getElementById('details-' + id).classList.remove('hidden');
+            document.getElementById('edit-form-' + id).classList.remove('active');
+            
+            // reset values
+            const item = findItemInTree(menuData.mainMenu, id);
+            if(item) {
+                document.getElementById('edit-label-' + id).value = item.label;
+                document.getElementById('edit-url-' + id).value = item.url;
+            }
+        };
+
+        window.saveEdit = function(id) {
+            const item = findItemInTree(menuData.mainMenu, id);
+            if(item) {
+                item.label = document.getElementById('edit-label-' + id).value;
+                item.url = document.getElementById('edit-url-' + id).value;
+                renderMenu(); // re-render to show changes
+            }
+        };
+
+        window.deleteItem = function(id) {
+            const item = findItemInTree(menuData.mainMenu, id);
+            if (item && item.children && item.children.length > 0) {
+                if (!confirm(\`This will also delete \${item.children.length} sub-items. Are you sure?\`)) return;
+            } else {
+                if (!confirm("Delete this menu item?")) return;
+            }
+
+            // Remove from tree
+            function removeNode(list, targetId) {
+                return list.filter(node => {
+                    if (node.id === targetId) return false;
+                    if (node.children) {
+                        node.children = removeNode(node.children, targetId);
+                        if(node.children.length === 0) delete node.children;
+                    }
+                    return true;
+                });
+            }
+
+            menuData.mainMenu = removeNode(menuData.mainMenu, id);
+            renderMenu();
+        };
+
+        window.addChild = function(parentId) {
+            // Quick inline add or open modal preset to this parent
+            document.getElementById('new-item-label').value = "";
+            document.getElementById('new-item-url').value = "";
+            document.getElementById('new-item-parent').value = parentId;
+            openAddModal();
+        };
+
+        // --- Modal Interactions --- //
+        function updateParentDropdown() {
+            const select = document.getElementById('new-item-parent');
+            const currentVal = select.value;
+            select.innerHTML = '<option value="">-- Main Menu (Top Level) --</option>';
+            
+            menuData.mainMenu.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = \`Inside: \${item.label}\`;
+                select.appendChild(opt);
+            });
+            select.value = currentVal;
+        }
+
+        window.openAddModal = function() {
+            updateParentDropdown();
+            document.getElementById('add-modal').classList.add('show');
+        };
+
+        window.closeAddModal = function() {
+            document.getElementById('add-modal').classList.remove('show');
+            document.getElementById('new-item-label').value = '';
+            document.getElementById('new-item-url').value = '';
+            document.getElementById('new-item-parent').value = '';
+        };
+
+        window.submitAddItem = function() {
+            const label = document.getElementById('new-item-label').value;
+            const url = document.getElementById('new-item-url').value;
+            const parentId = document.getElementById('new-item-parent').value;
+            
+            if (!label) {
+                alert("Label is required"); return;
+            }
+
+            const newItem = { id: generateId(), label, url: url || "#" };
+
+            if (parentId) {
+                const parent = findItemInTree(menuData.mainMenu, parentId);
+                if (parent) {
+                    if (!parent.children) parent.children = [];
+                    parent.children.push(newItem);
+                }
+            } else {
+                menuData.mainMenu.push(newItem);
+            }
+
+            closeAddModal();
+            renderMenu();
+            
+            if (parentId) {
+                // expand parent if it was newly added
+                const container = document.getElementById('children-' + parentId);
+                if (container) container.classList.add('expanded');
+            }
+        };
+
+        // --- Save and API --- //
+        window.saveMenu = async function() {
+            const btn = document.getElementById('save-menu-btn');
+            const origText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Saving...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/menu', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(menuData)
+                });
+                
+                if (res.ok) {
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3000);
+                } else {
+                    const result = await res.json();
+                    alert('Error saving menu: ' + result.message);
+                }
+            } catch(e) {
+                alert('Network error saving menu.');
+            } finally {
+                btn.innerHTML = origText;
+                btn.disabled = false;
+            }
+        };
+
+        // --- Quick Templates --- //
+        window.resetMenu = function() {
+            if(!confirm("This will replace your current menu with the default one. Continue?")) return;
+            menuData.mainMenu = [
+                {id: generateId(), label: "Home", url: "/"},
+                {id: generateId(), label: "About", url: "/about.html"},
+                {id: generateId(), label: "Services", url: "/services.html"},
+                {id: generateId(), label: "Portfolio", url: "/portfolio/"},
+                {id: generateId(), label: "Contact", url: "/contact.html"}
+            ];
+            renderMenu();
+        };
+
+        window.addServicesMenu = function() {
+            const item = {
+                id: generateId(), label: "Services", url: "/services.html",
+                children: [
+                    {id: generateId(), label: "Kitchen Design", url: "/services/kitchen-design.html"},
+                    {id: generateId(), label: "Custom Kitchen Cabinets", url: "/services/custom-kitchen-cabinets.html"},
+                    {id: generateId(), label: "Bathroom Design", url: "/services/bathroom-design.html"},
+                    {id: generateId(), label: "Closet Design", url: "/services/closet-design.html"},
+                    {id: generateId(), label: "Basement Bar", url: "/services/basement-bar.html"},
+                    {id: generateId(), label: "Home Office", url: "/services/home-office.html"},
+                    {id: generateId(), label: "Entryway Storage", url: "/services/entryway-storage.html"}
+                ]
+            };
+            menuData.mainMenu.push(item);
+            renderMenu();
+        };
+
+        window.addProductsMenu = function() {
+            const item = {
+                id: generateId(), label: "Products", url: "/products.html",
+                children: [
+                    {id: generateId(), label: "Cabinetry", url: "/products/cabinetry.html"},
+                    {id: generateId(), label: "Countertop", url: "/products/countertop.html"},
+                    {id: generateId(), label: "Closet", url: "/products/closet.html"},
+                    {id: generateId(), label: "Vanity", url: "/products/vanity.html"},
+                    {id: generateId(), label: "Tile", url: "/products/tile.html"},
+                    {id: generateId(), label: "Shower Door", url: "/products/shower-door.html"},
+                    {id: generateId(), label: "Hardware", url: "/products/hardware.html"}
+                ]
+            };
+            menuData.mainMenu.push(item);
+            renderMenu();
+        };
+
+        // Init
+        loadMenu();
+    </script>
+</body>
+</html>

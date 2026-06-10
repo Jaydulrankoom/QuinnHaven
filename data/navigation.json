@@ -1,0 +1,34 @@
+{
+  "mainMenu": [
+    { "id":"home", "label":"Home", "url":"/", "children":[] },
+    { "id":"about", "label":"About", "url":"/about.html", "children":[] },
+    { "id":"services", "label":"Services", "url":"/services/", "children":[
+      { "id":"kitchen-design","label":"Kitchen Design","url":"/services/kitchen-design.html" },
+      { "id":"custom-cabinets","label":"Custom Kitchen Cabinets","url":"/services/custom-kitchen-cabinets.html" },
+      { "id":"bathroom-design","label":"Bathroom Design","url":"/services/bathroom-design.html" },
+      { "id":"closet-design","label":"Closet Design","url":"/services/closet-design.html" },
+      { "id":"basement-bar","label":"Basement Bar","url":"/services/basement-bar.html" },
+      { "id":"home-office","label":"Home Office","url":"/services/home-office.html" },
+      { "id":"entryway","label":"Entryway Storage","url":"/services/entryway-storage.html" }
+    ]},
+    { "id":"products","label":"Products","url":"/products/","children":[
+      { "id":"cabinetry","label":"Cabinetry","url":"/products/cabinetry.html" },
+      { "id":"countertop","label":"Countertop","url":"/products/countertop.html" },
+      { "id":"closet","label":"Closet","url":"/products/closet.html" },
+      { "id":"vanity","label":"Vanity","url":"/products/vanity.html" },
+      { "id":"tile","label":"Tile","url":"/products/tile.html" },
+      { "id":"shower-door","label":"Shower Door","url":"/products/shower-door.html" },
+      { "id":"hardware","label":"Hardware","url":"/products/hardware.html" }
+    ]},
+    { "id":"portfolio","label":"Portfolio","url":"/portfolio/","children":[
+      { "id":"portfolio-kitchens","label":"Kitchens","url":"/portfolio/kitchens.html" },
+      { "id":"portfolio-bathrooms","label":"Bathrooms","url":"/portfolio/bathrooms.html" },
+      { "id":"portfolio-closets","label":"Closets","url":"/portfolio/closets.html" },
+      { "id":"portfolio-bars","label":"Bars","url":"/portfolio/bars.html" }
+    ]},
+    { "id":"builder-supply","label":"Builder Supply","url":"/builder-supply.html","children":[] },
+    { "id":"blog","label":"Blog","url":"/blog.html","children":[] },
+    { "id":"showroom","label":"Showroom","url":"/showroom.html","children":[] },
+    { "id":"contact","label":"Contact","url":"/contact.html","children":[] }
+  ]
+}

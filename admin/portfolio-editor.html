@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .editor-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+            align-items: start;
+        }
+        
+        @media (max-width: 1024px) {
+            .editor-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .editor-main {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .title-input {
+            width: 100%;
+            font-size: 32px;
+            font-weight: 700;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            box-sizing: border-box;
+        }
+        
+        .title-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        /* Gallery */
+        .gallery-container {
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            background: var(--surface2);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: grab;
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-item.dragging {
+            opacity: 0.5;
+        }
+        
+        .gallery-item-actions {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            display: flex;
+            gap: 4px;
+        }
+        
+        .img-btn {
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        .img-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        .img-btn.featured-btn.active {
+            background: var(--gold);
+        }
+        
+        .upload-area {
+            text-align: center;
+            padding: 32px;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .upload-area:hover {
+            border-color: var(--gold);
+            background: var(--surface2);
+        }
+        
+        /* Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .tag-chip {
+            background: var(--surface2);
+            padding: 4px 8px;
+            border-radius: 16px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border);
+        }
+        .tag-remove {
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: bold;
+        }
+        .tag-remove:hover {
+            color: var(--red);
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.error {
+            background-color: var(--red);
+            color: white;
+        }
+        
+        .unsaved-indicator {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .unsaved-indicator.show {
+            opacity: 1;
+            color: var(--gold);
+        }
+        
+        .image-loading {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        #featured-preview {
+            width: 100%;
+            height: 160px;
+            background-color: var(--surface2);
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+        }
+        #featured-preview.has-image {
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio-list.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-editor.html" class="nav-item active">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <div style="display:flex; align-items:center; gap: 16px;">
+                    <h1 id="page-heading">Add New Project</h1>
+                    <span id="unsaved-indicator" class="unsaved-indicator">Unsaved changes ⏺</span>
+                </div>
+                <div class="topbar-actions">
+                    <a href="/admin/portfolio-list.html" class="btn btn-secondary">Back to List</a>
+                    <button id="top-save-draft-btn" class="btn btn-secondary">Save Draft</button>
+                    <button id="top-publish-btn" class="btn btn-primary">Publish</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="editor-layout">
+                    <!-- Left Column -->
+                    <div class="editor-main">
+                        <div>
+                            <input type="text" id="project-title" class="title-input" placeholder="Project Title">
+                        </div>
+                        
+                        <div class="card" style="padding: 20px;">
+                            <label style="font-weight: 600; display: block; margin-bottom: 8px;">Description</label>
+                            <textarea id="project-desc" class="form-textarea" style="min-height: 120px;" placeholder="Describe the project..."></textarea>
+                        </div>
+
+                        <div class="card" style="padding: 20px;">
+                            <h3 class="panel-title" style="border:none; margin-bottom: 8px;">Project Gallery</h3>
+                            <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">Upload images and drag to reorder. The first image or the one you select via the star icon becomes the featured image.</p>
+                            
+                            <div class="gallery-container">
+                                <div id="gallery-grid" class="gallery-grid">
+                                    <!-- Populated by JS -->
+                                </div>
+                                
+                                <div class="upload-area" onclick="document.getElementById('gallery-upload-input').click()">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted); margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <div style="font-weight: 500;">Click to upload images</div>
+                                    <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">JPG, PNG, WebP allowed</div>
+                                </div>
+                                <input type="file" id="gallery-upload-input" multiple accept="image/*" style="display:none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <aside>
+                        <!-- Publish Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Publish</h3>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="project-status" class="form-input">
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                </select>
+                            </div>
+                            
+                            <div class="actions-grid">
+                                <button id="panel-save-draft-btn" class="btn btn-secondary" style="width:100%;">Save Draft</button>
+                                <button id="panel-publish-btn" class="btn btn-primary" style="width:100%;">Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- Category Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Category</h3>
+                            <select id="project-category" class="form-input">
+                                <option value="Kitchens">Kitchens</option>
+                                <option value="Bathrooms">Bathrooms</option>
+                                <option value="Closets">Closets</option>
+                                <option value="Bars">Bars</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Details Panel -->
+                        <div class="panel">
+                            <h3 class="panel-title">Details</h3>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="project-location" class="form-input" placeholder="e.g. Wallingford, CT">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>Tags</label>
+                                <input type="text" id="tag-input" class="form-input" placeholder="Add tag + press Enter">
+                                <div id="tags-container" class="tags-container"></div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Image Info -->
+                        <div class="panel">
+                            <h3 class="panel-title">Featured Image</h3>
+                            <div id="featured-preview">
+                                <span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>
+                            </div>
+                            <p style="font-size:12px; color:var(--muted); text-align:center;">Click the star (☆) on any gallery image to set it as featured.</p>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Project saved!</div>
+
+    <!-- Scripts -->
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // State variables
+        let currentProjectId = null;
+        let isDirty = false;
+        let projectImages = [];
+        let featuredImage = '';
+        let tagsList = [];
+        let uploadQueue = [];
+        
+        let draggedImgIndex = null;
+        
+        // DOM Elements
+        const titleInput = document.getElementById('project-title');
+        const descInput = document.getElementById('project-desc');
+        const statusSelect = document.getElementById('project-status');
+        const categorySelect = document.getElementById('project-category');
+        const locationInput = document.getElementById('project-location');
+        const tagInput = document.getElementById('tag-input');
+        const galleryUploadInput = document.getElementById('gallery-upload-input');
+        const galleryGrid = document.getElementById('gallery-grid');
+        const featuredPreview = document.getElementById('featured-preview');
+
+        // Initialization
+        async function runInit() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            
+            if (id) {
+                currentProjectId = id;
+                document.getElementById('page-heading').textContent = 'Edit Project';
+                await loadProject(id);
+            }
+            
+            setupEventListeners();
+        }
+
+        async function loadProject(id) {
+            try {
+                const res = await fetch('/api/portfolio/' + id);
+                if (res.ok) {
+                    const data = await res.json();
+                    const p = data.item;
+                    
+                    titleInput.value = p.title || '';
+                    descInput.value = p.description || '';
+                    statusSelect.value = p.status || 'draft';
+                    categorySelect.value = p.category || 'Kitchens';
+                    locationInput.value = p.location || '';
+                    
+                    if (Array.isArray(p.tags)) {
+                        tagsList = p.tags;
+                        renderTags();
+                    }
+                    
+                    if (Array.isArray(p.images)) {
+                        projectImages = p.images;
+                    }
+                    featuredImage = p.featuredImage || (projectImages.length > 0 ? projectImages[0] : '');
+                    
+                    renderGallery();
+                    updateFeaturedDisplay();
+                } else {
+                    alert('Project not found');
+                    window.location.href = '/admin/portfolio-list.html';
+                }
+            } catch (err) {
+                console.error("Error loading project", err);
+            }
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            const trackChange = () => {
+                isDirty = true;
+                document.getElementById('unsaved-indicator').classList.add('show');
+            };
+            
+            [titleInput, descInput, statusSelect, categorySelect, locationInput].forEach(el => {
+                el.addEventListener('input', trackChange);
+                el.addEventListener('change', trackChange);
+            });
+
+            // Tags Logic
+            tagInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const val = tagInput.value.trim();
+                    if (val && !tagsList.includes(val)) {
+                        tagsList.push(val);
+                        renderTags();
+                        trackChange();
+                    }
+                    tagInput.value = '';
+                }
+            });
+
+            // Image Upload Logic
+            galleryUploadInput.addEventListener('change', handleImageUpload);
+            
+            // Drag and drop for upload area placeholder
+            const uploadArea = document.querySelector('.upload-area');
+            uploadArea.addEventListener('dragover', e => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--gold)';
+            });
+            uploadArea.addEventListener('dragleave', e => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--border)';
+            });
+            uploadArea.addEventListener('drop', e => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--border)';
+                if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    galleryUploadInput.files = e.dataTransfer.files;
+                    handleImageUpload({ target: galleryUploadInput });
+                }
+            });
+
+            // Save Buttons
+            document.getElementById('top-save-draft-btn').addEventListener('click', () => saveProject('draft'));
+            document.getElementById('panel-save-draft-btn').addEventListener('click', () => saveProject('draft'));
+            
+            document.getElementById('top-publish-btn').addEventListener('click', () => saveProject('published'));
+            document.getElementById('panel-publish-btn').addEventListener('click', () => saveProject('published'));
+        }
+
+        function renderTags() {
+            const container = document.getElementById('tags-container');
+            container.innerHTML = '';
+            tagsList.forEach((tag, idx) => {
+                const el = document.createElement('div');
+                el.className = 'tag-chip';
+                el.innerHTML = \`
+                    \${tag}
+                    <span class="tag-remove" onclick="removeTag(\${idx})">×</span>
+                \`;
+                container.appendChild(el);
+            });
+        }
+        
+        window.removeTag = function(idx) {
+            tagsList.splice(idx, 1);
+            renderTags();
+            isDirty = true;
+            document.getElementById('unsaved-indicator').classList.add('show');
+        };
+
+        async function handleImageUpload(e) {
+            const files = Array.from(e.target.files);
+            if (!files.length) return;
+            
+            isDirty = true;
+            document.getElementById('unsaved-indicator').classList.add('show');
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Add temporary placeholder
+                const tempId = 'upload_' + Date.now() + '_' + i;
+                uploadQueue.push({ id: tempId, name: file.name });
+                renderGallery(); // Render with placeholders
+                
+                try {
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    
+                    const res = await fetch('/api/media/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (res.ok) {
+                        const data = await res.json();
+                        const uploadedUrl = data.url || (Array.isArray(data) && data[0] && data[0].url);
+                        if (uploadedUrl) {
+                            projectImages.push(uploadedUrl);
+                            if (!featuredImage && projectImages.length === 1) {
+                                featuredImage = uploadedUrl;
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.error('Upload failed for', file.name, err);
+                } finally {
+                    uploadQueue = uploadQueue.filter(item => item.id !== tempId);
+                    renderGallery();
+                    updateFeaturedDisplay();
+                }
+            }
+            // Clear input
+            galleryUploadInput.value = '';
+        }
+
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
+            
+            // Render actual images
+            projectImages.forEach((url, idx) => {
+                const el = document.createElement('div');
+                el.className = 'gallery-item';
+                el.style.backgroundImage = \`url('\${url}')\`;
+                el.draggable = true;
+                el.dataset.index = idx;
+                
+                const isFeatured = (featuredImage === url) || (idx === 0 && !featuredImage);
+                if (isFeatured) featuredImage = url; // sync
+                
+                el.innerHTML = \`
+                    <div class="gallery-item-actions">
+                        <button type="button" class="img-btn featured-btn \${isFeatured ? 'active' : ''}" onclick="setFeatured('\${url}', event)" title="Set as featured">\${isFeatured ? '★' : '☆'}</button>
+                        <button type="button" class="img-btn" onclick="removeImage(\${idx}, event)" title="Remove">×</button>
+                    </div>
+                \`;
+                
+                el.addEventListener('dragstart', handleDragStart);
+                el.addEventListener('dragover', handleDragOver);
+                el.addEventListener('drop', handleDrop);
+                el.addEventListener('dragend', handleDragEnd);
+                
+                galleryGrid.appendChild(el);
+            });
+            
+            // Render uploading placeholders
+            uploadQueue.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'gallery-item';
+                el.innerHTML = \`
+                    <div class="image-loading">
+                        Uploading...
+                    </div>
+                \`;
+                galleryGrid.appendChild(el);
+            });
+        }
+        
+        window.removeImage = function(idx, event) {
+            event.stopPropagation();
+            if (!confirm('Remove this image?')) return;
+            const removedUrl = projectImages.splice(idx, 1)[0];
+            
+            if (featuredImage === removedUrl) {
+                featuredImage = projectImages.length > 0 ? projectImages[0] : '';
+            }
+            
+            isDirty = true;
+            document.getElementById('unsaved-indicator').classList.add('show');
+            renderGallery();
+            updateFeaturedDisplay();
+        };
+        
+        window.setFeatured = function(url, event) {
+            event.stopPropagation();
+            featuredImage = url;
+            isDirty = true;
+            document.getElementById('unsaved-indicator').classList.add('show');
+            renderGallery();
+            updateFeaturedDisplay();
+        };
+        
+        function updateFeaturedDisplay() {
+            if (featuredImage) {
+                featuredPreview.style.backgroundImage = \`url('\${featuredImage}')\`;
+                featuredPreview.innerHTML = '';
+                featuredPreview.classList.add('has-image');
+            } else {
+                featuredPreview.style.backgroundImage = 'none';
+                featuredPreview.innerHTML = '<span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>';
+                featuredPreview.classList.remove('has-image');
+            }
+        }
+
+        // Drag & Drop for reordering
+        function handleDragStart(e) {
+            draggedImgIndex = parseInt(e.currentTarget.dataset.index, 10);
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', draggedImgIndex);
+            setTimeout(() => e.currentTarget.classList.add('dragging'), 0);
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+        
+        function handleDrop(e) {
+            e.stopPropagation();
+            const targetIndex = parseInt(e.currentTarget.dataset.index, 10);
+            if (draggedImgIndex !== null && draggedImgIndex !== targetIndex) {
+                // Reorder array
+                const item = projectImages.splice(draggedImgIndex, 1)[0];
+                projectImages.splice(targetIndex, 0, item);
+                
+                isDirty = true;
+                document.getElementById('unsaved-indicator').classList.add('show');
+                renderGallery();
+            }
+        }
+        
+        function handleDragEnd(e) {
+            e.currentTarget.classList.remove('dragging');
+            draggedImgIndex = null;
+        }
+
+        // Saving logic
+        async function saveProject(overrideStatus) {
+            if (overrideStatus) {
+                statusSelect.value = overrideStatus;
+            }
+            
+            if (!titleInput.value.trim()) {
+                alert("Please enter a title for the project.");
+                titleInput.focus();
+                return;
+            }
+
+            const payload = {
+                title: titleInput.value.trim(),
+                description: descInput.value.trim(),
+                category: categorySelect.value,
+                location: locationInput.value.trim(),
+                tags: tagsList,
+                images: projectImages,
+                featuredImage: featuredImage,
+                status: statusSelect.value
+            };
+
+            const endpoint = currentProjectId ? \`/api/portfolio/\${currentProjectId}\` : '/api/portfolio';
+            const method = currentProjectId ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(endpoint, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    isDirty = false;
+                    document.getElementById('unsaved-indicator').classList.remove('show');
+                    
+                    showToast(\`Project \${statusSelect.value === 'published' ? 'published' : 'saved as draft'} successfully!\`);
+                    
+                    setTimeout(() => {
+                        window.location.href = '/admin/portfolio-list.html';
+                    }, 1000);
+                } else {
+                    const data = await res.json();
+                    alert("Error saving: " + data.message);
+                }
+            } catch (err) {
+                alert("Error saving project.");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        window.addEventListener('beforeunload', (e) => {
+            if (isDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        runInit();
+    </script>
+</body>
+</html>

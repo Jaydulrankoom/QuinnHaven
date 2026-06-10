@@ -1,0 +1,25 @@
+{
+  "columns": [
+    { "title":"Our Services", "links":[
+      {"label":"Kitchen Design","url":"/services/kitchen-design.html"},
+      {"label":"Custom Cabinets","url":"/services/custom-kitchen-cabinets.html"},
+      {"label":"Bathroom Design","url":"/services/bathroom-design.html"},
+      {"label":"Closet Design","url":"/services/closet-design.html"}
+    ]},
+    { "title":"Our Products", "links":[
+      {"label":"Cabinetry","url":"/products/cabinetry.html"},
+      {"label":"Countertops","url":"/products/countertop.html"},
+      {"label":"Tile","url":"/products/tile.html"},
+      {"label":"Vanities","url":"/products/vanity.html"}
+    ]},
+    { "title":"Company", "links":[
+      {"label":"About Us","url":"/about.html"},
+      {"label":"Portfolio","url":"/portfolio/"},
+      {"label":"Blog","url":"/blog.html"},
+      {"label":"Contact","url":"/contact.html"}
+    ]}
+  ],
+  "bottomText": "© 2025 QuinnHaven Kitchen Cabinets & Bathroom Design. All rights reserved.",
+  "address": "Wallingford, Connecticut",
+  "showSocialLinks": true
+}

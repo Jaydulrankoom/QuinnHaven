@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "id": "port-001",
+      "title": "Modern White Kitchen Renovation",
+      "category": "kitchens",
+      "location": "Wallingford, CT",
+      "description": "Complete kitchen transformation featuring custom white shaker cabinets, quartz countertops, and an oversized island.",
+      "images": [],
+      "featuredImage": "",
+      "tags": ["kitchen", "white cabinets", "quartz", "island"],
+      "status": "published",
+      "order": 1
+    }
+  ],
+  "categories": ["kitchens","bathrooms","closets","bars"]
+}

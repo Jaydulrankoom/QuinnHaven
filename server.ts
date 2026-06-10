@@ -3,6 +3,11 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import { createRequire } from 'module';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+
+const require = createRequire(import.meta.url);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,6 +56,73 @@ ${routes.map(route => `
 
     res.header('Content-Type', 'application/xml');
     res.send(sitemap);
+  });
+
+  // Admin API Routes and static files
+  
+  // Body parsing and session for admin API
+  app.set('trust proxy', 1);
+  app.use('/api', bodyParser.json());
+  app.use('/api', bodyParser.urlencoded({ extended: true }));
+  app.use('/api', session({
+    secret: process.env.SESSION_SECRET || 'quinnhaven_secret_2025',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      secure: true,
+      sameSite: 'none'
+    }
+  }));
+
+  try {
+    const authRoutes = require('./server/routes/auth.js');
+    app.use('/api/auth', authRoutes);
+  } catch (e) { console.log('Auth routes failed or missing', e.message); }
+
+  try {
+    const contentRoutes = require('./server/routes/content.js');
+    app.use('/api/content', contentRoutes);
+  } catch (e) { console.log('Content routes failed or missing', e.message); }
+
+  try {
+    const blogRoutes = require('./server/routes/blog.js');
+    app.use('/api/blog', blogRoutes);
+  } catch (e) {}
+
+  try {
+    const portfolioRoutes = require('./server/routes/portfolio.js');
+    app.use('/api/portfolio', portfolioRoutes);
+  } catch (e) {}
+
+  try {
+    const mediaRoutes = require('./server/routes/media.js');
+    app.use('/api/media', mediaRoutes);
+  } catch (e) {}
+
+  try {
+    const settingsRoutes = require('./server/routes/settings.js');
+    app.use('/api/settings', settingsRoutes);
+  } catch (e) {}
+
+  try {
+    const menuRoutes = require('./server/routes/menu.js');
+    app.use('/api/menu', menuRoutes);
+  } catch (e) {}
+
+  try {
+    const pagesRoutes = require('./server/routes/pages.js');
+    app.use('/api/pages', pagesRoutes);
+  } catch (e) {}
+
+  // Mount Admin panel statically
+  app.use('/admin', express.static(path.join(process.cwd(), 'admin')));
+  app.use('/uploads', express.static(path.join(process.cwd(), 'admin/uploads')));
+
+  // Redirect /admin to /admin/login.html if not logged in (handled by static files + client JS)
+  // For simplicity, let's just make sure /admin maps to index if we had one.
+  app.get('/admin', (req, res) => {
+    res.redirect('/admin/dashboard.html');
   });
 
   // API routes FIRST

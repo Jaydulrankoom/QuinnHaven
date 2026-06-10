@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Editor - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .ql-toolbar.ql-snow, .ql-container.ql-snow {
+            border-color: var(--border);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+        }
+        .ql-editor {
+            min-height: 150px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            background-color: var(--surface2);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item active">Homepage Editor</a>
+                <a href="/admin/header-footer.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-posts.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-edit.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-edit.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-manager.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media-library.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="topbar">
+                <h1>Homepage Editor</h1>
+                <div class="topbar-actions">
+                    <button id="save-btn" class="btn btn-primary">Save Homepage</button>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="hero">Hero Section</button>
+                    <button class="tab-btn" data-tab="about">About Strip</button>
+                    <button class="tab-btn" data-tab="services">Services Section</button>
+                    <button class="tab-btn" data-tab="cta">CTA Banner</button>
+                </div>
+
+                <!-- Hero Section Tab -->
+                <div id="tab-hero" class="tab-content active">
+                    <div class="card">
+                        <h2 class="mb-4">Hero Content</h2>
+                        <div class="form-group">
+                            <label>Main Headline</label>
+                            <input type="text" id="hero-headline" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Sub-headline</label>
+                            <textarea id="hero-subheadline" class="form-textarea" style="min-height:80px;"></textarea>
+                        </div>
+                        
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label>Primary Button Text</label>
+                                <input type="text" id="hero-cta1-text" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Primary Button URL</label>
+                                <input type="text" id="hero-cta1-url" class="form-input">
+                            </div>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label>Secondary Button Text</label>
+                                <input type="text" id="hero-cta2-text" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Secondary Button URL</label>
+                                <input type="text" id="hero-cta2-url" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Background Image URL</label>
+                            <input type="text" id="hero-bg" class="form-input" placeholder="/uploads/image.jpg">
+                            <div class="image-preview" id="hero-bg-preview" style="background-image: url('');">
+                                <span style="color:var(--muted); font-size:14px;">No image selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Strip Tab -->
+                <div id="tab-about" class="tab-content">
+                    <div class="card">
+                        <h2 class="mb-4">About Strip Content</h2>
+                        <div class="form-group">
+                            <label>Headline</label>
+                            <input type="text" id="about-headline" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Body Text</label>
+                            <div id="about-body-editor"></div>
+                        </div>
+                        
+                        <h3 class="mb-4 mt-4 text-gold">Stats</h3>
+                        <div class="stats-grid">
+                            <div class="form-group">
+                                <label>Stat 1 Number</label>
+                                <input type="text" id="stat-1-num" class="form-input">
+                                <label class="mt-2">Stat 1 Label</label>
+                                <input type="text" id="stat-1-label" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Stat 2 Number</label>
+                                <input type="text" id="stat-2-num" class="form-input">
+                                <label class="mt-2">Stat 2 Label</label>
+                                <input type="text" id="stat-2-label" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Stat 3 Number</label>
+                                <input type="text" id="stat-3-num" class="form-input">
+                                <label class="mt-2">Stat 3 Label</label>
+                                <input type="text" id="stat-3-label" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Stat 4 Number</label>
+                                <input type="text" id="stat-4-num" class="form-input">
+                                <label class="mt-2">Stat 4 Label</label>
+                                <input type="text" id="stat-4-label" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Section Tab -->
+                <div id="tab-services" class="tab-content">
+                    <div class="card">
+                        <h2 class="mb-4">Services Section Content</h2>
+                        <div class="alert alert-success">
+                            Individual services are edited in the Services section.
+                        </div>
+                        <div class="form-group">
+                            <label>Section Headline</label>
+                            <input type="text" id="services-headline" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Section Sub-headline</label>
+                            <textarea id="services-subheadline" class="form-textarea" style="min-height:80px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Banner Tab -->
+                <div id="tab-cta" class="tab-content">
+                    <div class="card">
+                        <h2 class="mb-4">CTA Banner Content</h2>
+                        <div class="form-group">
+                            <label>Banner Headline</label>
+                            <input type="text" id="cta-headline" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Body Text</label>
+                            <textarea id="cta-body" class="form-textarea"></textarea>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label>Button Text</label>
+                                <input type="text" id="cta-btn-text" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Button URL</label>
+                                <input type="text" id="cta-btn-url" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Homepage saved!</div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Tabs Logic
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Quill init
+        var quill = new Quill('#about-body-editor', {
+            theme: 'snow'
+        });
+
+        let homepageData = {};
+
+        // Load data
+        async function loadData() {
+            try {
+                const res = await fetch('/api/content/homepage');
+                if (res.ok) {
+                    homepageData = await res.json();
+                    
+                    // Hero
+                    if(homepageData.hero) {
+                        document.getElementById('hero-headline').value = homepageData.hero.headline || '';
+                        document.getElementById('hero-subheadline').value = homepageData.hero.subheadline || '';
+                        document.getElementById('hero-cta1-text').value = homepageData.hero.ctaPrimary?.text || '';
+                        document.getElementById('hero-cta1-url').value = homepageData.hero.ctaPrimary?.url || '';
+                        document.getElementById('hero-cta2-text').value = homepageData.hero.ctaSecondary?.text || '';
+                        document.getElementById('hero-cta2-url').value = homepageData.hero.ctaSecondary?.url || '';
+                        document.getElementById('hero-bg').value = homepageData.hero.backgroundImage || '';
+                        if(homepageData.hero.backgroundImage) {
+                            document.getElementById('hero-bg-preview').style.backgroundImage = \`url(\${homepageData.hero.backgroundImage})\`;
+                            document.getElementById('hero-bg-preview').innerHTML = '';
+                        }
+                    }
+
+                    // About
+                    if(homepageData.aboutStrip) {
+                        document.getElementById('about-headline').value = homepageData.aboutStrip.headline || '';
+                        quill.root.innerHTML = homepageData.aboutStrip.body || '';
+                        
+                        if(homepageData.aboutStrip.stats && homepageData.aboutStrip.stats.length >= 4) {
+                            document.getElementById('stat-1-num').value = homepageData.aboutStrip.stats[0].number || '';
+                            document.getElementById('stat-1-label').value = homepageData.aboutStrip.stats[0].label || '';
+                            document.getElementById('stat-2-num').value = homepageData.aboutStrip.stats[1].number || '';
+                            document.getElementById('stat-2-label').value = homepageData.aboutStrip.stats[1].label || '';
+                            document.getElementById('stat-3-num').value = homepageData.aboutStrip.stats[2].number || '';
+                            document.getElementById('stat-3-label').value = homepageData.aboutStrip.stats[2].label || '';
+                            document.getElementById('stat-4-num').value = homepageData.aboutStrip.stats[3].number || '';
+                            document.getElementById('stat-4-label').value = homepageData.aboutStrip.stats[3].label || '';
+                        }
+                    }
+
+                    // Services
+                    if(homepageData.servicesSection) {
+                        document.getElementById('services-headline').value = homepageData.servicesSection.headline || '';
+                        document.getElementById('services-subheadline').value = homepageData.servicesSection.subheadline || '';
+                    }
+
+                    // CTA
+                    if(homepageData.ctaBanner) {
+                        document.getElementById('cta-headline').value = homepageData.ctaBanner.headline || '';
+                        document.getElementById('cta-body').value = homepageData.ctaBanner.body || '';
+                        document.getElementById('cta-btn-text').value = homepageData.ctaBanner.buttonText || '';
+                        document.getElementById('cta-btn-url').value = homepageData.ctaBanner.buttonUrl || '';
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to load homepage data', err);
+            }
+        }
+
+        // Image preview update
+        document.getElementById('hero-bg').addEventListener('input', (e) => {
+            const url = e.target.value;
+            const preview = document.getElementById('hero-bg-preview');
+            if (url) {
+                preview.style.backgroundImage = \`url(\${url})\`;
+                preview.innerHTML = '';
+            } else {
+                preview.style.backgroundImage = 'none';
+                preview.innerHTML = '<span style="color:var(--muted); font-size:14px;">No image selected</span>';
+            }
+        });
+
+        // Save data
+        document.getElementById('save-btn').addEventListener('click', async () => {
+            const btn = document.getElementById('save-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Saving...';
+            btn.disabled = true;
+
+            const updatedData = {
+                hero: {
+                    headline: document.getElementById('hero-headline').value,
+                    subheadline: document.getElementById('hero-subheadline').value,
+                    ctaPrimary: {
+                        text: document.getElementById('hero-cta1-text').value,
+                        url: document.getElementById('hero-cta1-url').value
+                    },
+                    ctaSecondary: {
+                        text: document.getElementById('hero-cta2-text').value,
+                        url: document.getElementById('hero-cta2-url').value
+                    },
+                    backgroundImage: document.getElementById('hero-bg').value
+                },
+                aboutStrip: {
+                    headline: document.getElementById('about-headline').value,
+                    body: quill.root.innerHTML,
+                    stats: [
+                        { number: document.getElementById('stat-1-num').value, label: document.getElementById('stat-1-label').value },
+                        { number: document.getElementById('stat-2-num').value, label: document.getElementById('stat-2-label').value },
+                        { number: document.getElementById('stat-3-num').value, label: document.getElementById('stat-3-label').value },
+                        { number: document.getElementById('stat-4-num').value, label: document.getElementById('stat-4-label').value }
+                    ]
+                },
+                servicesSection: {
+                    headline: document.getElementById('services-headline').value,
+                    subheadline: document.getElementById('services-subheadline').value
+                },
+                ctaBanner: {
+                    headline: document.getElementById('cta-headline').value,
+                    body: document.getElementById('cta-body').value,
+                    buttonText: document.getElementById('cta-btn-text').value,
+                    buttonUrl: document.getElementById('cta-btn-url').value
+                }
+            };
+
+            // Merge with existing properties that might not be in the form (like IDs if they exist)
+            const payload = { ...homepageData, ...updatedData };
+
+            try {
+                const res = await fetch('/api/content/homepage', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await res.json();
+                
+                if (result.success) {
+                    showToast('Homepage saved successfully!');
+                } else {
+                    alert('Error saving: ' + result.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error saving homepage.');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Init
+        loadData();
+    </script>
+</body>
+</html>

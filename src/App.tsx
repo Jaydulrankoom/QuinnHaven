@@ -29,6 +29,17 @@ const TermsOfUse = lazy(() => import("./pages/TermsOfUse"));
 const Contact = lazy(() => import("./pages/Contact"));
 const GenericPage = lazy(() => import("./pages/GenericPage"));
 
+// Admin / CMS Routes
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminProducts = lazy(() => import("./pages/admin/AdminProducts"));
+const AdminMenu = lazy(() => import("./pages/admin/AdminMenu"));
+const AdminGlobals = lazy(() => import("./pages/admin/AdminGlobals"));
+const AdminBlog = lazy(() => import("./pages/admin/AdminBlog"));
+const AdminPortfolio = lazy(() => import("./pages/admin/AdminPortfolio"));
+const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
+const AdminSettings = lazy(() => import("./pages/admin/AdminSettings"));
+
 function DynamicSEO() {
   const location = useLocation();
   const path = location.pathname;
@@ -152,6 +163,18 @@ export default function App() {
             
             {/* Fallback */}
             <Route path="*" element={<GenericPage title="404 Page Not Found" />} />
+          </Route>
+
+          {/* Admin CMS Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="menu" element={<AdminMenu />} />
+            <Route path="globals" element={<AdminGlobals />} />
+            <Route path="blog" element={<AdminBlog />} />
+            <Route path="portfolio" element={<AdminPortfolio />} />
+            <Route path="pages" element={<AdminPages />} />
+            <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Routes>
       </Suspense>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Settings - QuinnHaven Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+            gap: 16px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+        }
+
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .form-actions {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .password-strength {
+            height: 4px;
+            background: var(--surface2);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .password-strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s;
+        }
+
+        .password-strength-text {
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .strength-weak { background-color: var(--red); color: var(--red); }
+        .strength-medium { background-color: #f59e0b; color: #f59e0b; }
+        .strength-strong { background-color: var(--green); color: var(--green); }
+
+        .image-preview-container {
+            width: 100%;
+            height: 200px;
+            background: var(--surface2);
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+        }
+        .image-preview-container.has-image {
+            border-style: solid;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--green);
+            color: #111;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.error {
+            background-color: var(--red);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">QuinnHaven</div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Content</div>
+                <a href="/admin/dashboard.html" class="nav-item">Dashboard</a>
+                <a href="/admin/pages.html" class="nav-item">Pages</a>
+                <a href="/admin/homepage-editor.html" class="nav-item">Homepage Editor</a>
+                <a href="/admin/header-footer-editor.html" class="nav-item">Header & Footer</a>
+                
+                <div class="nav-section-title">Blog</div>
+                <a href="/admin/blog-list.html" class="nav-item">All Posts</a>
+                <a href="/admin/blog-editor.html" class="nav-item">New Post</a>
+                <a href="/admin/blog-categories.html" class="nav-item">Categories</a>
+                
+                <div class="nav-section-title">Portfolio</div>
+                <a href="/admin/portfolio-list.html" class="nav-item">All Projects</a>
+                <a href="/admin/portfolio-editor.html" class="nav-item">Add Project</a>
+                
+                <div class="nav-section-title">Settings</div>
+                <a href="/admin/menu-editor.html" class="nav-item">Menu Manager</a>
+                <a href="/admin/services.html" class="nav-item">Services</a>
+                <a href="/admin/locations.html" class="nav-item">Locations</a>
+                <a href="/admin/media.html" class="nav-item">Media Library</a>
+                <a href="/admin/settings.html" class="nav-item active">Site Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/change-password.html" class="nav-item">Change Password</a>
+                <a href="#" id="logout-btn" class="nav-item text-red">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="page-header">
+                <h1>Site Settings</h1>
+            </header>
+            
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="general">General</button>
+                <button class="tab-btn" data-tab="seo">SEO Defaults</button>
+                <button class="tab-btn" data-tab="social">Social Links</button>
+                <button class="tab-btn" data-tab="account">Account</button>
+            </div>
+
+            <!-- Tab 1: General -->
+            <div class="tab-content active" id="tab-general">
+                <h2 class="section-title">General Information</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Site Name</label>
+                        <input type="text" id="site-name" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Tagline</label>
+                        <input type="text" id="tagline" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Email</label>
+                        <input type="email" id="email" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Phone</label>
+                        <input type="tel" id="phone" class="form-input">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Address</label>
+                        <textarea id="address" class="form-textarea" style="height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Showroom Hours</label>
+                        <textarea id="hours" class="form-textarea" style="height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Copyright Text</label>
+                        <input type="text" id="copyright" class="form-input">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Google Analytics ID</label>
+                        <input type="text" id="ga-id" class="form-input" placeholder="G-XXXXXXXXXX">
+                        <div class="help-text">Enter your GA4 Measurement ID, e.g. G-XXXXXXXXXX</div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="saveSettings('general')">Save General Settings</button>
+                </div>
+            </div>
+
+            <!-- Tab 2: SEO Defaults -->
+            <div class="tab-content" id="tab-seo">
+                <h2 class="section-title">Global SEO Defaults</h2>
+                <p style="color: var(--muted); margin-bottom: 24px; font-size: 14px;">These defaults apply to any page that doesn't have its own SEO settings.</p>
+                
+                <div class="form-group">
+                    <label>Default Meta Title</label>
+                    <input type="text" id="seo-title" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label>Default Meta Description</label>
+                    <textarea id="seo-desc" class="form-textarea" style="height: 80px;"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Default OG Image (Social Share Image)</label>
+                    <div id="og-preview" class="image-preview-container">
+                        <span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="og-image" class="form-input" placeholder="Image URL">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('og-upload').click()">Upload</button>
+                        <input type="file" id="og-upload" style="display:none" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="saveSettings('seo')">Save SEO Settings</button>
+                </div>
+            </div>
+
+            <!-- Tab 3: Social Links -->
+            <div class="tab-content" id="tab-social">
+                <h2 class="section-title">Social Media Profiles</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Facebook URL</label>
+                        <input type="url" id="social-facebook" class="form-input" placeholder="https://facebook.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram URL</label>
+                        <input type="url" id="social-instagram" class="form-input" placeholder="https://instagram.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Houzz URL</label>
+                        <input type="url" id="social-houzz" class="form-input" placeholder="https://houzz.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Pinterest URL</label>
+                        <input type="url" id="social-pinterest" class="form-input" placeholder="https://pinterest.com/...">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="saveSettings('social')">Save Social Links</button>
+                </div>
+            </div>
+
+            <!-- Tab 4: Account -->
+            <div class="tab-content" id="tab-account">
+                <div class="form-grid">
+                    <div>
+                        <h2 class="section-title">Account Details</h2>
+                        <div class="form-group">
+                            <label>Username (Login Email)</label>
+                            <input type="text" id="account-username" class="form-input" readonly style="background: var(--surface2); color: var(--muted); cursor: not-allowed;">
+                        </div>
+                        <div class="form-group">
+                            <label>Display Name</label>
+                            <input type="text" id="account-name" class="form-input">
+                        </div>
+                        <div class="form-actions" style="margin-top: 16px; padding-top: 16px;">
+                            <button class="btn btn-primary" onclick="saveSettings('account')">Save Account Details</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="section-title">Change Password</h2>
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" id="current-password" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" id="new-password" class="form-input" oninput="checkPasswordStrength()">
+                            <div class="password-strength" id="pwd-strength">
+                                <div class="password-strength-fill" id="pwd-strength-fill"></div>
+                            </div>
+                            <div class="password-strength-text" id="pwd-strength-text">Too weak</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="confirm-password" class="form-input">
+                        </div>
+                        <div class="form-actions" style="margin-top: 16px; padding-top: 16px;">
+                            <button class="btn btn-primary" onclick="changePassword()">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Settings saved successfully!</div>
+
+    <script>
+        // Check Auth
+        fetch('/api/auth/check')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.loggedIn) window.location.href = '/admin/login.html';
+                else if (data.user) {
+                    document.getElementById('account-username').value = data.user.email || data.user.id || 'admin';
+                }
+            })
+            .catch(() => window.location.href = '/admin/login.html');
+
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/admin/login.html');
+        });
+
+        // Tabs logic
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add to clicked
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // State containing all settings
+        let currentSettings = {
+            general: {},
+            seo: {},
+            social: {},
+            account: {}
+        };
+
+        // Inputs mapping
+        const inputs = {
+            general: {
+                siteName: document.getElementById('site-name'),
+                tagline: document.getElementById('tagline'),
+                email: document.getElementById('email'),
+                phone: document.getElementById('phone'),
+                address: document.getElementById('address'),
+                hours: document.getElementById('hours'),
+                copyright: document.getElementById('copyright'),
+                googleAnalyticsId: document.getElementById('ga-id')
+            },
+            seo: {
+                defaultTitle: document.getElementById('seo-title'),
+                defaultDescription: document.getElementById('seo-desc'),
+                defaultOgImage: document.getElementById('og-image')
+            },
+            social: {
+                facebook: document.getElementById('social-facebook'),
+                instagram: document.getElementById('social-instagram'),
+                houzz: document.getElementById('social-houzz'),
+                pinterest: document.getElementById('social-pinterest')
+            },
+            account: {
+                displayName: document.getElementById('account-name')
+            }
+        };
+
+        // Load data
+        async function loadSettings() {
+            try {
+                const res = await fetch('/api/settings');
+                if (res.ok) {
+                    const data = await res.json();
+                    // Merge loaded data into currentSettings object (or default to empty objects)
+                    currentSettings = {
+                        general: data.general || {},
+                        seo: data.seo || {},
+                        social: data.social || {},
+                        account: data.account || {}
+                    };
+                    
+                    populateFields();
+                }
+            } catch (err) {
+                console.error("Failed to load settings:", err);
+            }
+        }
+
+        function populateFields() {
+            // General
+            inputs.general.siteName.value = currentSettings.general.siteName || '';
+            inputs.general.tagline.value = currentSettings.general.tagline || '';
+            inputs.general.email.value = currentSettings.general.email || '';
+            inputs.general.phone.value = currentSettings.general.phone || '';
+            inputs.general.address.value = currentSettings.general.address || '';
+            inputs.general.hours.value = currentSettings.general.hours || '';
+            inputs.general.copyright.value = currentSettings.general.copyright || '';
+            inputs.general.googleAnalyticsId.value = currentSettings.general.googleAnalyticsId || '';
+
+            // SEO
+            inputs.seo.defaultTitle.value = currentSettings.seo.defaultTitle || '';
+            inputs.seo.defaultDescription.value = currentSettings.seo.defaultDescription || '';
+            inputs.seo.defaultOgImage.value = currentSettings.seo.defaultOgImage || '';
+            updateOgPreview(currentSettings.seo.defaultOgImage);
+
+            // Social
+            inputs.social.facebook.value = currentSettings.social.facebook || '';
+            inputs.social.instagram.value = currentSettings.social.instagram || '';
+            inputs.social.houzz.value = currentSettings.social.houzz || '';
+            inputs.social.pinterest.value = currentSettings.social.pinterest || '';
+
+            // Account
+            inputs.account.displayName.value = currentSettings.account.displayName || '';
+        }
+
+        async function saveSettings(category) {
+            // Update local object
+            Object.keys(inputs[category]).forEach(key => {
+                currentSettings[category][key] = inputs[category][key].value.trim();
+            });
+
+            try {
+                const res = await fetch('/api/settings', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentSettings)
+                });
+                
+                if (res.ok) {
+                    showToast(category.charAt(0).toUpperCase() + category.slice(1) + ' settings saved!');
+                } else {
+                    const err = await res.json();
+                    showToast('Error saving settings: ' + err.message, true);
+                }
+            } catch (error) {
+                showToast('Network error while saving.', true);
+            }
+        }
+
+        // OG Image handling
+        const ogImageInput = document.getElementById('og-image');
+        const ogPreview = document.getElementById('og-preview');
+
+        ogImageInput.addEventListener('input', () => updateOgPreview(ogImageInput.value));
+
+        function updateOgPreview(url) {
+            if (url && url.trim()) {
+                ogPreview.style.backgroundImage = \`url('\${url}')\`;
+                ogPreview.innerHTML = '';
+                ogPreview.classList.add('has-image');
+            } else {
+                ogPreview.style.backgroundImage = 'none';
+                ogPreview.innerHTML = '<span style="color:var(--muted); font-size:14px; padding: 16px; text-align: center;">No image selected</span>';
+                ogPreview.classList.remove('has-image');
+            }
+        }
+
+        document.getElementById('og-upload').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const res = await fetch('/api/media/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    const url = data.url || (Array.isArray(data) && data[0] && data[0].url);
+                    if (url) {
+                        ogImageInput.value = url;
+                        updateOgPreview(url);
+                    }
+                }
+            } catch (err) {
+                alert('Upload failed');
+            }
+        });
+
+        // Password logic
+        function checkPasswordStrength() {
+            const pwd = document.getElementById('new-password').value;
+            const container = document.getElementById('pwd-strength');
+            const fill = document.getElementById('pwd-strength-fill');
+            const text = document.getElementById('pwd-strength-text');
+            
+            if (!pwd) {
+                container.style.display = 'none';
+                text.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            text.style.display = 'block';
+            
+            let strength = 0;
+            if (pwd.length >= 8) strength++;
+            if (/[A-Z]/.test(pwd)) strength++;
+            if (/[0-9]/.test(pwd)) strength++;
+            if (/[^A-Za-z0-9]/.test(pwd)) strength++;
+
+            fill.className = 'password-strength-fill';
+            
+            if (pwd.length < 8) {
+                fill.style.width = '25%';
+                fill.classList.add('strength-weak');
+                text.textContent = 'Too weak (Minimum 8 characters)';
+                text.className = 'password-strength-text strength-weak';
+            } else if (strength < 3) {
+                fill.style.width = '60%';
+                fill.classList.add('strength-medium');
+                text.textContent = 'Moderate';
+                text.className = 'password-strength-text strength-medium';
+            } else {
+                fill.style.width = '100%';
+                fill.classList.add('strength-strong');
+                text.textContent = 'Strong';
+                text.className = 'password-strength-text strength-strong';
+            }
+        }
+
+        async function changePassword() {
+            const current = document.getElementById('current-password').value;
+            const newPwd = document.getElementById('new-password').value;
+            const confirm = document.getElementById('confirm-password').value;
+            
+            if (!current || !newPwd || !confirm) {
+                showToast('Please fill all password fields', true);
+                return;
+            }
+            
+            if (newPwd.length < 8) {
+                showToast('New password must be at least 8 characters', true);
+                return;
+            }
+            
+            if (newPwd !== confirm) {
+                showToast('New passwords do not match', true);
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/change-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        currentPassword: current,
+                        newPassword: newPwd
+                    })
+                });
+                
+                if (res.ok) {
+                    showToast('Password changed successfully');
+                    document.getElementById('current-password').value = '';
+                    document.getElementById('new-password').value = '';
+                    document.getElementById('confirm-password').value = '';
+                    document.getElementById('pwd-strength').style.display = 'none';
+                    document.getElementById('pwd-strength-text').style.display = 'none';
+                } else {
+                    const data = await res.json();
+                    showToast(data.message || 'Error changing password', true);
+                }
+            } catch (e) {
+                showToast('Network error', true);
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            if (isError) toast.classList.add('error');
+            else toast.classList.remove('error');
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        loadSettings();
+    </script>
+</body>
+</html>
