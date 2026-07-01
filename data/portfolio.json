@@ -8,10 +8,36 @@
       "description": "Complete kitchen transformation featuring custom white shaker cabinets, quartz countertops, and an oversized island.",
       "images": [],
       "featuredImage": "",
-      "tags": ["kitchen", "white cabinets", "quartz", "island"],
+      "tags": [
+        "kitchen",
+        "white cabinets",
+        "quartz",
+        "island"
+      ],
       "status": "published",
       "order": 1
+    },
+    {
+      "id": "a5ce9772-c5f7-442b-bb55-fa7922125780",
+      "title": "Loft Apartment",
+      "category": "apartments",
+      "location": "",
+      "description": "Loft Apartment project.",
+      "images": [],
+      "featuredImage": "",
+      "tags": [
+        "loft",
+        "apartment"
+      ],
+      "status": "published",
+      "order": 2
     }
   ],
-  "categories": ["kitchens","bathrooms","closets","bars"]
+  "categories": [
+    "kitchens",
+    "bathrooms",
+    "closets",
+    "bars",
+    "apartments"
+  ]
 }

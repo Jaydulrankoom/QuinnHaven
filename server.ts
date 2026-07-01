@@ -61,17 +61,18 @@ ${routes.map(route => `
   // Admin API Routes and static files
   
   // Body parsing and session for admin API
-  app.set('trust proxy', 1);
+  app.set('trust proxy', true);
   app.use('/api', bodyParser.json());
   app.use('/api', bodyParser.urlencoded({ extended: true }));
   app.use('/api', session({
     secret: process.env.SESSION_SECRET || 'quinnhaven_secret_2025',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: { 
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      secure: true,
-      sameSite: 'none'
+      secure: false,
+      sameSite: 'lax',
+      path: '/'
     }
   }));
 

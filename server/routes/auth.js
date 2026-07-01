@@ -37,6 +37,8 @@ initAuth();
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
+  console.log("Login attempt for:", req.body.username);
+  console.log("Login - req.secure:", req.secure);
   try {
     const { username, password } = req.body;
     const data = await fs.readJson(dataPath);
@@ -54,7 +56,13 @@ router.post('/login', async (req, res) => {
         name: user.name, 
         role: user.role 
       };
-      return res.json({ success: true, user: { name: user.name, role: user.role } });
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).json({ success: false, message: "Internal server error during login" });
+        }
+        return res.json({ success: true, user: { name: user.name, role: user.role } });
+      });
     } else {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
@@ -81,6 +89,9 @@ router.post('/logout', (req, res) => {
 
 // GET /api/auth/check
 router.get('/check', (req, res) => {
+  console.log("Check auth - req.secure:", req.secure);
+  console.log("Check auth - session:", req.session ? req.session.id : 'no session');
+  console.log("Check auth - user:", req.session ? req.session.user : 'no user');
   if (req.session && req.session.user) {
     return res.json({ loggedIn: true, user: req.session.user });
   } else {
