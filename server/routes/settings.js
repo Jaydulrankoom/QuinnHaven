@@ -1,6 +1,6 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const { readJSON, writeJSON, backupJSON } = require('../utils/fileHelper');
+import { readJSON, writeJSON, backupJSON } from "../utils/fileHelper.js";
 
 const requireAuth = (req, res, next) => {
   if (req.session && req.session.user) {
@@ -36,4 +36,4 @@ router.put('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

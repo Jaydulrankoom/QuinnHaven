@@ -1,7 +1,7 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const { readJSON, writeJSON } = require('../utils/fileHelper');
+import bcrypt from "bcryptjs";
+import { readJSON, writeJSON } from "../utils/fileHelper.js";
 
 // Middleware for auth routes that require the user to be logged in
 const requireAuth = (req, res, next) => {
@@ -132,4 +132,4 @@ router.post('/setup', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,9 +1,9 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const fs = require('fs-extra');
-const path = require('path');
+import fs from "fs-extra";
+import path from "path";
 
-const dataDir = path.join(__dirname, '../../data');
+const dataDir = path.join(process.cwd(), 'data');
 
 const requireAuth = (req, res, next) => {
   if (req.session && req.session.user) {
@@ -110,4 +110,4 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -7,6 +7,15 @@ import { createRequire } from 'module';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 
+import authRoutes from './server/routes/auth.js';
+import contentRoutes from './server/routes/content.js';
+import blogRoutes from './server/routes/blog.js';
+import portfolioRoutes from './server/routes/portfolio.js';
+import mediaRoutes from './server/routes/media.js';
+import settingsRoutes from './server/routes/settings.js';
+import menuRoutes from './server/routes/menu.js';
+import pagesRoutes from './server/routes/pages.js';
+
 const require = createRequire(import.meta.url);
 
 const __filename = fileURLToPath(import.meta.url);
@@ -73,45 +82,14 @@ ${routes.map(route => `
     path: '/'
   }));
 
-  try {
-    const authRoutes = require('./server/routes/auth.js');
-    app.use('/api/auth', authRoutes);
-  } catch (e) { console.log('Auth routes failed or missing', e.message); }
-
-  try {
-    const contentRoutes = require('./server/routes/content.js');
-    app.use('/api/content', contentRoutes);
-  } catch (e) { console.log('Content routes failed or missing', e.message); }
-
-  try {
-    const blogRoutes = require('./server/routes/blog.js');
-    app.use('/api/blog', blogRoutes);
-  } catch (e) {}
-
-  try {
-    const portfolioRoutes = require('./server/routes/portfolio.js');
-    app.use('/api/portfolio', portfolioRoutes);
-  } catch (e) {}
-
-  try {
-    const mediaRoutes = require('./server/routes/media.js');
-    app.use('/api/media', mediaRoutes);
-  } catch (e) {}
-
-  try {
-    const settingsRoutes = require('./server/routes/settings.js');
-    app.use('/api/settings', settingsRoutes);
-  } catch (e) {}
-
-  try {
-    const menuRoutes = require('./server/routes/menu.js');
-    app.use('/api/menu', menuRoutes);
-  } catch (e) {}
-
-  try {
-    const pagesRoutes = require('./server/routes/pages.js');
-    app.use('/api/pages', pagesRoutes);
-  } catch (e) {}
+  app.use('/api/auth', authRoutes);
+  app.use('/api/content', contentRoutes);
+  app.use('/api/blog', blogRoutes);
+  app.use('/api/portfolio', portfolioRoutes);
+  app.use('/api/media', mediaRoutes);
+  app.use('/api/settings', settingsRoutes);
+  app.use('/api/menu', menuRoutes);
+  app.use('/api/pages', pagesRoutes);
 
   // Removed static admin routes
   app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));

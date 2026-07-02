@@ -1,8 +1,8 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs-extra');
+import multer from "multer";
+import path from "path";
+import fs from "fs-extra";
 
 // Authentication middleware
 const requireAuth = (req, res, next) => {
@@ -15,7 +15,7 @@ const requireAuth = (req, res, next) => {
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
-    const uploadDir = path.join(__dirname, '../../admin/uploads');
+    const uploadDir = path.join(process.cwd(), 'public/uploads');
     await fs.ensureDir(uploadDir);
     cb(null, uploadDir);
   },
@@ -72,7 +72,7 @@ router.post('/upload', requireAuth, (req, res) => {
 // GET /api/media/library
 router.get('/library', requireAuth, async (req, res) => {
   try {
-    const uploadDir = path.join(__dirname, '../../admin/uploads');
+    const uploadDir = path.join(process.cwd(), 'public/uploads');
     await fs.ensureDir(uploadDir);
     const files = await fs.readdir(uploadDir);
     
@@ -108,7 +108,7 @@ router.delete('/:filename', requireAuth, async (req, res) => {
       return res.status(403).json({ success: false, message: 'Invalid filename' });
     }
     
-    const filePath = path.join(__dirname, '../../admin/uploads', filename);
+    const filePath = path.join(process.cwd(), 'public/uploads', filename);
     
     if (await fs.pathExists(filePath)) {
       await fs.remove(filePath);
@@ -124,7 +124,7 @@ router.delete('/:filename', requireAuth, async (req, res) => {
 // GET /api/media/count
 router.get('/count', requireAuth, async (req, res) => {
   try {
-    const uploadDir = path.join(__dirname, '../../admin/uploads');
+    const uploadDir = path.join(process.cwd(), 'public/uploads');
     await fs.ensureDir(uploadDir);
     const files = await fs.readdir(uploadDir);
     
@@ -137,4 +137,4 @@ router.get('/count', requireAuth, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

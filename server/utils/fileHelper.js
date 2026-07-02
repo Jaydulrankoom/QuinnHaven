@@ -1,8 +1,8 @@
-const fs = require('fs-extra');
-const path = require('path');
-const Database = require('better-sqlite3');
+import fs from "fs-extra";
+import path from "path";
+import Database from "better-sqlite3";
 
-const dataDir = path.join(__dirname, '../../data');
+const dataDir = path.join(process.cwd(), 'data');
 const backupsDir = path.join(dataDir, 'backups');
 
 let db;
@@ -87,4 +87,4 @@ async function backupJSON(filename) {
   }
 }
 
-module.exports = { readJSON, writeJSON, backupJSON };
+export { readJSON, writeJSON, backupJSON };

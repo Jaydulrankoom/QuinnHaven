@@ -1,7 +1,7 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const { v4: uuidv4 } = require('uuid');
-const { readJSON, writeJSON, backupJSON } = require('../utils/fileHelper');
+import { v4 as uuidv4 } from "uuid";
+import { readJSON, writeJSON, backupJSON } from "../utils/fileHelper.js";
 
 const requireAuth = (req, res, next) => {
   if (req.session && req.session.user) {
@@ -279,4 +279,4 @@ router.post('/categories', requireAuth, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
