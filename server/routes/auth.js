@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
     } catch (err) {
       data = { users: [{ id: 1, username: "admin", password: "setup_new_password", name: "Admin", role: "admin" }] };
     }
-    const user = data.users.find(u => u.username === username);
+    const user = data.users.find(u => u.username.toLowerCase() === username.toLowerCase());
     
     if (!user) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });

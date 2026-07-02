@@ -1,8 +1,41 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, Link, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FileText, Image, Settings, LogOut, FileCode, ShoppingBag, Menu as MenuIcon } from 'lucide-react';
 
 export default function AdminLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    fetch('/api/auth/check')
+      .then(res => res.json())
+      .then(data => {
+        setIsAuthenticated(data.loggedIn);
+      })
+      .catch(() => setIsAuthenticated(false));
+  }, [location.pathname]);
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      navigate('/admin/login');
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  if (isAuthenticated === null) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
+  }
   
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
@@ -12,7 +45,7 @@ export default function AdminLayout() {
     { name: 'Page Content', path: '/admin/pages', icon: <FileCode size={20} /> },
     { name: 'Navigation Menu', path: '/admin/menu', icon: <MenuIcon size={20} /> },
     { name: 'Header & Footer', path: '/admin/globals', icon: <Settings size={20} /> },
-    { name: 'Hostinger & Auth', path: '/admin/settings', icon: <Settings size={20} /> },
+    { name: 'Database & Auth', path: '/admin/settings', icon: <Settings size={20} /> },
   ];
 
   return (
@@ -24,7 +57,7 @@ export default function AdminLayout() {
           <p className="text-sm text-gray-400 mt-1">Ready for MySQL</p>
         </div>
         
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
             return (
@@ -42,7 +75,11 @@ export default function AdminLayout() {
           })}
         </nav>
         
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-white/10 space-y-2">
+           <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-sm transition-colors">
+            <LogOut size={20} />
+            <span className="font-medium">Logout</span>
+          </button>
           <Link to="/" className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-sm transition-colors">
             <LogOut size={20} />
             <span className="font-medium">Exit to Website</span>
@@ -58,15 +95,9 @@ export default function AdminLayout() {
           </h1>
           <div className="flex items-center gap-4">
             <div className="hidden md:block text-sm text-gray-500">
-               CMS Mode: <span className="text-amber-500 font-bold border border-amber-500 px-2 py-1 rounded bg-amber-50">Local Mock Data (Pending MySQL)</span>
+               CMS Mode: <span className="text-brand font-bold border border-brand px-2 py-1 rounded bg-cream">Live</span>
             </div>
-            <button 
-              onClick={() => alert('Simulating WordPress static site generation and MySQL data publish...')}
-              className="bg-accent text-white px-4 py-2 rounded text-sm font-bold shadow-sm hover:bg-amber-600 transition-colors"
-            >
-              Publish to Live Site
-            </button>
-            <div className="h-10 w-10 bg-brand text-white rounded-full flex items-center justify-center font-bold">
+            <div className="h-10 w-10 bg-brand text-white rounded-full flex items-center justify-center font-bold shadow-sm">
               AD
             </div>
           </div>

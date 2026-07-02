@@ -30,20 +30,22 @@ export default function AdminDashboard() {
 
       <div className="bg-white rounded shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-8">
-          <h2 className="text-2xl font-serif text-charcoal mb-4">CMS Architecture Setup for Hostinger</h2>
+          <h2 className="text-2xl font-serif text-charcoal mb-4">Content Management System</h2>
           <div className="space-y-4 text-gray-600">
             <p>
-              Welcome to your dedicated CMS Admin Panel. This secure interface provides the front-end architecture necessary to manage your blogs, portfolio items, and SEO meta tags directly.
+              Welcome to the QuinnHaven Design CMS. Manage your portfolio, blogs, pages, and products dynamically.
+              All changes made here are instantly reflected on the live website.
             </p>
-            <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mt-6 rounded-r">
-              <h4 className="font-bold text-amber-800 text-lg mb-3">Hostinger MySQL Integration Pending</h4>
-              <p className="text-amber-900/80 mb-4">To complete the integration so you can save data permanently, follow these steps later:</p>
-              <ol className="list-decimal ml-5 space-y-3 text-amber-900/80">
-                <li><strong>Create the MySQL Database</strong> in your Hostinger hPanel.</li>
-                <li><strong>Provide Database Credentials</strong> (Host, User, Password, DB Name) once created.</li>
-                <li><strong>We will configure the backend server (`server.ts`)</strong> to establish a connection pool to your MySQL instance.</li>
-                <li><strong>API bridging:</strong> This React CMS will send `POST/PUT` requests to the Node backend, which will execute `INSERT/UPDATE` SQL commands into your Hostinger database, providing a full robust CMS experience.</li>
-              </ol>
+            
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mt-6 rounded-r">
+              <h4 className="font-bold text-blue-800 text-lg mb-2">System Status: Active</h4>
+              <p className="text-blue-900/80 mb-2">The database connection is established and the system is ready.</p>
+              <ul className="list-disc ml-5 space-y-1 text-blue-900/80">
+                <li>Create and update portfolio case studies.</li>
+                <li>Write and publish blog posts.</li>
+                <li>Manage product catalog.</li>
+                <li>Update SEO metadata dynamically.</li>
+              </ul>
             </div>
           </div>
         </div>

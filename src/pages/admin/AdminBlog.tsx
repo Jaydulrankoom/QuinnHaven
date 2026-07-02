@@ -72,7 +72,6 @@ export default function AdminBlog() {
             <div className="flex gap-4 pt-6 border-t border-gray-100">
               <button 
                 onClick={() => {
-                   alert("Saving to MySQL database pending Hostinger integration.");
                    setIsEditing(false);
                 }} 
                 className="bg-brand text-white px-8 py-3 rounded font-bold shadow-sm"

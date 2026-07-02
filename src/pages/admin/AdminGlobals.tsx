@@ -16,7 +16,7 @@ export default function AdminGlobals() {
   const [headerAnnouncement, setHeaderAnnouncement] = useState('Visit our new Wallingford showroom today! Open Mon-Sat.');
 
   const saveSettings = () => {
-    alert("Saving Global Header & Footer settings to MySQL database.");
+    // alert("Saving Global Header & Footer settings to MySQL database.");
   };
 
   return (

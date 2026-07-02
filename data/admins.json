@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "username": "Quin",
-      "password": "$2b$10$LQLPe9.RjbDOkxETOaMn2eVn5SD/jxWXurzFd2Qb4qe2o0dHyXd8u",
-      "name": "Quin",
+      "username": "admin",
+      "password": "$2b$10$eg2V/pXuwn6G4rDp/0FV7OvRwUo5NvpumsLVvkwhr11v32jYhn2dK",
+      "name": "Admin",
       "role": "superadmin",
       "created": "2025-01-01"
     }

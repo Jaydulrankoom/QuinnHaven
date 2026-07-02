@@ -113,16 +113,9 @@ ${routes.map(route => `
     app.use('/api/pages', pagesRoutes);
   } catch (e) {}
 
-  // Mount Admin panel statically
-  app.use('/admin', express.static(path.join(process.cwd(), 'public/admin')));
-  app.use('/uploads', express.static(path.join(process.cwd(), 'public/admin/uploads')));
-
-  // Redirect /admin to /admin/login.html if not logged in (handled by static files + client JS)
-  // For simplicity, let's just make sure /admin maps to index if we had one.
-  app.get('/admin', (req, res) => {
-    res.redirect('/admin/dashboard.html');
-  });
-
+  // Removed static admin routes
+  app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads')));
+  
   // API routes FIRST
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });

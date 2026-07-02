@@ -1,45 +1,34 @@
 const fs = require('fs-extra');
 const path = require('path');
-const mysql = require('mysql2/promise');
+const Database = require('better-sqlite3');
 
 const dataDir = path.join(__dirname, '../../data');
 const backupsDir = path.join(dataDir, 'backups');
 
-const dbConfig = {
-  host: process.env.DB_HOST || '127.0.0.1',
-  user: process.env.DB_USER || 'u328954550_Quin',
-  password: process.env.DB_PASSWORD || 'Quinhaven12$',
-  database: process.env.DB_NAME || 'u328954550_Quin'
-};
+let db;
+let dbInitialized = false;
 
-let pool;
-function getPool() {
-  if (!pool) {
-    pool = mysql.createPool({
-      ...dbConfig,
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0
-    });
+function getDb() {
+  if (!db) {
+    db = new Database(path.join(process.cwd(), 'data.db'));
   }
-  return pool;
+  return db;
 }
 
-let dbInitialized = false;
 async function initDB() {
   if (dbInitialized) return;
   try {
-    const p = getPool();
-    await p.query(`
+    const sqlite = getDb();
+    sqlite.exec(`
       CREATE TABLE IF NOT EXISTS json_store (
-        filename VARCHAR(255) PRIMARY KEY,
-        data LONGTEXT NOT NULL,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        filename TEXT PRIMARY KEY,
+        data TEXT NOT NULL,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
     dbInitialized = true;
   } catch (err) {
-    console.warn("MySQL initialization failed, falling back to local files:", err.message);
+    console.warn("SQLite initialization failed, falling back to local files:", err.message);
   }
 }
 
@@ -47,14 +36,15 @@ async function readJSON(filename) {
   try {
     await initDB();
     if (dbInitialized) {
-      const p = getPool();
-      const [rows] = await p.query('SELECT data FROM json_store WHERE filename = ?', [filename]);
-      if (rows.length > 0) {
-        return JSON.parse(rows[0].data);
+      const sqlite = getDb();
+      const stmt = sqlite.prepare('SELECT data FROM json_store WHERE filename = ?');
+      const row = stmt.get(filename);
+      if (row) {
+        return JSON.parse(row.data);
       }
     }
   } catch (err) {
-    console.error(`MySQL read error for ${filename}:`, err.message);
+    console.error(`SQLite read error for ${filename}:`, err.message);
   }
   
   // Fallback to file system
@@ -70,15 +60,15 @@ async function writeJSON(filename, data) {
   try {
     await initDB();
     if (dbInitialized) {
-      const p = getPool();
-      await p.query(
-        'INSERT INTO json_store (filename, data) VALUES (?, ?) ON DUPLICATE KEY UPDATE data = ?',
-        [filename, jsonData, jsonData]
+      const sqlite = getDb();
+      const stmt = sqlite.prepare(
+        'INSERT INTO json_store (filename, data) VALUES (?, ?) ON CONFLICT(filename) DO UPDATE SET data = excluded.data, updated_at = CURRENT_TIMESTAMP'
       );
+      stmt.run(filename, jsonData);
       return;
     }
   } catch (err) {
-    console.error(`MySQL write error for ${filename}:`, err.message);
+    console.error(`SQLite write error for ${filename}:`, err.message);
   }
   
   // Fallback to file system
@@ -88,7 +78,6 @@ async function writeJSON(filename, data) {
 }
 
 async function backupJSON(filename) {
-  // We can skip backup for MySQL or just backup local files as well
   const sourcePath = path.join(dataDir, `${filename}.json`);
   if (await fs.pathExists(sourcePath)) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');

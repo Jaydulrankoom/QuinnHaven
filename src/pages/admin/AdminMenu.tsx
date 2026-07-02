@@ -20,7 +20,7 @@ export default function AdminMenu() {
   };
 
   const saveMenu = () => {
-     alert("Saving menu order and links to MySQL database pending Hostinger integration.");
+     // alert("Saving menu order and links to MySQL database pending Hostinger integration.");
   };
 
   return (

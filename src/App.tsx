@@ -30,6 +30,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const GenericPage = lazy(() => import("./pages/GenericPage"));
 
 // Admin / CMS Routes
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminProducts = lazy(() => import("./pages/admin/AdminProducts"));
@@ -166,6 +167,7 @@ export default function App() {
           </Route>
 
           {/* Admin CMS Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
