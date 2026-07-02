@@ -24,7 +24,7 @@ const req = http.request(options, (res) => {
         path: '/api/auth/check',
         method: 'GET',
         headers: {
-          'Cookie': cookie[0].split(';')[0]
+          'Cookie': cookie.map(c => c.split(';')[0]).join('; ')
         }
       };
       const checkReq = http.request(checkOptions, checkRes => {

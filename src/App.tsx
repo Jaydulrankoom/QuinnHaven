@@ -164,6 +164,18 @@ export default function App() {
             {/* Fallback */}
             <Route path="*" element={<GenericPage title="404 Page Not Found" />} />
           </Route>
+
+          {/* Admin CMS Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="menu" element={<AdminMenu />} />
+            <Route path="globals" element={<AdminGlobals />} />
+            <Route path="blog" element={<AdminBlog />} />
+            <Route path="portfolio" element={<AdminPortfolio />} />
+            <Route path="pages" element={<AdminPages />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
         </Routes>
       </Suspense>
     </>

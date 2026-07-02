@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import { createRequire } from 'module';
 import bodyParser from 'body-parser';
-import session from 'express-session';
+import cookieSession from 'cookie-session';
 
 const require = createRequire(import.meta.url);
 
@@ -64,16 +64,13 @@ ${routes.map(route => `
   app.set('trust proxy', true);
   app.use('/api', bodyParser.json());
   app.use('/api', bodyParser.urlencoded({ extended: true }));
-  app.use('/api', session({
+  app.use('/api', cookieSession({
+    name: 'session',
     secret: process.env.SESSION_SECRET || 'quinnhaven_secret_2025',
-    resave: true,
-    saveUninitialized: true,
-    cookie: { 
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      secure: false,
-      sameSite: 'lax',
-      path: '/'
-    }
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/'
   }));
 
   try {
@@ -117,8 +114,8 @@ ${routes.map(route => `
   } catch (e) {}
 
   // Mount Admin panel statically
-  app.use('/admin', express.static(path.join(process.cwd(), 'admin')));
-  app.use('/uploads', express.static(path.join(process.cwd(), 'admin/uploads')));
+  app.use('/admin', express.static(path.join(process.cwd(), 'public/admin')));
+  app.use('/uploads', express.static(path.join(process.cwd(), 'public/admin/uploads')));
 
   // Redirect /admin to /admin/login.html if not logged in (handled by static files + client JS)
   // For simplicity, let's just make sure /admin maps to index if we had one.

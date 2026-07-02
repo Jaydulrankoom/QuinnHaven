@@ -56,13 +56,7 @@ router.post('/login', async (req, res) => {
         name: user.name, 
         role: user.role 
       };
-      req.session.save((err) => {
-        if (err) {
-          console.error("Session save error:", err);
-          return res.status(500).json({ success: false, message: "Internal server error during login" });
-        }
-        return res.json({ success: true, user: { name: user.name, role: user.role } });
-      });
+      return res.json({ success: true, user: { name: user.name, role: user.role } });
     } else {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
@@ -74,17 +68,9 @@ router.post('/login', async (req, res) => {
 
 // POST /api/auth/logout
 router.post('/logout', (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        return res.status(500).json({ success: false, message: "Error during logout" });
-      }
-      res.clearCookie('connect.sid'); // Express-session default cookie name
-      return res.json({ success: true });
-    });
-  } else {
-    return res.json({ success: true });
-  }
+  req.session = null;
+  res.clearCookie('session');
+  return res.json({ success: true });
 });
 
 // GET /api/auth/check
