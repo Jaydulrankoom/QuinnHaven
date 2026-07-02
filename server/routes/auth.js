@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs-extra');
-const path = require('path');
 const bcrypt = require('bcryptjs');
-
-const dataPath = path.join(__dirname, '../../data/admins.json');
+const { readJSON, writeJSON } = require('../utils/fileHelper');
 
 // Middleware for auth routes that require the user to be logged in
 const requireAuth = (req, res, next) => {
@@ -18,15 +15,12 @@ const requireAuth = (req, res, next) => {
 // Auto-hash password on first server start if still using the placeholder
 const initAuth = async () => {
   try {
-    const fileExists = await fs.pathExists(dataPath);
-    if (fileExists) {
-      const data = await fs.readJson(dataPath);
-      if (data.users && data.users[0] && (data.users[0].password === "$2a$10$exampleHashedPasswordHere" || data.users[0].password === "setup_new_password")) {
-        const hashedPassword = await bcrypt.hash("Quin$", 10);
-        data.users[0].password = hashedPassword;
-        await fs.writeJson(dataPath, data, { spaces: 2 });
-        console.log("Admin password was auto-hashed from .env");
-      }
+    const data = await readJSON('admins');
+    if (data && data.users && data.users[0] && (data.users[0].password === "$2a$10$exampleHashedPasswordHere" || data.users[0].password === "setup_new_password")) {
+      const hashedPassword = await bcrypt.hash("Quin$", 10);
+      data.users[0].password = hashedPassword;
+      await writeJSON('admins', data);
+      console.log("Admin password was auto-hashed from .env");
     }
   } catch (error) {
     console.error("Error initializing auth:", error);
@@ -41,7 +35,12 @@ router.post('/login', async (req, res) => {
   console.log("Login - req.secure:", req.secure);
   try {
     const { username, password } = req.body;
-    const data = await fs.readJson(dataPath);
+    let data;
+    try {
+      data = await readJSON('admins');
+    } catch (err) {
+      data = { users: [{ id: 1, username: "admin", password: "setup_new_password", name: "Admin", role: "admin" }] };
+    }
     const user = data.users.find(u => u.username === username);
     
     if (!user) {
