@@ -1,9 +1,35 @@
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Phone, MapPin, PenTool, LayoutDashboard, Hammer, Sparkles, Box } from "lucide-react";
+import { collection, getDocs, query, limit, where } from "firebase/firestore";
+import { db } from "../lib/firebase";
 import { SERVICES, BRAND } from "../data";
 
 export default function Home() {
+  const [recentProjects, setRecentProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const q = query(
+          collection(db, "portfolio"),
+          where("status", "==", "published"),
+          limit(3)
+        );
+        const querySnapshot = await getDocs(q);
+        const items = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setRecentProjects(items);
+      } catch (e) {
+        console.error("Error fetching projects", e);
+      }
+    };
+    fetchProjects();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-cream font-sans text-charcoal">
       
@@ -251,23 +277,48 @@ export default function Home() {
               </h2>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
-                 <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                 <img src={SERVICES[0].img} alt="Kitchen Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                 <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
-                    <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Kitchen Remodel</span>
-                    <h4 className="font-serif text-xl text-charcoal">The Avon Culinary Estate</h4>
-                 </div>
-              </div>
-              <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
-                 <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                 <img src={SERVICES[2].img} alt="Bathroom Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                 <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
-                    <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Bathroom Retreat</span>
-                    <h4 className="font-serif text-xl text-charcoal">Wallingford Master Bath</h4>
-                 </div>
-              </div>
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
+              {recentProjects.length > 0 ? (
+                recentProjects.map((project) => (
+                  <Link to={`/portfolio/${project.id}`} key={project.id} className="group cursor-pointer block border border-charcoal/5 p-4 bg-white hover:shadow-xl transition-all duration-500">
+                    <div className="relative h-[400px] overflow-hidden mb-6">
+                       <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                       <img loading="lazy" 
+                          src={project.gallery?.[0] || "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"} 
+                          alt={project.title} 
+                          referrerPolicy="no-referrer"
+                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                        />
+                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                          <span className="bg-charcoal text-brand px-6 py-3 uppercase tracking-widest text-xs font-bold shadow-2xl">
+                             View Case Study
+                          </span>
+                       </div>
+                    </div>
+                    <h2 className="font-serif text-2xl text-charcoal mb-1 group-hover:text-brand transition-colors">{project.title}</h2>
+                    <p className="text-charcoal/50 text-xs font-bold uppercase tracking-widest">{project.category} {project.location ? `• ${project.location}` : ''}</p>
+                  </Link>
+                ))
+              ) : (
+                <>
+                  <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
+                     <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                     <img src={SERVICES[0].img} alt="Kitchen Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                     <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
+                        <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Kitchen Remodel</span>
+                        <h4 className="font-serif text-xl text-charcoal">The Avon Culinary Estate</h4>
+                     </div>
+                  </div>
+                  <div className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-sm">
+                     <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                     <img src={SERVICES[2].img} alt="Bathroom Project" loading="lazy" width="800" height="600" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                     <div className="absolute bottom-6 left-6 z-20 bg-white px-6 py-3">
+                        <span className="text-brand text-xs uppercase tracking-widest font-bold block mb-1">Bathroom Retreat</span>
+                        <h4 className="font-serif text-xl text-charcoal">Wallingford Master Bath</h4>
+                     </div>
+                  </div>
+                </>
+              )}
            </div>
            
            <div className="text-center">

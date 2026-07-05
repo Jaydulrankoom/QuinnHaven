@@ -1,11 +1,39 @@
+import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { PORTFOLIO } from "../data";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
-const CATEGORIES = ["All", "Kitchen", "Bathroom", "Closet", "Basement Bar", "Laundry", "Home Office", "Entryway"];
+const CATEGORIES = [
+  "All",
+  "Kitchen Remodel",
+  "Bathroom Retreat",
+  "Custom Cabinetry",
+  "Multifamily",
+];
 
 export default function Portfolio() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "All";
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "portfolio"));
+        const items = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProjects(items);
+      } catch (e) {
+        console.error("Error fetching projects", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const handleCategoryClick = (cat: string) => {
     const newParams = new URLSearchParams(searchParams);
@@ -17,9 +45,10 @@ export default function Portfolio() {
     setSearchParams(newParams);
   };
 
-  const filteredProjects = PORTFOLIO.filter(p => {
-    const matchCategory = activeCategory === "All" || p.category === activeCategory;
-    return matchCategory;
+  const filteredProjects = projects.filter((p) => {
+    const matchCategory =
+      activeCategory === "All" || p.category === activeCategory;
+    return matchCategory && p.status === "published";
   });
 
   return (
@@ -57,41 +86,47 @@ export default function Portfolio() {
       {/* GRID */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {filteredProjects.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-charcoal/60 uppercase tracking-widest text-sm font-bold">
+                Loading projects...
+              </p>
+            </div>
+          ) : filteredProjects.length === 0 ? (
             <div className="text-center py-20">
               <h3 className="text-2xl font-serif text-charcoal mb-4">No projects found.</h3>
               <p className="text-charcoal/60">Try adjusting your filters to see more results.</p>
               <button 
                 onClick={() => {
-                   const newParams = new URLSearchParams(searchParams);
-                   newParams.delete("category");
-                   setSearchParams(newParams);
-                }}
-                className="mt-8 px-8 py-3 bg-charcoal text-white uppercase tracking-widest text-xs font-bold hover:bg-brand transition-colors"
-               >
-                 Clear Filters
-               </button>
+                  const newParams = new URLSearchParams(searchParams);
+                  newParams.delete("category");
+                  setSearchParams(newParams);
+               }}
+               className="mt-8 px-8 py-3 bg-charcoal text-white uppercase tracking-widest text-xs font-bold hover:bg-brand transition-colors" 
+              >
+                Clear Filters
+              </button>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {filteredProjects.map((project) => (
                 <Link to={`/portfolio/${project.id}`} key={project.id} className="group cursor-pointer block border border-charcoal/5 p-4 bg-cream hover:shadow-xl transition-all duration-500">
-                   <div className="relative h-[400px] overflow-hidden mb-6">
-                      <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                      <img loading="lazy" 
-                        src={project.img} 
+                  <div className="relative h-[400px] overflow-hidden mb-6">
+                     <div className="absolute inset-0 bg-charcoal/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                     <img loading="lazy" 
+                        src={project.gallery?.[0] || "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"} 
                         alt={project.title} 
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                       />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                         <span className="bg-charcoal text-brand px-6 py-3 uppercase tracking-widest text-xs font-bold shadow-2xl">
-                            View Case Study
-                         </span>
-                      </div>
-                   </div>
-                   <h2 className="font-serif text-2xl text-charcoal mb-1 group-hover:text-brand transition-colors">{project.title}</h2>
-                   <p className="text-charcoal/50 text-xs font-bold uppercase tracking-widest">{project.category} • {project.location}</p>
+                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                        <span className="bg-charcoal text-brand px-6 py-3 uppercase tracking-widest text-xs font-bold shadow-2xl">
+                           View Case Study
+                        </span>
+                     </div>
+                  </div>
+                  <h2 className="font-serif text-2xl text-charcoal mb-1 group-hover:text-brand transition-colors">{project.title}</h2>
+                  <p className="text-charcoal/50 text-xs font-bold uppercase tracking-widest">{project.category} • {project.location}</p>
                 </Link>
               ))}
             </div>

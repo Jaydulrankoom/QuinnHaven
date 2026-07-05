@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FileText, Image, Settings, LogOut, FileCode, ShoppingBag, Menu as MenuIcon } from 'lucide-react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../../lib/firebase';
 
 export default function AdminLayout() {
   const location = useLocation();
@@ -8,17 +10,15 @@ export default function AdminLayout() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetch('/api/auth/check')
-      .then(res => res.json())
-      .then(data => {
-        setIsAuthenticated(data.loggedIn);
-      })
-      .catch(() => setIsAuthenticated(false));
-  }, [location.pathname]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      await signOut(auth);
       navigate('/admin/login');
     } catch (e) {
       console.error(e);
@@ -45,16 +45,15 @@ export default function AdminLayout() {
     { name: 'Page Content', path: '/admin/pages', icon: <FileCode size={20} /> },
     { name: 'Navigation Menu', path: '/admin/menu', icon: <MenuIcon size={20} /> },
     { name: 'Header & Footer', path: '/admin/globals', icon: <Settings size={20} /> },
-    { name: 'Database & Auth', path: '/admin/settings', icon: <Settings size={20} /> },
+    { name: 'Settings', path: '/admin/settings', icon: <Settings size={20} /> },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
       <aside className="w-64 bg-charcoal text-white flex flex-col shrink-0">
         <div className="p-6 border-b border-white/10">
           <h2 className="text-xl font-serif font-bold">QH Admin CMS</h2>
-          <p className="text-sm text-gray-400 mt-1">Ready for MySQL</p>
+          <p className="text-sm text-gray-400 mt-1">Firebase Backend</p>
         </div>
         
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -87,16 +86,12 @@ export default function AdminLayout() {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         <header className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shrink-0">
           <h1 className="text-2xl font-serif text-charcoal">
             {navItems.find(item => item.path === location.pathname)?.name || 'Admin Dashboard'}
           </h1>
           <div className="flex items-center gap-4">
-            <div className="hidden md:block text-sm text-gray-500">
-               CMS Mode: <span className="text-brand font-bold border border-brand px-2 py-1 rounded bg-cream">Live</span>
-            </div>
             <div className="h-10 w-10 bg-brand text-white rounded-full flex items-center justify-center font-bold shadow-sm">
               AD
             </div>

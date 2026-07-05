@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "providers": {
+      "emailPassword": true
+    }
+  },
+  "collections": {
+    "portfolio": {
+      "rules": {
+        "read": "true",
+        "write": "request.auth != null"
+      }
+    }
+  }
+}
